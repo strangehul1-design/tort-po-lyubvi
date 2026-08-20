@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Асия Зубаирова — торты на заказ в Самаре</title>
+<meta name="description" content="Бисквитные торты ручной работы в Самаре: бенто, праздничные, гендерные, свадебные ярусные. Фиксированная цена, перевес в подарок, бережная доставка.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- силуэты: заглушка, пока в карточке нет фото -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="cake-bento" viewBox="0 0 120 120">
+    <path d="M30 52h60a4 4 0 0 1 4 4v30a10 10 0 0 1-10 10H36a10 10 0 0 1-10-10V56a4 4 0 0 1 4-4z" fill="currentColor"/>
+    <path d="M30 52h60a4 4 0 0 1 4 4v6H26v-6a4 4 0 0 1 4-4z" fill="#fff" opacity=".35"/>
+    <path d="M52 40q8-9 16 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="cake-round" viewBox="0 0 120 120">
+    <path d="M24 44h72a3 3 0 0 1 3 3v40a9 9 0 0 1-9 9H30a9 9 0 0 1-9-9V47a3 3 0 0 1 3-3z" fill="currentColor"/>
+    <path d="M21 58q10 8 19 0t19 0 19 0 21 0" stroke="#fff" stroke-width="3" fill="none" opacity=".45"/>
+    <circle cx="60" cy="30" r="4" fill="currentColor" opacity=".6"/>
+    <path d="M60 34v10" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+  <symbol id="cake-tiered" viewBox="0 0 120 120">
+    <path d="M38 24h44v22H38z" fill="currentColor" opacity=".85"/>
+    <path d="M30 48h60v26H30z" fill="currentColor"/>
+    <path d="M20 76h80v20a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="currentColor" opacity=".92"/>
+    <path d="M38 24h44v5H38zM30 48h60v5H30zM20 76h80v5H20z" fill="#fff" opacity=".4"/>
+  </symbol>
+  <symbol id="cake-number" viewBox="0 0 120 120">
+    <path d="M26 50h68a4 4 0 0 1 4 4v34a8 8 0 0 1-8 8H30a8 8 0 0 1-8-8V54a4 4 0 0 1 4-4z" fill="currentColor"/>
+    <path d="M50 40q-2-12 10-12t10 12" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".65"/>
+    <circle cx="42" cy="70" r="5" fill="#fff" opacity=".5"/>
+    <circle cx="60" cy="80" r="4" fill="#fff" opacity=".5"/>
+    <circle cx="78" cy="68" r="6" fill="#fff" opacity=".5"/>
+  </symbol>
+  <symbol id="cake-mochi" viewBox="0 0 120 120">
+    <ellipse cx="38" cy="74" rx="24" ry="20" fill="currentColor"/>
+    <ellipse cx="82" cy="78" rx="21" ry="17" fill="currentColor" opacity=".8"/>
+    <ellipse cx="60" cy="46" rx="20" ry="16" fill="currentColor" opacity=".9"/>
+    <ellipse cx="54" cy="41" rx="7" ry="5" fill="#fff" opacity=".45"/>
+  </symbol>
+</svg>
+
+<header class="topbar" id="top">
+  <a class="topbar__mark" href="#top">
+    <span class="topbar__name">Асия Зубаирова</span>
+    <span class="topbar__role">торты · Самара</span>
+  </a>
+  <nav class="topbar__nav" aria-label="Разделы">
+    <a href="#catalog">Каталог</a>
+    <a href="#included">Что входит</a>
+    <a href="#how">Как заказать</a>
+    <a href="#faq">Вопросы</a>
+    <a href="#order">Контакты</a>
+  </nav>
+  <a class="btn btn--solid topbar__cta" href="tel:+79083677951">+7 908 367-79-51</a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav">
+    <span></span><span></span>
+    <span class="visually-hidden">Меню</span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" hidden>
+  <a href="#catalog">Каталог</a>
+  <a href="#included">Что входит в стоимость</a>
+  <a href="#how">Как заказать</a>
+  <a href="#faq">Вопросы</a>
+  <a href="#order">Контакты</a>
+  <a class="btn btn--solid" href="tel:+79083677951">Позвонить</a>
+</div>
+
+<main>
+
+<section class="hero">
+  <div class="hero__text">
+    <p class="eyebrow">Самара · 8 лет в кондитерке</p>
+    <h1 class="hero__title">Бисквитные торты<br><em>ручной работы</em></h1>
+    <p class="hero__lede">Привет, я Асия. Пеку от бенто на двоих до ярусного свадебного. Цену называю сразу и не меняю: <b>перевес всегда в подарок</b>.</p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href="#order">Заказать торт</a>
+      <a class="btn btn--ghost" href="#catalog">Смотреть каталог</a>
+    </div>
+  </div>
+
+  <!-- подпись страницы: веер кремовых выкрасок -->
+  <div class="deck" aria-hidden="true">
+    <div class="deck__card" style="--tone:#E9C9C6"><svg><use href="#cake-bento"/></svg><span>бенто</span></div>
+    <div class="deck__card" style="--tone:#EFE2C9"><svg><use href="#cake-round"/></svg><span>праздничные</span></div>
+    <div class="deck__card" style="--tone:#D9E3CE"><svg><use href="#cake-number"/></svg><span>детские</span></div>
+    <div class="deck__card" style="--tone:#E5E4DF"><svg><use href="#cake-tiered"/></svg><span>свадебные</span></div>
+    <div class="deck__card" style="--tone:#DDD6E6"><svg><use href="#cake-mochi"/></svg><span>десерты</span></div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="facts__row">
+    <span><b>8 лет</b> в кондитерке</span>
+    <span><b>5,0</b> из 13 отзывов на ВК</span>
+    <span><b>1 700</b> подписчиков</span>
+    <span><b>Фикс. цена</b> без пересчёта по весу</span>
+    <span><b>Доставка</b> по Самаре</span>
+  </div>
+</div>
+
+<section class="section" id="catalog">
+  <div class="section__head">
+    <p class="eyebrow">Каталог</p>
+    <h2 class="section__title">Что можно заказать</h2>
+    <p class="section__note">Цены — как на витрине ВКонтакте. Вес фиксируется в заказе: если торт получился тяжелее, доплачивать не нужно.</p>
+  </div>
+
+  <div class="filters" role="group" aria-label="Фильтр каталога">
+    <button class="chip is-active" type="button" data-filter="all">Все</button>
+    <button class="chip" type="button" data-filter="bento">Бенто</button>
+    <button class="chip" type="button" data-filter="party">Праздничные</button>
+    <button class="chip" type="button" data-filter="kids">Детские</button>
+    <button class="chip" type="button" data-filter="wedding">Свадебные</button>
+    <button class="chip" type="button" data-filter="sweets">Десерты</button>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <article class="swatch" data-cat="bento" style="--tone:#E9C9C6">
+      <div class="swatch__chip"><svg><use href="#cake-bento"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Бенто-торт СТАНДАРТ</h3>
+        <p class="swatch__desc">Маленький торт в премиум-упаковке — со свечой, открыткой и ложечкой.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>450–500 г</dd></div>
+          <div><dt>порции</dt><dd>2–3</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">2 000 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Бенто-торт СТАНДАРТ">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="bento" style="--tone:#E4C3BF">
+      <div class="swatch__chip"><svg><use href="#cake-bento"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Бенто-торт с фотопечатью</h3>
+        <p class="swatch__desc">Тот же формат, но с вашим фото на сахарной бумаге.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>450–500 г</dd></div>
+          <div><dt>порции</dt><dd>2–3</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">2 200 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Бенто-торт с фотопечатью">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="bento" style="--tone:#EDD6CB">
+      <div class="swatch__chip"><svg><use href="#cake-bento"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Бенто-торт МАКСИ, 1 кг</h3>
+        <p class="swatch__desc">Увеличенный бенто — когда двоих мало, а большой торт ещё рано.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>1 кг</dd></div>
+          <div><dt>порции</dt><dd>≈ 5</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">3 100 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Бенто-торт МАКСИ, 1 кг">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="bento" style="--tone:#E7CFC4">
+      <div class="swatch__chip"><svg><use href="#cake-bento"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Бенто МАКСИ с сахарной картинкой</h3>
+        <p class="swatch__desc">Килограммовый бенто с печатью: фото, логотип или рисунок.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>1 кг</dd></div>
+          <div><dt>порции</dt><dd>≈ 5</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">3 400 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Бенто МАКСИ с сахарной картинкой">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="kids" style="--tone:#D9E3CE">
+      <div class="swatch__chip"><svg><use href="#cake-number"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Торт на годик</h3>
+        <p class="swatch__desc">Первый день рождения: мягкие цвета, декор под фотозону.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>по эскизу</dd></div>
+          <div><dt>повод</dt><dd>1 годик</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">2 950 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Торт на годик">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="party" style="--tone:#EFE2C9">
+      <div class="swatch__chip"><svg><use href="#cake-round"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Торт 1,5 кг с сахарной картинкой</h3>
+        <p class="swatch__desc">Домашний праздник на небольшую компанию — с печатью по вашему макету.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>1,5 кг</dd></div>
+          <div><dt>порции</dt><dd>≈ 8</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">5 000 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Торт 1,5 кг с сахарной картинкой">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="party" style="--tone:#EBD9BE">
+      <div class="swatch__chip"><svg><use href="#cake-round"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Торт на 2 кг</h3>
+        <p class="swatch__desc">Юбилей, корпоратив, большая семья — минимализм в декоре.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>2 кг</dd></div>
+          <div><dt>порции</dt><dd>≈ 11</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">7 800 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Торт на 2 кг">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="party" style="--tone:#E6DCE4">
+      <div class="swatch__chip"><svg><use href="#cake-round"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Гендерный торт</h3>
+        <p class="swatch__desc">Снаружи нейтральный, внутри — цвет, который до разреза знаю только я.</p>
+        <dl class="spec">
+          <div><dt>вес</dt><dd>по эскизу</dd></div>
+          <div><dt>секрет</dt><dd>внутри</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">7 200 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Гендерный торт">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="wedding" style="--tone:#E5E4DF">
+      <div class="swatch__chip"><svg><use href="#cake-tiered"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Свадебный ярусный</h3>
+        <p class="swatch__desc">Два яруса и больше. Считаю по количеству гостей и эскизу.</p>
+        <dl class="spec">
+          <div><dt>ярусы</dt><dd>от 2</dd></div>
+          <div><dt>вес</dt><dd>по эскизу</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">от 3 100 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Свадебный ярусный торт">Заказать</button>
+      </div>
+    </article>
+
+    <article class="swatch" data-cat="sweets" style="--tone:#DDD6E6">
+      <div class="swatch__chip"><svg><use href="#cake-mochi"/></svg></div>
+      <div class="swatch__body">
+        <h3 class="swatch__name">Моти</h3>
+        <p class="swatch__desc">Японский десерт из рисового теста — поштучно, к торту или отдельно.</p>
+        <dl class="spec">
+          <div><dt>формат</dt><dd>1 шт.</dd></div>
+          <div><dt>к торту</dt><dd>да</dd></div>
+          <div><dt>цена</dt><dd class="spec__price">220 ₽</dd></div>
+        </dl>
+        <button class="btn btn--line swatch__order" type="button" data-order="Моти">Заказать</button>
+      </div>
+    </article>
+
+  </div>
+  <p class="note">Порции посчитаны из расчёта ≈ 180 г на гостя. Точный вес и цену подтверждаю в переписке.</p>
+</section>
+
+<section class="section section--tinted" id="included">
+  <div class="section__head">
+    <p class="eyebrow">Без доплат</p>
+    <h2 class="section__title">Что уже входит в стоимость</h2>
+    <p class="section__note">Список для бенто-тортов — то, что приезжает вместе с коробкой.</p>
+  </div>
+  <ul class="included">
+    <li>Премиальная упаковка и пакет</li>
+    <li>Ложечка или вилочка</li>
+    <li>Свеча</li>
+    <li>Открытка</li>
+    <li>Чиркало и спичка</li>
+    <li>Перевес — в подарок</li>
+  </ul>
+</section>
+
+<section class="section" id="how">
+  <div class="section__head">
+    <p class="eyebrow">Как заказать</p>
+    <h2 class="section__title">От сообщения до стола</h2>
+    <p class="section__note">Сроки считаются от даты торжества — чем раньше напишете, тем спокойнее.</p>
+  </div>
+  <ol class="steps">
+    <li class="step">
+      <p class="step__when">за 5–7 дней</p>
+      <h3 class="step__title">Пишете, что за повод</h3>
+      <p class="step__text">Дата, количество гостей, пожелания по вкусу и цвету. Подскажу формат и вес.</p>
+    </li>
+    <li class="step">
+      <p class="step__when">в тот же день</p>
+      <h3 class="step__title">Называю цену</h3>
+      <p class="step__text">Стоимость фиксируется сразу и не пересчитывается, даже если торт выйдет тяжелее.</p>
+    </li>
+    <li class="step">
+      <p class="step__when">за 3–4 дня</p>
+      <h3 class="step__title">Согласуем эскиз</h3>
+      <p class="step__text">Референсы, надпись, сахарная картинка. После этого бронирую дату за вами.</p>
+    </li>
+    <li class="step">
+      <p class="step__when">накануне</p>
+      <h3 class="step__title">Пеку</h3>
+      <p class="step__text">Бисквит и крем — свежие, под конкретную дату. Ничего не готовится впрок.</p>
+    </li>
+    <li class="step">
+      <p class="step__when">в день торжества</p>
+      <h3 class="step__title">Привожу</h3>
+      <p class="step__text">Бережная доставка по Самаре к нужному часу — или забираете сами на Урицкого, 23.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="section section--tinted" id="reviews">
+  <div class="section__head">
+    <p class="eyebrow">Отзывы</p>
+    <h2 class="section__title">5,0 из 5 — по 13 отзывам на ВК</h2>
+  </div>
+  <!-- ДЕМО: тексты ниже — заглушки. Перед публикацией заменить на реальные отзывы. -->
+  <div class="reviews">
+    <blockquote class="review">
+      <p>Заказывали бенто мужу на день рождения. Приехал ровно к назначенному часу, коробка — как из бутика, а внутри вкуснее, чем выглядит.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="review">
+      <p>Свадебный на три яруса. Асия сама предложила, как упростить декор, чтобы вышло дешевле, — и всё равно получилось лучше, чем на референсах.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="review">
+      <p>Торт на годик с сахарной картинкой. Переписка спокойная, цену назвали сразу и не меняли. Гости съели всё.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+  </div>
+  <p class="note">Тексты выше — заглушки для демо. Настоящие отзывы — <a href="https://vk.ru/asiyatort" target="_blank" rel="noopener">в сообществе ВКонтакте</a>.</p>
+</section>
+
+<section class="section" id="faq">
+  <div class="section__head">
+    <p class="eyebrow">Вопросы</p>
+    <h2 class="section__title">Что спрашивают чаще всего</h2>
+  </div>
+  <div class="faq">
+    <details class="qa">
+      <summary>За сколько дней нужно заказывать?</summary>
+      <div class="qa__body"><p>Бенто — обычно за 2–3 дня, большой или ярусный торт — за 5–7 дней. В сезон даты разбирают раньше, поэтому лучше написать заранее.</p></div>
+    </details>
+    <details class="qa">
+      <summary>Цена может вырасти после заказа?</summary>
+      <div class="qa__body"><p>Нет. Стоимость фиксируется при согласовании. Если торт получился тяжелее — перевес идёт в подарок.</p></div>
+    </details>
+    <details class="qa">
+      <summary>Можно поставить на торт фото?</summary>
+      <div class="qa__body"><p>Да — сахарная картинка или фотопечать. Пришлите изображение в хорошем качестве, я подскажу, как оно ляжет на торт.</p></div>
+    </details>
+    <details class="qa">
+      <summary>Как доставляете?</summary>
+      <div class="qa__body"><p>Бережная доставка по Самаре к назначенному времени. Забрать самим можно на Урицкого, 23 — до 18:00.</p></div>
+    </details>
+    <details class="qa">
+      <summary>Какие есть начинки?</summary>
+      <div class="qa__body"><p>Бисквитные торты на классических и ягодных сочетаниях. Актуальный список подбираем в переписке — под повод и вкусы гостей.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="section section--order" id="order">
+  <div class="order">
+    <div class="order__intro">
+      <p class="eyebrow">Заявка</p>
+      <h2 class="section__title">Расскажите про повод</h2>
+      <p class="section__note">Ответьте на девять вопросов — этого хватит, чтобы назвать цену и забронировать дату без переписки.</p>
+
+      <ul class="contacts">
+        <li><span>Телефон</span><a href="tel:+79083677951">+7 908 367-79-51</a></li>
+        <li><span>Почта</span><a href="mailto:rushanovna@mail.ru">rushanovna@mail.ru</a></li>
+        <li><span>Адрес</span><a href="https://yandex.ru/maps/?text=Самара%2C%20улица%20Урицкого%2C%2023" target="_blank" rel="noopener">Самара, ул. Урицкого, 23</a></li>
+        <li><span>Часы</span><em>Ежедневно до 18:00</em></li>
+        <li><span>ВКонтакте</span><a href="https://vk.ru/asiyatort" target="_blank" rel="noopener">vk.ru/asiyatort</a></li>
+      </ul>
+    </div>
+
+    <div class="order__form" data-order-form></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p class="footer__name">Асия Зубаирова — торты на заказ, Самара</p>
+  <p class="footer__meta">Демонстрационный сайт по материалам сообщества <a href="https://vk.ru/asiyatort" target="_blank" rel="noopener">vk.ru/asiyatort</a></p>
+</footer>
+
+<script src="order-form.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
