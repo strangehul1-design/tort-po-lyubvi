@@ -64,7 +64,7 @@
 
   var FORMS = {
     order: {
-      lead: 'Заполните, что уже известно. Про остальное спросим сами.',
+      lead: 'Обязательны только дата и контакт. Остальное — по желанию.',
       submit: 'Отправить заявку',
       header: '💍 Заявка на свадебный торт',
       steps: [
@@ -302,7 +302,7 @@
     '</div>' +
 
     '<div class="done" data-done hidden>' +
-      '<div class="done__seal">✓</div>' +
+      '<div class="done__seal"><svg><use href="#i-check"/></svg></div>' +
       '<h3 class="done__title" data-done-title>Заявка получена</h3>' +
       '<p class="done__text" data-done-text></p>' +
       '<pre class="done__recap" data-recap></pre>' +

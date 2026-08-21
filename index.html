@@ -1,5 +1,10 @@
 <!doctype html>
 <!--
+  ДЕМО. Название «Мелия» придумано — в брифе имени не было, а лендингу нужна
+  вывеска. Чтобы поменять, правьте четыре места: <title>, .mark__name в шапке,
+  .footer__brand в подвале и vkGroup в forms.js. Контакты и отзывы тоже
+  вымышленные, список — в README.
+
   Фотографии. Каждый слот ждёт файл по пути из data-photo — например
   images/hero.jpg. Положите снимки в images/ и поставьте здесь
   data-photos="on": слоты подхватят их сами. Пока фото нет, на их месте
@@ -16,8 +21,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="forms.css">
+<link rel="stylesheet" href="switch.css">
 </head>
 <body>
+
+<a class="skip" href="#works">Перейти к содержимому</a>
 
 <!-- ─── линейная графика: стоит вместо фото, пока его нет ─── -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -131,6 +139,54 @@
       <path d="M6 31V18h20v13M26 22h7l6 6v3"/>
       <circle cx="15" cy="34" r="3.5"/><circle cx="33" cy="34" r="3.5"/>
       <path d="M6 31h5M18.5 31h11M36.5 31H42" opacity=".5"/>
+    </g>
+  </symbol>
+
+  <!-- иконки переключателя и фактов -->
+  <symbol id="i-cake" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <path d="M7 17h18v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/>
+      <path d="M7 21q3 2 6 0t6 0 6 0" opacity=".55"/>
+      <path d="M16 17v-4"/>
+      <path d="M16 11q-2.6-1.6-1.2-3.4T16 5q.8 1 2.2 2.6T16 11z" opacity=".8"/>
+    </g>
+  </symbol>
+  <symbol id="i-taste" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <path d="M9 12h14v7a7 7 0 0 1-14 0z"/>
+      <path d="M23 14h2.5a2.5 2.5 0 0 1 0 5H23" opacity=".6"/>
+      <path d="M8 27h16" opacity=".6"/>
+      <path d="M13 9q1.4-2.4 0-4M19 9q1.4-2.4 0-4" opacity=".7"/>
+    </g>
+  </symbol>
+  <symbol id="i-truck" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <path d="M3 21V9h15v12M18 13h5l4 4v4"/>
+      <circle cx="10" cy="23" r="2.4"/><circle cx="23" cy="23" r="2.4"/>
+      <path d="M3 21h4.6M12.4 21h8.2M25.4 21H29" opacity=".55"/>
+    </g>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <path d="M16 28s9-8.2 9-14a9 9 0 1 0-18 0c0 5.8 9 14 9 14z"/>
+      <circle cx="16" cy="13.6" r="3.4"/>
+    </g>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <circle cx="16" cy="16" r="11"/>
+      <path d="M16 9.5V16l4.6 3"/>
+    </g>
+  </symbol>
+  <symbol id="i-ruble" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+      <path d="M12 25V8h5.6a4.7 4.7 0 0 1 0 9.4H12"/>
+      <path d="M9 17.4h9M9 21h7"/>
+    </g>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 16.5l5.6 5.6L25 9.8"/>
     </g>
   </symbol>
 </svg>
@@ -289,66 +345,125 @@
   </ol>
 </section>
 
-<!-- ─── 4. Доставка ─── -->
-<section class="section" id="delivery">
-  <div class="delivery">
-    <div class="delivery__text">
-      <p class="eyebrow">Доставка</p>
-      <h2 class="head__title">Свадебный торт возим только лично</h2>
-      <p class="delivery__lead">Ярусный торт не переживёт курьера и багажник такси. Поэтому мы не передаём его в службы доставки: везём сами, в холодильном коробе, на ровной подложке, и собираем уже на месте.</p>
-      <p class="delivery__lead">На площадке проверяем стол и температуру, ставим ярусы друг на друга, крепим декор и живые цветы. Всё это занимает минут двадцать и происходит за час до подачи, чтобы торт вышел к гостям свежим.</p>
-
-      <dl class="dfacts">
-        <div>
-          <dt>Стоимость</dt>
-          <dd>Зависит от места проведения: считаем по адресу площадки и времени подачи. По Самаре — одна сумма, за городом — с учётом расстояния и ожидания.</dd>
-        </div>
-        <div>
-          <dt>Куда возим</dt>
-          <dd>Самара, Тольятти и площадки в радиусе 100 км: базы отдыха, усадьбы, загородные рестораны.</dd>
-        </div>
-        <div>
-          <dt>Что нужно от вас</dt>
-          <dd>Адрес, контакт координатора и стол в тени — остальное сделаем сами.</dd>
-        </div>
-      </dl>
-    </div>
-
-    <div class="delivery__shots">
-      <figure class="shot shot--wide">
-        <img class="shot__img" data-photo="images/delivery-van.jpg" alt="Торт едет в холодильном коробе">
-        <span class="shot__ph"><svg><use href="#d-van"/></svg></span>
-        <figcaption>В дороге: ярусы отдельно, в холоде</figcaption>
-      </figure>
-      <figure class="shot shot--wide">
-        <img class="shot__img" data-photo="images/delivery-setup.jpg" alt="Сборка торта на площадке">
-        <span class="shot__ph"><svg><use href="#d-setup"/></svg></span>
-        <figcaption>На площадке: собираем и декорируем</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ─── 5. Заказать торт ─── -->
-<section class="section section--ivory" id="order">
+<!-- ─── 4. Три двери: заказ, дегустация, доставка ─── -->
+<section class="switch" id="switch">
   <div class="head head--center">
-    <p class="eyebrow">Заказать торт</p>
-    <h2 class="head__title">Расскажите про свадьбу</h2>
-    <p class="head__note">Заполните, что уже известно. Про остальное спросим сами — и посчитаем стоимость вместе с доставкой.</p>
+    <p class="eyebrow">С чего начнём</p>
+    <h2 class="head__title">Выберите, что нужно сейчас</h2>
   </div>
-  <div class="formwrap" data-form="order"></div>
-</section>
 
-<!-- ─── 6. Дегустация ─── -->
-<section class="section" id="tasting">
-  <div class="tasting">
-    <div class="tasting__text">
-      <p class="eyebrow">Дегустация</p>
-      <h2 class="head__title">Сначала попробовать</h2>
-      <p class="head__note">Приходите вдвоём или с родителями: завариваем чай, выносим шесть начинок и говорим про свадьбу. Занимает около часа, ни к чему не обязывает.</p>
-      <p class="head__note">Стоимость дегустации вычитаем из суммы заказа.</p>
+  <div class="tabs" role="tablist" aria-label="Заказ, дегустация и доставка">
+    <span class="tabs__glow" data-glow aria-hidden="true"></span>
+
+    <button class="tab is-on" type="button" role="tab" id="t-order"
+            aria-controls="p-order" aria-selected="true" data-tab="order">
+      <span class="tab__ic"><svg><use href="#i-cake"/></svg></span>
+      <span class="tab__body">
+        <b>Заказать торт</b>
+        <i>Посчитаем и забронируем дату</i>
+      </span>
+    </button>
+
+    <button class="tab" type="button" role="tab" id="t-tasting"
+            aria-controls="p-tasting" aria-selected="false" tabindex="-1" data-tab="tasting">
+      <span class="tab__ic"><svg><use href="#i-taste"/></svg></span>
+      <span class="tab__body">
+        <b>Дегустация</b>
+        <i>Попробовать начинки заранее</i>
+      </span>
+    </button>
+
+    <button class="tab" type="button" role="tab" id="t-delivery"
+            aria-controls="p-delivery" aria-selected="false" tabindex="-1" data-tab="delivery">
+      <span class="tab__ic"><svg><use href="#i-truck"/></svg></span>
+      <span class="tab__body">
+        <b>Доставка</b>
+        <i>Как торт доедет до площадки</i>
+      </span>
+    </button>
+  </div>
+
+  <div class="panels">
+
+    <div class="panel is-on" role="tabpanel" id="p-order" aria-labelledby="t-order" tabindex="0">
+      <div class="panel__head">
+        <h3 class="panel__title">Расскажите про свадьбу</h3>
+        <p class="panel__note">Заполните, что уже известно. Про остальное спросим сами — и посчитаем стоимость вместе с доставкой.</p>
+      </div>
+      <div class="formwrap" data-form="order"></div>
     </div>
-    <div class="formwrap formwrap--slim" data-form="tasting"></div>
+
+    <div class="panel" role="tabpanel" id="p-tasting" aria-labelledby="t-tasting" tabindex="0" hidden>
+      <div class="panel__head">
+        <h3 class="panel__title">Сначала попробовать</h3>
+        <p class="panel__note">Приходите вдвоём или с родителями: завариваем чай, выносим шесть начинок и говорим про свадьбу. Занимает около часа и ни к чему не обязывает.</p>
+      </div>
+
+      <div class="split">
+        <dl class="dfacts">
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-pin"/></svg></span>Где</dt>
+            <dd>Шоурум в центре, тихая комната на четверых.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-clock"/></svg></span>Сколько длится</dt>
+            <dd>Около часа, без спешки.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-taste"/></svg></span>Что пробуете</dt>
+            <dd>Шесть начинок, чай или кофе. Смотрим ярусы вживую и обсуждаем палитру.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-ruble"/></svg></span>Стоимость</dt>
+            <dd>1 500 ₽ — вычитаем из суммы заказа.</dd>
+          </div>
+        </dl>
+
+        <div class="formwrap formwrap--slim" data-form="tasting"></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-delivery" aria-labelledby="t-delivery" tabindex="0" hidden>
+      <div class="panel__head">
+        <h3 class="panel__title">Свадебный торт возим только лично</h3>
+        <p class="panel__note">Ярусный торт не переживёт курьера и багажник такси. Поэтому мы не передаём его в службы доставки: везём сами, в холодильном коробе, на ровной подложке, и собираем уже на месте.</p>
+      </div>
+
+      <div class="split">
+        <dl class="dfacts">
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-ruble"/></svg></span>Стоимость</dt>
+            <dd>Зависит от места проведения: считаем по адресу площадки и времени подачи. По Самаре — одна сумма, за городом — с учётом расстояния и ожидания.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-pin"/></svg></span>Куда возим</dt>
+            <dd>Самара, Тольятти и площадки в радиусе 100 км: базы отдыха, усадьбы, загородные рестораны.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-clock"/></svg></span>Когда приезжаем</dt>
+            <dd>За час до подачи. Проверяем стол и температуру, ставим ярусы, крепим декор — минут двадцать.</dd>
+          </div>
+          <div>
+            <dt><span class="dfacts__ic"><svg><use href="#i-check"/></svg></span>Что нужно от вас</dt>
+            <dd>Адрес, контакт координатора и стол в тени. Остальное сделаем сами.</dd>
+          </div>
+        </dl>
+
+        <div class="delivery__shots">
+          <figure class="shot shot--wide">
+            <img class="shot__img" data-photo="images/delivery-van.jpg" alt="Торт едет в холодильном коробе">
+            <span class="shot__ph"><svg><use href="#d-van"/></svg></span>
+            <figcaption>В дороге: ярусы отдельно, в холоде</figcaption>
+          </figure>
+          <figure class="shot shot--wide">
+            <img class="shot__img" data-photo="images/delivery-setup.jpg" alt="Сборка торта на площадке">
+            <span class="shot__ph"><svg><use href="#d-setup"/></svg></span>
+            <figcaption>На площадке: собираем и декорируем</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
