@@ -1,0 +1,446 @@
+<!doctype html>
+<!--
+  Фотографии. Каждый слот ждёт файл по пути из data-photo — например
+  images/hero.jpg. Положите снимки в images/ и поставьте здесь
+  data-photos="on": слоты подхватят их сами. Пока фото нет, на их месте
+  стоит линейный рисунок, и страница выглядит целой.
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мелия — свадебные торты в Самаре</title>
+<meta name="description" content="Свадебные торты ручной работы в Самаре: индивидуальный эскиз, дегустация начинок, личная доставка и сборка на площадке.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+
+<!-- ─── линейная графика: стоит вместо фото, пока его нет ─── -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="c-2" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M64 116h72v44a5 5 0 0 1-5 5H69a5 5 0 0 1-5-5z"/>
+      <path d="M46 165h108v46a5 5 0 0 1-5 5H51a5 5 0 0 1-5-5z"/>
+      <path d="M64 127h72M46 176h108" opacity=".45"/>
+      <path d="M100 116v-14"/><circle cx="100" cy="96" r="6"/>
+      <path d="M87 91q-8-7-2-14t14 2M113 91q8-7 2-14t-14 2" opacity=".65"/>
+      <path d="M30 216h140" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="c-3" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M76 72h48v36H76z"/>
+      <path d="M60 108h80v42H60z"/>
+      <path d="M40 150h120v56a5 5 0 0 1-5 5H45a5 5 0 0 1-5-5z"/>
+      <path d="M76 81h48M60 118h80M40 160h120" opacity=".4"/>
+      <path d="M100 72V56"/><circle cx="100" cy="50" r="5"/>
+      <path d="M86 67q-9-6-5-13t13-1M114 67q9-6 5-13t-13-1" opacity=".65"/>
+      <path d="M26 211h148" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="c-4" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M84 42h32v28H84z"/>
+      <path d="M70 70h60v32H70z"/>
+      <path d="M54 102h92v38H54z"/>
+      <path d="M36 140h128v58a5 5 0 0 1-5 5H41a5 5 0 0 1-5-5z"/>
+      <path d="M84 50h32M70 79h60M54 111h92M36 149h128" opacity=".4"/>
+      <circle cx="100" cy="33" r="4.5"/>
+      <path d="M22 208h156" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="c-flowers" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M68 94h64v46H68z"/>
+      <path d="M48 140h104v66a5 5 0 0 1-5 5H53a5 5 0 0 1-5-5z"/>
+      <path d="M68 104h64M48 150h104" opacity=".4"/>
+      <circle cx="74" cy="94" r="6"/><circle cx="88" cy="86" r="5"/><circle cx="102" cy="92" r="4"/>
+      <circle cx="126" cy="140" r="6"/><circle cx="112" cy="148" r="4.5"/>
+      <path d="M62 120q10 8 20 0M118 166q12 8 22 0" opacity=".45"/>
+      <path d="M26 211h148" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="c-naked" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M66 102h68v56a5 5 0 0 1-5 5H71a5 5 0 0 1-5-5z"/>
+      <path d="M66 119h68M66 137h68" opacity=".4"/>
+      <path d="M50 163h100v42a5 5 0 0 1-5 5H55a5 5 0 0 1-5-5z"/>
+      <path d="M50 180h100" opacity=".4"/>
+      <path d="M80 95q6-13 20-13t20 13" opacity=".65"/>
+      <circle cx="88" cy="91" r="3.5"/><circle cx="112" cy="91" r="3.5"/>
+      <path d="M28 212h144" stroke-width="1.3"/>
+    </g>
+  </symbol>
+
+  <!-- доставка: фургон и сборка на месте -->
+  <symbol id="d-van" viewBox="0 0 260 160">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M18 44h132v72H18z"/>
+      <path d="M150 66h38l26 28v22h-64z"/>
+      <path d="M156 72h28l19 20h-47z" opacity=".5"/>
+      <circle cx="66" cy="122" r="12"/><circle cx="186" cy="122" r="12"/>
+      <path d="M18 116h36M78 116h96M198 116h16" opacity=".5"/>
+      <path d="M62 66h44v34H62z" opacity=".85"/>
+      <path d="M62 76h44" opacity=".45"/>
+      <path d="M78 62q6-8 12 0" opacity=".6"/>
+      <path d="M8 138h244" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="d-setup" viewBox="0 0 260 160">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M104 62h52v30h-52z"/>
+      <path d="M88 92h84v34H88z"/>
+      <path d="M104 70h52M88 100h84" opacity=".4"/>
+      <path d="M116 40h28v18h-28z" opacity=".85"/>
+      <path d="M116 46h28" opacity=".4"/>
+      <path d="M100 34q-16 2-22 12M160 34q16 2 22 12" opacity=".5"/>
+      <path d="M44 84q14-10 30-4M216 84q-14-10-30-4" opacity=".6"/>
+      <path d="M30 138h200" stroke-width="1.3"/>
+    </g>
+  </symbol>
+
+  <symbol id="s-sketch" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M12 39V12a2 2 0 0 1 2-2h14l8 8v21a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2z"/>
+      <path d="M28 10v8h8" opacity=".5"/>
+      <path d="M19 31h10v-6a5 5 0 0 0-10 0z"/>
+    </g>
+  </symbol>
+  <symbol id="s-taste" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M13 20h22v10a11 11 0 0 1-22 0z"/>
+      <path d="M35 22h4a4 4 0 0 1 0 8h-4" opacity=".55"/>
+      <path d="M11 41h26" opacity=".55"/>
+      <path d="M20 15q2-4 0-7M28 15q2-4 0-7" opacity=".6"/>
+    </g>
+  </symbol>
+  <symbol id="s-bake" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M14 24h20v14a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2z"/>
+      <path d="M14 30h20" opacity=".45"/>
+      <path d="M18 20q6-9 12 0" opacity=".6"/>
+      <circle cx="24" cy="15" r="3"/>
+    </g>
+  </symbol>
+  <symbol id="s-deliver" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M6 31V18h20v13M26 22h7l6 6v3"/>
+      <circle cx="15" cy="34" r="3.5"/><circle cx="33" cy="34" r="3.5"/>
+      <path d="M6 31h5M18.5 31h11M36.5 31H42" opacity=".5"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="bar" id="top">
+  <a class="mark" href="#top">
+    <span class="mark__name">Мелия</span>
+    <span class="mark__sub">свадебные торты</span>
+  </a>
+  <nav class="bar__nav" aria-label="Разделы">
+    <a href="#works">Работы</a>
+    <a href="#how">Как заказать</a>
+    <a href="#delivery">Доставка</a>
+    <a href="#gallery">Свадьбы</a>
+    <a href="#order">Заказать</a>
+  </nav>
+  <a class="btn btn--line bar__cta" href="#tasting">Дегустация</a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span class="vh">Меню</span>
+  </button>
+</header>
+
+<div class="mnav" id="mnav" hidden>
+  <a href="#works">Работы</a>
+  <a href="#how">Как заказать</a>
+  <a href="#delivery">Доставка</a>
+  <a href="#gallery">Свадьбы</a>
+  <a href="#order">Заказать торт</a>
+  <a href="#tasting">Записаться на дегустацию</a>
+</div>
+
+<main>
+
+<!-- ─── 1. Первый экран ─── -->
+<section class="hero">
+  <p class="eyebrow">Свадебные торты · Самара</p>
+  <h1 class="hero__title">Один торт<br>на один самый важный день</h1>
+  <p class="hero__lede">Собираем эскиз под вашу свадьбу, даём попробовать начинки заранее и привозим торт сами — прямо к столу.</p>
+  <div class="hero__actions">
+    <a class="btn btn--solid" href="#order">Заказать торт</a>
+    <a class="btn btn--line" href="#tasting">Записаться на дегустацию</a>
+  </div>
+</section>
+
+<figure class="shot shot--hero">
+  <img class="shot__img" data-photo="images/hero.jpg" alt="Свадебный торт">
+  <span class="shot__ph"><svg><use href="#c-3"/></svg></span>
+</figure>
+
+<!-- ─── 2. Работы ─── -->
+<section class="section" id="works">
+  <div class="head">
+    <p class="eyebrow">Работы</p>
+    <h2 class="head__title">Торты, которые уже стояли на свадьбах</h2>
+    <p class="head__note">Ни один не повторяется: каждый собирался под конкретную пару, площадку и палитру.</p>
+  </div>
+
+  <div class="works">
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-1.jpg" alt="Двухъярусный торт с ягодами">
+        <span class="shot__ph"><svg><use href="#c-2"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Ягоды и зелень</b>
+        <span>2 яруса · загородная площадка</span>
+      </figcaption>
+    </figure>
+
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-2.jpg" alt="Белый трёхъярусный торт">
+        <span class="shot__ph"><svg><use href="#c-3"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Белый минимализм</b>
+        <span>3 яруса · 60 гостей</span>
+      </figcaption>
+    </figure>
+
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-3.jpg" alt="Торт с живыми цветами">
+        <span class="shot__ph"><svg><use href="#c-flowers"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Живые пионы</b>
+        <span>2 яруса · летняя свадьба</span>
+      </figcaption>
+    </figure>
+
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-4.jpg" alt="Торт в рустикальном стиле">
+        <span class="shot__ph"><svg><use href="#c-naked"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Открытый бисквит</b>
+        <span>2 яруса · свадьба в саду</span>
+      </figcaption>
+    </figure>
+
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-5.jpg" alt="Четырёхъярусный торт">
+        <span class="shot__ph"><svg><use href="#c-4"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Четыре яруса</b>
+        <span>4 яруса · 120 гостей</span>
+      </figcaption>
+    </figure>
+
+    <figure class="work">
+      <span class="shot">
+        <img class="shot__img" data-photo="images/work-6.jpg" alt="Пудровый торт">
+        <span class="shot__ph"><svg><use href="#c-2"/></svg></span>
+      </span>
+      <figcaption>
+        <b>Пудровая гладь</b>
+        <span>2 яруса · камерная свадьба</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ─── 3. Как проходит заказ ─── -->
+<section class="section section--ivory" id="how">
+  <div class="head head--center">
+    <p class="eyebrow">Как проходит заказ</p>
+    <h2 class="head__title">Четыре спокойных шага</h2>
+    <p class="head__note">Ничего не нужно решать сразу — доходим до эскиза постепенно.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="step__ic"><svg><use href="#s-sketch"/></svg></span>
+      <h3 class="step__t">Эскиз</h3>
+      <p class="step__p">Присылаете референсы или рассказываете словами. Рисуем ваш торт и правим, пока не совпадёт.</p>
+    </li>
+    <li class="step">
+      <span class="step__ic"><svg><use href="#s-taste"/></svg></span>
+      <h3 class="step__t">Дегустация</h3>
+      <p class="step__p">Пробуете начинки заранее и выбираете спокойно, а не по описанию в переписке.</p>
+    </li>
+    <li class="step">
+      <span class="step__ic"><svg><use href="#s-bake"/></svg></span>
+      <h3 class="step__t">Выпечка</h3>
+      <p class="step__p">Печём накануне, под конкретную дату. Ярусы едут отдельно, чтобы ничего не повело в дороге.</p>
+    </li>
+    <li class="step">
+      <span class="step__ic"><svg><use href="#s-deliver"/></svg></span>
+      <h3 class="step__t">Доставка</h3>
+      <p class="step__p">Привозим сами, собираем на площадке и ставим на стол за час до подачи.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ─── 4. Доставка ─── -->
+<section class="section" id="delivery">
+  <div class="delivery">
+    <div class="delivery__text">
+      <p class="eyebrow">Доставка</p>
+      <h2 class="head__title">Свадебный торт возим только лично</h2>
+      <p class="delivery__lead">Ярусный торт не переживёт курьера и багажник такси. Поэтому мы не передаём его в службы доставки: везём сами, в холодильном коробе, на ровной подложке, и собираем уже на месте.</p>
+      <p class="delivery__lead">На площадке проверяем стол и температуру, ставим ярусы друг на друга, крепим декор и живые цветы. Всё это занимает минут двадцать и происходит за час до подачи, чтобы торт вышел к гостям свежим.</p>
+
+      <dl class="dfacts">
+        <div>
+          <dt>Стоимость</dt>
+          <dd>Зависит от места проведения: считаем по адресу площадки и времени подачи. По Самаре — одна сумма, за городом — с учётом расстояния и ожидания.</dd>
+        </div>
+        <div>
+          <dt>Куда возим</dt>
+          <dd>Самара, Тольятти и площадки в радиусе 100 км: базы отдыха, усадьбы, загородные рестораны.</dd>
+        </div>
+        <div>
+          <dt>Что нужно от вас</dt>
+          <dd>Адрес, контакт координатора и стол в тени — остальное сделаем сами.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="delivery__shots">
+      <figure class="shot shot--wide">
+        <img class="shot__img" data-photo="images/delivery-van.jpg" alt="Торт едет в холодильном коробе">
+        <span class="shot__ph"><svg><use href="#d-van"/></svg></span>
+        <figcaption>В дороге: ярусы отдельно, в холоде</figcaption>
+      </figure>
+      <figure class="shot shot--wide">
+        <img class="shot__img" data-photo="images/delivery-setup.jpg" alt="Сборка торта на площадке">
+        <span class="shot__ph"><svg><use href="#d-setup"/></svg></span>
+        <figcaption>На площадке: собираем и декорируем</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. Заказать торт ─── -->
+<section class="section section--ivory" id="order">
+  <div class="head head--center">
+    <p class="eyebrow">Заказать торт</p>
+    <h2 class="head__title">Расскажите про свадьбу</h2>
+    <p class="head__note">Заполните, что уже известно. Про остальное спросим сами — и посчитаем стоимость вместе с доставкой.</p>
+  </div>
+  <div class="formwrap" data-form="order"></div>
+</section>
+
+<!-- ─── 6. Дегустация ─── -->
+<section class="section" id="tasting">
+  <div class="tasting">
+    <div class="tasting__text">
+      <p class="eyebrow">Дегустация</p>
+      <h2 class="head__title">Сначала попробовать</h2>
+      <p class="head__note">Приходите вдвоём или с родителями: завариваем чай, выносим шесть начинок и говорим про свадьбу. Занимает около часа, ни к чему не обязывает.</p>
+      <p class="head__note">Стоимость дегустации вычитаем из суммы заказа.</p>
+    </div>
+    <div class="formwrap formwrap--slim" data-form="tasting"></div>
+  </div>
+</section>
+
+<!-- ─── 7. Галерея ─── -->
+<section class="section section--ivory" id="gallery">
+  <div class="head">
+    <p class="eyebrow">Свадьбы</p>
+    <h2 class="head__title">Как это было у наших пар</h2>
+    <p class="head__note">Торты на площадках, момент разрезания и те, ради кого всё это.</p>
+  </div>
+
+  <div class="gallery">
+    <figure class="shot shot--tall">
+      <img class="shot__img" data-photo="images/wedding-1.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#c-3"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-2.jpg" alt="Пара разрезает торт">
+      <span class="shot__ph"><svg><use href="#c-flowers"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-3.jpg" alt="Торт на площадке">
+      <span class="shot__ph"><svg><use href="#c-2"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-4.jpg" alt="Гости у торта">
+      <span class="shot__ph"><svg><use href="#c-naked"/></svg></span>
+    </figure>
+    <figure class="shot shot--tall">
+      <img class="shot__img" data-photo="images/wedding-5.jpg" alt="Торт крупным планом">
+      <span class="shot__ph"><svg><use href="#c-4"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-6.jpg" alt="Сборка торта на площадке">
+      <span class="shot__ph"><svg><use href="#d-setup"/></svg></span>
+    </figure>
+  </div>
+
+  <!-- ДЕМО: отзывы — заглушки. Заменить на реальные, с согласия пар. -->
+  <div class="words">
+    <blockquote class="word">
+      <p>Мы переживали, что торт «поплывёт» — свадьба была в июле, на улице. Привезли за час, собрали при нас, и он достоял до самого вечера.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="word">
+      <p>На дегустации выбрали совсем не то, что планировали изначально, и не пожалели. Никто не уговаривал взять дороже.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="word">
+      <p>Площадка была в часе от города. Приехали сами, нашли стол в тени, поставили — мы даже не заметили, когда это произошло.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+  </div>
+  <p class="fineprint">Тексты отзывов — заглушки для демонстрации. Настоящие публикуются с согласия пар.</p>
+</section>
+
+</main>
+
+<!-- ─── 8. Подвал ─── -->
+<footer class="footer" id="contacts">
+  <div class="footer__grid">
+    <div>
+      <p class="mark__name footer__brand">Мелия</p>
+      <p class="footer__line">Свадебные торты ручной работы</p>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Связь</p>
+      <a href="tel:+79000000000">+7 900 000-00-00</a>
+      <a href="mailto:hello@melia.example">hello@melia.example</a>
+      <p class="footer__line">Пн–сб, 10:00–19:00</p>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Соцсети</p>
+      <a href="#gallery">ВКонтакте</a>
+      <a href="#gallery">Telegram</a>
+      <a href="#gallery">WhatsApp</a>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Зона доставки</p>
+      <p class="footer__line">Самара и Тольятти</p>
+      <p class="footer__line">Загородные площадки до 100 км</p>
+      <a href="#delivery">Как считается стоимость</a>
+    </div>
+  </div>
+
+  <p class="footer__note">Демонстрационный сайт. Название, контакты, работы и отзывы — вымышленные.</p>
+</footer>
+
+<script src="forms.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
