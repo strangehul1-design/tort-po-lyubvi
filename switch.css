@@ -113,10 +113,10 @@
 .panel { outline: none; }
 .panel[hidden] { display: none; }
 .panel.is-in {
-  animation: panel-in .42s var(--ease) both;
+  animation: panel-in .62s var(--rise) both;
 }
 @keyframes panel-in {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(28px) scale(.985); }
 }
 
 .panel__head { max-width: 62ch; margin-bottom: clamp(28px, 3.5vw, 46px); }
@@ -165,9 +165,9 @@
   transition: transform .7s var(--ease), opacity .4s var(--ease);
 }
 .work:hover .shot__ph svg,
-.gallery .shot:hover .shot__ph svg { transform: scale(1.06); opacity: 1; }
+.gallery .shot:hover .shot__ph svg { transform: scale(1.09) translateY(-4px); opacity: 1; }
 .work .shot__img, .gallery .shot__img { transition: transform .7s var(--ease); }
-.work:hover .shot__img, .gallery .shot:hover .shot__img { transform: scale(1.04); }
+.work:hover .shot__img, .gallery .shot:hover .shot__img { transform: scale(1.07); }
 
 .work figcaption b { transition: color .3s var(--ease); }
 .work:hover figcaption b { color: color-mix(in srgb, var(--powder) 70%, var(--ink)); }
@@ -178,14 +178,14 @@
 
 /* появление первого экрана по загрузке */
 .hero .eyebrow, .hero__title, .hero__lede, .hero__actions {
-  animation: rise .8s var(--ease) both;
+  animation: rise .85s var(--rise) both;
 }
 .hero .eyebrow { animation-delay: .05s; }
 .hero__title { animation-delay: .14s; }
 .hero__lede { animation-delay: .26s; }
 .hero__actions { animation-delay: .36s; }
 @keyframes rise {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(38px); }
 }
 
 /* лёгкий параллакс фото на первом экране */
@@ -218,4 +218,140 @@
   .panel.is-in { animation: none; }
   .hero .eyebrow, .hero__title, .hero__lede, .hero__actions { animation: none; }
   .tabs__glow { transition: none; }
+}
+
+/* ============================================================
+   Живое движение: то, что видно без наведения и без прокрутки
+   ============================================================ */
+
+/* ── рисунок торта тихо покачивается ───────────────────────── */
+
+.shot--hero .shot__ph svg,
+.work .shot__ph svg {
+  animation: float-slow 5.5s ease-in-out infinite;
+}
+.work:nth-child(2n) .shot__ph svg { animation-delay: -1.4s; }
+.work:nth-child(3n) .shot__ph svg { animation-delay: -2.8s; }
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* ── подсказка «листайте» под первым экраном ───────────────── */
+
+.hint {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: 6px 10px;
+  color: var(--ink-60);
+  text-decoration: none;
+  animation: rise .85s var(--rise) both .5s;
+}
+.hint__t {
+  font-size: 10.5px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+.hint__a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  animation: bob 1.9s ease-in-out infinite;
+  transition: border-color .3s var(--ease), color .3s var(--ease);
+}
+.hint__a svg { width: 16px; height: 16px; }
+.hint:hover .hint__a { border-color: var(--ink); color: var(--ink); }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* ── кнопка заливается тёмным при наведении ────────────────── */
+
+.tab { overflow: hidden; }
+.tab__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 0;
+  background: var(--ink);
+  transition: width .42s var(--sweep);
+  pointer-events: none;
+}
+.tab:not(.is-on):hover .tab__fill { width: 100%; }
+.tab:not(.is-on):hover { color: var(--ivory); border-color: var(--ink); transform: none; }
+.tab:not(.is-on):hover .tab__body i { color: color-mix(in srgb, var(--ivory) 66%, transparent); }
+.tab:not(.is-on):hover .tab__ic { opacity: 1; }
+
+/* стрелка уезжает вправо */
+.tab__go {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  opacity: .35;
+  transition: transform .35s var(--ease), opacity .3s var(--ease);
+}
+.tab__go svg { width: 18px; height: 18px; }
+.tab:hover .tab__go, .tab.is-on .tab__go { opacity: 1; transform: translateX(7px); }
+
+/* ── ссылки в шапке подчёркиваются растущей линией ─────────── */
+
+.bar__nav a { position: relative; padding-bottom: 3px; }
+.bar__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width .35s var(--sweep);
+}
+.bar__nav a:hover::after { width: 100%; }
+
+/* ── кнопки: заливка изнутри ───────────────────────────────── */
+
+/* заливка идёт фоном, а не псевдоэлементом: так она не спорит
+   со слоями и не требует отдельного контекста наложения */
+.btn--line {
+  background-image: linear-gradient(var(--powder-air), var(--powder-air));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0 100%;
+  transition: background-size .42s var(--sweep), border-color .35s var(--ease), color .35s var(--ease);
+}
+.btn--line:hover { background-size: 100% 100%; }
+
+/* ── карточки работ приподнимаются ─────────────────────────── */
+
+.work { transition: transform .45s var(--ease); }
+.work:hover { transform: translateY(-6px); }
+
+/* ── строки фактов подсвечиваются ──────────────────────────── */
+
+.dfacts > div { transition: padding-left .38s var(--sweep); }
+.dfacts > div:hover { padding-left: 14px; }
+.dfacts__ic { transition: transform .4s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
+.dfacts > div:hover .dfacts__ic {
+  transform: scale(1.08);
+  border-color: var(--ink);
+  background: var(--powder-air);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot--hero .shot__ph svg,
+  .work .shot__ph svg,
+  .hint, .hint__a { animation: none; }
+  .tab__fill, .btn--line, .bar__nav a::after { transition: none; }
 }

@@ -184,6 +184,16 @@
       <path d="M9 17.4h9M9 21h7"/>
     </g>
   </symbol>
+  <symbol id="i-arrow" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 16h20M19 9l7 7-7 7"/>
+    </g>
+  </symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 32 32">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 6v20M9 19l7 7 7-7"/>
+    </g>
+  </symbol>
   <symbol id="i-check" viewBox="0 0 32 32">
     <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
       <path d="M7 16.5l5.6 5.6L25 9.8"/>
@@ -229,6 +239,11 @@
     <a class="btn btn--solid" href="#order">Заказать торт</a>
     <a class="btn btn--line" href="#tasting">Записаться на дегустацию</a>
   </div>
+
+  <a class="hint" href="#works">
+    <span class="hint__t">Листайте</span>
+    <span class="hint__a"><svg><use href="#i-arrow-down"/></svg></span>
+  </a>
 </section>
 
 <figure class="shot shot--hero">
@@ -357,29 +372,35 @@
 
     <button class="tab is-on" type="button" role="tab" id="t-order"
             aria-controls="p-order" aria-selected="true" data-tab="order">
+      <span class="tab__fill" aria-hidden="true"></span>
       <span class="tab__ic"><svg><use href="#i-cake"/></svg></span>
       <span class="tab__body">
         <b>Заказать торт</b>
         <i>Посчитаем и забронируем дату</i>
       </span>
+      <span class="tab__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
     </button>
 
     <button class="tab" type="button" role="tab" id="t-tasting"
             aria-controls="p-tasting" aria-selected="false" tabindex="-1" data-tab="tasting">
+      <span class="tab__fill" aria-hidden="true"></span>
       <span class="tab__ic"><svg><use href="#i-taste"/></svg></span>
       <span class="tab__body">
         <b>Дегустация</b>
         <i>Попробовать начинки заранее</i>
       </span>
+      <span class="tab__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
     </button>
 
     <button class="tab" type="button" role="tab" id="t-delivery"
             aria-controls="p-delivery" aria-selected="false" tabindex="-1" data-tab="delivery">
+      <span class="tab__fill" aria-hidden="true"></span>
       <span class="tab__ic"><svg><use href="#i-truck"/></svg></span>
       <span class="tab__body">
         <b>Доставка</b>
         <i>Как торт доедет до площадки</i>
       </span>
+      <span class="tab__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
     </button>
   </div>
 

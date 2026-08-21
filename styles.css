@@ -21,6 +21,8 @@
   --maxw: 1280px;
   --air: clamp(76px, 12vw, 180px);
   --ease: cubic-bezier(.22, .61, .36, 1);
+  --rise: cubic-bezier(.22, .8, .38, 1);   /* появление: быстрый старт, мягкая посадка */
+  --sweep: cubic-bezier(.4, 0, .2, 1);     /* заливка и наведение */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -429,7 +431,12 @@ img { display: block; max-width: 100%; }
 
 /* ── появление ─────────────────────────────────────────────── */
 
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+/* сдвиг крупный — иначе появление не читается как движение */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .75s var(--rise), transform .75s var(--rise);
+}
 .reveal.is-in { opacity: 1; transform: none; }
 
 /* ── адаптив ───────────────────────────────────────────────── */
