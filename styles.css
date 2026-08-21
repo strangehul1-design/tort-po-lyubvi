@@ -256,10 +256,13 @@ img { display: block; max-width: 100%; }
 }
 .section--ivory > * { max-width: var(--maxw); margin-inline: auto; }
 
-.head { max-width: 56ch; margin-bottom: clamp(44px, 5vw, 76px); }
-.head--center { max-width: 54ch; margin-inline: auto; text-align: center; }
+/* мера ширины у заголовка и у текста разная: ch считается от размера
+   шрифта контейнера, и на 17px он режет 56-пиксельный заголовок пополам */
+.head { max-width: min(860px, 100%); margin-bottom: clamp(44px, 5vw, 76px); }
+.head--center { margin-inline: auto; text-align: center; }
 .head__title { font-size: clamp(30px, 4.2vw, 56px); }
-.head__note { margin-top: 20px; color: var(--ink-60); }
+.head__note { max-width: 56ch; margin-top: 20px; color: var(--ink-60); }
+.head--center .head__note { margin-inline: auto; }
 .head__note + .head__note { margin-top: 12px; }
 
 /* ── 2. работы ─────────────────────────────────────────────── */
@@ -462,11 +465,15 @@ img { display: block; max-width: 100%; }
   .hero__actions .btn { flex: 1 1 100%; }
 }
 
+/* Уважаем системную настройку, но оставляем посетителю выключатель:
+   если он сам включил движение на сайте, эти правила не применяются. */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html:not([data-motion="on"]) { scroll-behavior: auto; }
+  html:not([data-motion="on"]) *,
+  html:not([data-motion="on"]) *::before,
+  html:not([data-motion="on"]) *::after {
     animation-duration: .001ms !important;
     transition-duration: .001ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  html:not([data-motion="on"]) .reveal { opacity: 1; transform: none; }
 }

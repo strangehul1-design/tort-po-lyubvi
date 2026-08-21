@@ -3,8 +3,27 @@
 (function () {
   'use strict';
 
-  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Системная настройка «уменьшить движение» уважается по умолчанию,
+     но посетитель может включить анимации на сайте — кнопкой в подвале. */
+  var systemCalm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var forcedMotion = document.documentElement.dataset.motion === 'on';
+  var calm = systemCalm && !forcedMotion;
   var desktop = window.matchMedia('(pointer: fine)').matches && window.innerWidth >= 1080;
+
+  var motionBtn = document.querySelector('[data-motion-btn]');
+  if (motionBtn && systemCalm) {
+    motionBtn.hidden = false;
+    motionBtn.textContent = forcedMotion
+      ? 'Выключить анимации на этом сайте'
+      : 'В системе выключены анимации — включить здесь';
+    motionBtn.addEventListener('click', function () {
+      try {
+        if (forcedMotion) localStorage.removeItem('melia-motion');
+        else localStorage.setItem('melia-motion', 'on');
+      } catch (e) {}
+      location.reload();
+    });
+  }
 
   /* ── шапка ─────────────────────────────────────────────── */
 

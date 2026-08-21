@@ -119,9 +119,9 @@
   from { opacity: 0; transform: translateY(28px) scale(.985); }
 }
 
-.panel__head { max-width: 62ch; margin-bottom: clamp(28px, 3.5vw, 46px); }
+.panel__head { max-width: min(760px, 100%); margin-bottom: clamp(28px, 3.5vw, 46px); }
 .panel__title { font-size: clamp(26px, 3.4vw, 44px); }
-.panel__note { margin-top: 16px; color: var(--ink-60); }
+.panel__note { max-width: 62ch; margin-top: 16px; color: var(--ink-60); }
 
 .split {
   display: grid;
@@ -215,9 +215,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel.is-in { animation: none; }
-  .hero .eyebrow, .hero__title, .hero__lede, .hero__actions { animation: none; }
-  .tabs__glow { transition: none; }
+  html:not([data-motion="on"]) .panel.is-in { animation: none; }
+  html:not([data-motion="on"]) .hero .eyebrow,
+  html:not([data-motion="on"]) .hero__title,
+  html:not([data-motion="on"]) .hero__lede,
+  html:not([data-motion="on"]) .hero__actions { animation: none; }
+  html:not([data-motion="on"]) .tabs__glow { transition: none; }
 }
 
 /* ============================================================
@@ -226,12 +229,12 @@
 
 /* ── рисунок торта тихо покачивается ───────────────────────── */
 
-.shot--hero .shot__ph svg,
-.work .shot__ph svg {
-  animation: float-slow 5.5s ease-in-out infinite;
-}
-.work:nth-child(2n) .shot__ph svg { animation-delay: -1.4s; }
-.work:nth-child(3n) .shot__ph svg { animation-delay: -2.8s; }
+/* качается контейнер, а увеличивается рисунок внутри — иначе
+   покачивание и приближение при наведении дерутся за transform */
+.shot--hero .shot__ph svg { animation: float-slow 5.5s ease-in-out infinite; }
+.work .shot__ph { animation: float-slow 5.5s ease-in-out infinite; }
+.work:nth-child(2n) .shot__ph { animation-delay: -1.4s; }
+.work:nth-child(3n) .shot__ph { animation-delay: -2.8s; }
 @keyframes float-slow {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-9px); }
@@ -350,8 +353,29 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shot--hero .shot__ph svg,
-  .work .shot__ph svg,
-  .hint, .hint__a { animation: none; }
-  .tab__fill, .btn--line, .bar__nav a::after { transition: none; }
+  html:not([data-motion="on"]) .shot--hero .shot__ph svg,
+  html:not([data-motion="on"]) .work .shot__ph,
+  html:not([data-motion="on"]) .hint,
+  html:not([data-motion="on"]) .hint__a { animation: none; }
+  html:not([data-motion="on"]) .tab__fill,
+  html:not([data-motion="on"]) .btn--line,
+  html:not([data-motion="on"]) .bar__nav a::after { transition: none; }
 }
+
+/* ── выключатель анимаций для тех, у кого они выключены в системе ── */
+
+.motion {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--powder);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-60);
+  cursor: pointer;
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.motion[hidden] { display: none; }
+.motion:hover { color: var(--ink); border-color: var(--ink); }

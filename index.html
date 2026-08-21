@@ -14,6 +14,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  /* если посетитель сам включил движение, применяем до первой отрисовки */
+  try { if (localStorage.getItem('melia-motion') === 'on') document.documentElement.dataset.motion = 'on'; } catch (e) {}
+</script>
 <title>Мелия — свадебные торты в Самаре</title>
 <meta name="description" content="Свадебные торты ручной работы в Самаре: индивидуальный эскиз, дегустация начинок, личная доставка и сборка на площадке.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -573,7 +577,10 @@
     </div>
   </div>
 
-  <p class="footer__note">Демонстрационный сайт. Название, контакты, работы и отзывы — вымышленные.</p>
+  <p class="footer__note">
+    Демонстрационный сайт. Название, контакты, работы и отзывы — вымышленные.
+    <button class="motion" type="button" data-motion-btn hidden></button>
+  </p>
 </footer>
 
 <script src="forms.js"></script>
