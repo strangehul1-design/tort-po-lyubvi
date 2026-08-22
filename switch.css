@@ -214,14 +214,16 @@
   .tab__body b { font-size: 20px; }
 }
 
+/* спокойный режим: остаётся проявление, уходит сдвиг */
 @media (prefers-reduced-motion: reduce) {
-  html:not([data-motion="on"]) .panel.is-in { animation: none; }
+  html:not([data-motion="on"]) .panel.is-in { animation: fade-only .35s linear both; }
   html:not([data-motion="on"]) .hero .eyebrow,
   html:not([data-motion="on"]) .hero__title,
   html:not([data-motion="on"]) .hero__lede,
-  html:not([data-motion="on"]) .hero__actions { animation: none; }
-  html:not([data-motion="on"]) .tabs__glow { transition: none; }
+  html:not([data-motion="on"]) .hero__actions { animation: fade-only .5s linear both; }
+  html:not([data-motion="on"]) .tabs__glow { transition: opacity .3s linear; }
 }
+@keyframes fade-only { from { opacity: 0; } }
 
 /* ============================================================
    Живое движение: то, что видно без наведения и без прокрутки
@@ -352,14 +354,25 @@
   background: var(--powder-air);
 }
 
+/* гасим только то, что двигает предметы: покачивание, приближение,
+   подпрыгивание. Заливка, подчёркивание и смена цвета остаются. */
 @media (prefers-reduced-motion: reduce) {
   html:not([data-motion="on"]) .shot--hero .shot__ph svg,
   html:not([data-motion="on"]) .work .shot__ph,
-  html:not([data-motion="on"]) .hint,
   html:not([data-motion="on"]) .hint__a { animation: none; }
-  html:not([data-motion="on"]) .tab__fill,
-  html:not([data-motion="on"]) .btn--line,
-  html:not([data-motion="on"]) .bar__nav a::after { transition: none; }
+  html:not([data-motion="on"]) .hint { animation: fade-only .5s linear both .5s; }
+  html:not([data-motion="on"]) .work:hover,
+  html:not([data-motion="on"]) .tab:hover,
+  html:not([data-motion="on"]) .step:hover .step__ic,
+  html:not([data-motion="on"]) .tab.is-on .tab__ic { transform: none; }
+  html:not([data-motion="on"]) .work:hover .shot__img,
+  html:not([data-motion="on"]) .work:hover .shot__ph svg,
+  html:not([data-motion="on"]) .gallery .shot:hover .shot__img,
+  html:not([data-motion="on"]) .gallery .shot:hover .shot__ph svg { transform: none; }
+  html:not([data-motion="on"]) .tab:hover .tab__go,
+  html:not([data-motion="on"]) .tab.is-on .tab__go { transform: none; }
+  html:not([data-motion="on"]) .dfacts > div:hover { padding-left: 0; }
+  html:not([data-motion="on"]) .dfacts > div:hover .dfacts__ic { transform: none; }
 }
 
 /* ── выключатель анимаций для тех, у кого они выключены в системе ── */

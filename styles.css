@@ -219,6 +219,7 @@ img { display: block; max-width: 100%; }
 .hero__title {
   font-size: clamp(38px, 6vw, 76px);
   line-height: 1.1;
+  text-wrap: balance;
 }
 .hero__lede {
   max-width: 52ch;
@@ -260,7 +261,7 @@ img { display: block; max-width: 100%; }
    шрифта контейнера, и на 17px он режет 56-пиксельный заголовок пополам */
 .head { max-width: min(860px, 100%); margin-bottom: clamp(44px, 5vw, 76px); }
 .head--center { margin-inline: auto; text-align: center; }
-.head__title { font-size: clamp(30px, 4.2vw, 56px); }
+.head__title { font-size: clamp(30px, 4.2vw, 56px); text-wrap: balance; }
 .head__note { max-width: 56ch; margin-top: 20px; color: var(--ink-60); }
 .head--center .head__note { margin-inline: auto; }
 .head__note + .head__note { margin-top: 12px; }
@@ -313,8 +314,16 @@ img { display: block; max-width: 100%; }
   color: var(--ink);
 }
 .step__ic svg { width: 30px; height: 30px; }
-.step__t { margin-top: 24px; font-size: 26px; }
-.step__p { margin-top: 12px; font-size: 15px; color: var(--ink-60); }
+.step__t { margin-top: 24px; font-size: 26px; text-wrap: balance; }
+/* узкая мера и выравненные строки: центрированный текст во всю ширину
+   колонки оставляет висячие слова и читается как сбитый */
+.step__p {
+  max-width: 30ch;
+  margin: 12px auto 0;
+  font-size: 15px;
+  color: var(--ink-60);
+  text-wrap: pretty;
+}
 
 /* ── 4. доставка ───────────────────────────────────────────── */
 
@@ -465,15 +474,14 @@ img { display: block; max-width: 100%; }
   .hero__actions .btn { flex: 1 1 100%; }
 }
 
-/* Уважаем системную настройку, но оставляем посетителю выключатель:
-   если он сам включил движение на сайте, эти правила не применяются. */
+/* Системная настройка «уменьшить движение» гасит не всё подряд, а только
+   то, что действительно укачивает: сдвиги, увеличение, бесконечные циклы,
+   параллакс. Проявление и подсветка остаются — сайт живой, но спокойный.
+   Посетитель может вернуть полное движение кнопкой в подвале. */
 @media (prefers-reduced-motion: reduce) {
   html:not([data-motion="on"]) { scroll-behavior: auto; }
-  html:not([data-motion="on"]) *,
-  html:not([data-motion="on"]) *::before,
-  html:not([data-motion="on"]) *::after {
-    animation-duration: .001ms !important;
-    transition-duration: .001ms !important;
+  html:not([data-motion="on"]) .reveal {
+    transform: none;
+    transition: opacity .5s linear;
   }
-  html:not([data-motion="on"]) .reveal { opacity: 1; transform: none; }
 }

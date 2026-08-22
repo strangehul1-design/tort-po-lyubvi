@@ -87,8 +87,8 @@
       var panel = document.getElementById(t.getAttribute('aria-controls'));
       panel.hidden = !on;
       panel.classList.remove('is-in');
-      if (on && !calm) {
-        /* перезапускаем появление панели */
+      if (on) {
+        /* перезапускаем появление панели; в спокойном режиме это только проявление */
         void panel.offsetWidth;
         panel.classList.add('is-in');
       }
@@ -234,20 +234,42 @@
 
   /* ── появление блоков при прокрутке ────────────────────── */
 
-  /* кнопки переключателя не прячем — это органы управления */
+  /* кнопки переключателя не прячем — это органы управления.
+     Появление работает и в спокойном режиме: там оно без сдвига, одним
+     проявлением — это не укачивает, но страница остаётся живой. */
   var targets = document.querySelectorAll(
     '.head, .work, .step, .shot--wide, .gallery .shot, .word, .dfacts > div'
   );
-  if ('IntersectionObserver' in window && !calm) {
-    targets.forEach(function (el) { el.classList.add('reveal'); });
+  if ('IntersectionObserver' in window) {
+    /* Класс вешаем скриптом уже после отрисовки, поэтому первое скрытие
+       само по себе анимируется: блок виден, гаснет и только потом
+       проявляется. Гасим переход на один кадр, чтобы стартовое состояние
+       встало мгновенно. */
+    targets.forEach(function (el) {
+      el.style.transition = 'none';
+      el.classList.add('reveal');
+    });
+    void document.body.offsetWidth;
+    targets.forEach(function (el) { el.style.transition = ''; });
+    /* Показываем сразу в обработчике, без таймера: в фоновой вкладке
+       таймеры душатся до одного срабатывания в секунду, и блок мог
+       остаться невидимым. Каскад и так возникает сам — блоки входят
+       в экран по очереди, пока страницу листают. */
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry, i) {
+      entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        window.setTimeout(function () { entry.target.classList.add('is-in'); }, Math.min(i, 6) * 45);
+        entry.target.classList.add('is-in');
         io.unobserve(entry.target);
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
     targets.forEach(function (el) { io.observe(el); });
+
+    /* страховка: что бы ни случилось, содержимое не остаётся спрятанным */
+    window.addEventListener('load', function () {
+      window.setTimeout(function () {
+        targets.forEach(function (el) { el.classList.add('is-in'); });
+      }, 3000);
+    });
   }
 
   /* ── стартовое состояние переключателя ──────────────────── */
