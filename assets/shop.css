@@ -91,7 +91,7 @@ a{color:inherit}
 .field>label svg,.legend svg{width:14px;height:14px;stroke:var(--icon-ink);fill:none;
   stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .inp{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-strong);
-  padding:11px 2px;font-size:15.5px;font-weight:300;color:var(--graphite);
+  padding:11px 2px;font-size:16px;font-weight:300;color:var(--graphite);
   transition:border-color .4s var(--ease);border-radius:0}
 .inp::placeholder{color:var(--ph-ink);opacity:1}
 .inp:focus{outline:none;border-bottom-color:var(--rose-ink)}
@@ -137,6 +137,13 @@ textarea.inp{resize:vertical;min-height:88px;line-height:1.65}
 @media(max-width:720px){
   .form-grid{grid-template-columns:1fr}
   .brand-sub{display:none}
+}
+
+/* Пальцем в цель меньше 44px попадают с промахом — задаём пол. */
+@media(max-width:860px){
+  .pill span,.btn,.back{min-height:44px}
+  .pill span{display:inline-flex;align-items:center;justify-content:center}
+  .brand{min-height:44px;justify-content:center}
 }
 
 @media(prefers-reduced-motion:reduce){

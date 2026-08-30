@@ -95,6 +95,10 @@
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/vk-send.css">
 <style>
+/* Сброс. Без него у body остаётся браузерный отступ 8px, а box-sizing
+   считается по content-box — тогда width:100% плюс боковые отступы
+   дают коробку шире экрана, и блоки вылезают за край. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 /* clip, а не hidden: hidden сделал бы html контейнером прокрутки
    и сломал бы липкий эскиз в разделе «Процесс» */
@@ -303,7 +307,7 @@ a{color:inherit}
    Глубину даёт сам блок с фотографией, а не пятно на фоне. */
 .hero-in{position:relative;z-index:1}
 .hero-h{margin:24px 0 26px;max-width:14ch}
-.hero-p{color:var(--body);max-width:46ch;margin-bottom:40px;font-size:clamp(15.5px,1.25vw,18px)}
+.hero-p{color:var(--body);max-width:46ch;margin-bottom:40px;font-size:clamp(16px,1.25vw,18px)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
 .hero-art{position:relative;z-index:1}
 .hero-load>*{animation:lift 1s var(--ease) both}
@@ -391,7 +395,7 @@ a{color:inherit}
 .step.is-in .step-n::after{transform:scaleY(1)}
 .step:last-child .step-n::after{display:none}
 .step-b h3{margin-bottom:9px}
-.step-b p{font-size:15.5px;color:var(--body);line-height:1.7;max-width:44ch}
+.step-b p{font-size:16px;color:var(--body);line-height:1.7;max-width:44ch}
 .step-tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);
   border:1px solid var(--line);border-radius:100px;padding:6px 14px}
@@ -436,7 +440,7 @@ a{color:inherit}
 
 .inp{
   width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-strong);
-  padding:11px 2px;font-size:15.5px;font-weight:300;color:var(--graphite);
+  padding:11px 2px;font-size:16px;font-weight:300;color:var(--graphite);
   transition:border-color .4s var(--ease);border-radius:0;
 }
 .inp::placeholder{color:var(--ph-ink);opacity:1}
@@ -499,7 +503,7 @@ select.inp{
   border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center}
 .sent-ic svg{width:22px;height:22px;stroke:var(--graphite);fill:none;stroke-width:1.5;
   stroke-linecap:round;stroke-linejoin:round}
-.sent p{margin:12px auto 0;max-width:42ch;color:var(--body);font-size:15.5px}
+.sent p{margin:12px auto 0;max-width:42ch;color:var(--body);font-size:16px}
 
 /* заявка не ушла — говорим прямо и даём запасной путь */
 .fail{display:none;margin-top:22px;padding:20px 22px;border:1px solid #E5B6AE;background:#FDF3F1}
@@ -513,7 +517,7 @@ select.inp{
    ═══════════════════════════════════════════ */
 .deliv{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,72px);align-items:center}
 .deliv-txt h3{margin-bottom:18px}
-.deliv-txt p{color:var(--body);font-size:15.5px;line-height:1.75;margin-bottom:16px;max-width:48ch}
+.deliv-txt p{color:var(--body);font-size:16px;line-height:1.75;margin-bottom:16px;max-width:48ch}
 .deliv-list{list-style:none;margin:26px 0 30px}
 .deliv-list li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;
   padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--body)}
@@ -596,6 +600,12 @@ select.inp{
   .step-n::after{display:none}
   .ftr-top{grid-template-columns:1fr}
   .ftr-top>*:first-child{grid-column:auto}
+}
+@media(max-width:400px){
+  /* На узком экране знак не помещается в строку рядом с корзиной
+     и бургером — уменьшаем его, а не позволяем переноситься. */
+  .brand-name{font-size:21px}
+  .brand-sub{font-size:8.5px;letter-spacing:.2em}
 }
 @media(max-width:520px){
   .hero-scroll{display:none}
@@ -689,7 +699,7 @@ select.inp{
 .cart-panel.is-on{transform:none}
 .cart-head{display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:22px 24px;border-bottom:1px solid var(--line)}
-.cart-x{width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+.cart-x{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
   opacity:.65;transition:opacity .3s}
 .cart-x:hover{opacity:1}
 .cart-x svg{width:18px;height:18px;stroke:var(--graphite);fill:none;stroke-width:1.4;stroke-linecap:round}
@@ -753,6 +763,28 @@ select.inp{
 
 @media(max-width:980px){ .prices{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:640px){ .prices{grid-template-columns:1fr} }
+
+/* ═══════════════════════════════════════════
+   МОБИЛЬНЫЙ ПОЛ ПО ВЫСОТЕ
+   Пальцем в цель меньше 44px попадают с промахом. У пилюль,
+   вкладок и счётчиков высота считалась из padding и размера
+   шрифта и выходила ≈43px — правим причину: задаём пол,
+   а не подгоняем padding у каждого элемента отдельно.
+   ═══════════════════════════════════════════ */
+@media(max-width:860px){
+  .pill span,.tab,.qty,.hdr-cta,.hdr-link,.check{min-height:44px}
+  /* «по любви» — одно слово по смыслу, разрывать его нельзя */
+  .script{white-space:nowrap}
+  /* Контакты в подвале — это ссылки на звонок и переписку,
+     по ним жмут чаще всего. Строка в 26px для пальца мала. */
+  .ftr-list a,.ftr-list span{min-height:44px}
+  .ftr-list{gap:4px}
+  .pill span,.tab,.qty{display:inline-flex;align-items:center;justify-content:center}
+  .brand{min-height:44px;justify-content:center}
+  .burger{flex-shrink:0}
+  /* На тач-экранах ховера нет: подсветку даёт нажатие */
+  .work:hover .ph{transform:none}
+}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
