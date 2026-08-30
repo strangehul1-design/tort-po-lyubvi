@@ -14,11 +14,11 @@
 <style>
 /* Экран намеренно похож на внешнюю платёжную страницу: узкий,
    отделённый от сайта, с явной плашкой «демонстрация». */
-body{background:var(--shell)}
+body{background:var(--surface)}
 .pay{max-width:460px;margin:0 auto}
 .demo-flag{
   display:flex;align-items:flex-start;gap:11px;margin-bottom:22px;
-  padding:14px 16px;border:1px dashed var(--powder-deep);background:#FBF2EE;
+  padding:14px 16px;border:1px dashed var(--rose-ink);background:#FBF2EE;
   font-size:13px;line-height:1.55;color:var(--body);
 }
 .demo-flag svg{width:17px;height:17px;stroke:var(--rose-ink);fill:none;stroke-width:1.4;flex-shrink:0;margin-top:2px}
@@ -33,7 +33,7 @@ body{background:var(--shell)}
 .pay-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .pay-field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
 .pay-field label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.pay-field input{border:1px solid var(--line);background:var(--ivory);padding:12px 13px;
+.pay-field input{border:1px solid var(--line);background:var(--white);padding:12px 13px;
   font-size:15px;font-variant-numeric:tabular-nums;border-radius:3px;width:100%}
 .pay-field input:focus{outline:none;border-color:var(--rose-ink)}
 .pay-note{font-size:12px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.6}
@@ -42,7 +42,7 @@ body{background:var(--shell)}
 .pay-alt:hover{color:var(--rose-ink)}
 .pay-secure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;
   font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.pay-secure svg{width:13px;height:13px;stroke:var(--gold-ink);fill:none;stroke-width:1.5}
+.pay-secure svg{width:13px;height:13px;stroke:var(--icon-ink);fill:none;stroke-width:1.5}
 </style>
 </head>
 <body>
