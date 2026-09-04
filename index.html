@@ -2392,9 +2392,15 @@ if(shotsBox && SHOTS.length){
        равно будет занято, просто чуть менее точно. */
     const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;
     const n = i + 1;
+    /* В сетке плитка занимает 280-400 точек, поэтому туда идёт копия
+       на 800px, а кадр на 1600px браузер скачает только если его
+       откроют во весь экран. sizes описывает ширину плитки в каждой
+       раскладке — по нему браузер и выбирает файл. */
     return '<button class="shot" type="button" data-i="' + i + '"' +
       ' aria-label="Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран">' +
-      '<img src="' + p.src + '" width="' + w + '" height="' + h + '"' +
+      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+      ' sizes="(max-width:860px) 46vw, (max-width:1200px) 30vw, 300px"' +
+      ' width="' + w + '" height="' + h + '"' +
       ' loading="lazy" decoding="async"' +
       ' alt="Свадебный торт кондитерской «Торт по любви», фото ' + n + '">' +
       '<span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24">' +
@@ -2414,7 +2420,7 @@ function lbShow(i){
   if(!SHOTS.length) return;
   lbAt = (i + SHOTS.length) % SHOTS.length;
   const p = SHOTS[lbAt];
-  lbImg.src = p.src;
+  lbImg.src = p.big;
   lbImg.alt = 'Свадебный торт кондитерской «Торт по любви», фото ' + (lbAt + 1);
   lbCap.textContent = (lbAt + 1) + ' / ' + SHOTS.length;
 }
