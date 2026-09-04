@@ -27,7 +27,7 @@ export const FIELDS = {
   'contact.vk_group':  { group: 'contacts', label: 'Ссылка на сообщество',   type: 'url' },
   'contact.email':     { group: 'contacts', label: 'Почта',                  type: 'text' },
   'contact.address':   { group: 'contacts', label: 'Адрес студии',           type: 'text' },
-  'contact.hours':     { group: 'contacts', label: 'Часы дегустаций',        type: 'text' },
+  'contact.hours':     { group: 'contacts', label: 'Как получить дегустацию',        type: 'text' },
   'contact.zone':      { group: 'contacts', label: 'Зона доставки',          type: 'text' },
 
   /* ── Тексты ── */
@@ -39,10 +39,16 @@ export const FIELDS = {
 
 /* Товары каталога: у каждого имя, описание и цена */
 export const PRODUCTS = [
+  ['cake-3',          'Торт 3 кг'],
+  ['cake-4a',         'Торт 4 кг · 15–20 гостей'],
+  ['cake-4b',         'Торт 4 кг · 20 гостей'],
+  ['cake-5',          'Торт 5 кг'],
+  ['cake-6',          'Торт 6 кг'],
+  ['cake-8a',         'Торт 8 кг (№1)'],
+  ['cake-8b',         'Торт 8 кг (№9)'],
+  ['cake-9',          'Торт 9 кг'],
+  ['cake-10',         'Торт 10 кг'],
   ['tasting',         'Дегустационный сет'],
-  ['tier-s',          'Ярус «Малый»'],
-  ['tier-m',          'Ярус «Средний»'],
-  ['tier-l',          'Ярус «Большой»'],
   ['delivery-city',   'Доставка по Самаре'],
   ['delivery-region', 'Доставка по области'],
 ];

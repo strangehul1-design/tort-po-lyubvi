@@ -106,34 +106,34 @@ async function lastText() {
   t = await lastText();
   check('открылся список товаров', /Выберите товар/.test(t), t);
 
-  await tap('p:tier-m');
+  await tap('p:cake-5');
   t = await lastText();
-  check('открылась карточка товара', /Ярус «Средний»/.test(t), t);
+  check('открылась карточка товара', /Торт 5 кг/.test(t), t);
 
-  await tap('f:price.tier-m.value');
-  await message('13500');
+  await tap('f:price.cake-5.value');
+  await message('21500');
   t = await lastText();
   check('цена сохранена', /Сохранено/.test(t), t);
 
   const cat = await fetch(API + '/catalog').then(j);
-  check('каталог отдаёт новую цену', cat.catalog['tier-m'].price === 13500,
-        JSON.stringify(cat.catalog['tier-m']));
+  check('каталог отдаёт новую цену', cat.catalog['cake-5'].price === 21500,
+        JSON.stringify(cat.catalog['cake-5']));
 
   const pay = await fetch(API + '/create-payment', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Origin: 'http://localhost:4455' },
     body: JSON.stringify({
-      items: [{ id: 'tier-m', qty: 2 }],
+      items: [{ id: 'cake-5', qty: 2 }],
       customer: { name: 'Проверка', phone: '+70000000000', email: 'a@b.ru' },
       returnUrl: 'http://localhost:4455/success/',
     }),
   }).then(j);
-  check('оплата считает по новой цене', pay.amount === 27000,
-        'сумма=' + pay.amount + ' ожидалось 27000');
+  check('оплата считает по новой цене', pay.amount === 43000,
+        'сумма=' + pay.amount + ' ожидалось 43000');
 
   console.log('\n═══ 6. Проверка введённого ═══');
   await reset();
-  await tap('f:price.tier-m.value');
+  await tap('f:price.cake-5.value');
   await message('дорого');
   t = await lastText();
   check('текст вместо числа отклонён', /Нужно число/.test(t), t);

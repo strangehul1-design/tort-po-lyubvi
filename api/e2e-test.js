@@ -42,7 +42,7 @@ function orderForm(withPhoto) {
   f.append('date', '2026-09-12');
   f.append('place', 'Усадьба «Волга», Самара');
   f.append('guests', '90');
-  f.append('filling', 'Шоколад · солёная карамель · пекан');
+  f.append('filling', 'Шоколадная вишня');
   f.append('service', 'Нужны');
   f.append('name', 'Ольга');
   f.append('phone', '+7 999 111-22-33');

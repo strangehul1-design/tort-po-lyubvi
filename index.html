@@ -34,7 +34,7 @@
       "description": "Кондитерская свадебных тортов по индивидуальному эскизу. Дегустация, личная доставка и сборка на площадке.",
       "url": "https://strangehul1-design.github.io/asiyatort/",
       "telephone": "+7-999-000-00-00",
-      "priceRange": "1500–18000 ₽",
+      "priceRange": "1000–32500 ₽",
       "currenciesAccepted": "RUB",
       "address": {
         "@type": "PostalAddress",
@@ -64,13 +64,25 @@
       "@id": "https://strangehul1-design.github.io/asiyatort/#prices",
       "name": "Цены",
       "itemListElement": [
-        { "@type": "Offer", "name": "Дегустационный сет", "price": "1500", "priceCurrency": "RUB",
-           "description": "Пять начинок и час в студии", "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Ярус «Малый» — до 30 гостей", "price": "6500", "priceCurrency": "RUB",
+        { "@type": "Offer", "name": "Дегустационный сет", "price": "1000", "priceCurrency": "RUB",
+           "description": "Семь начинок, курьером или самовывозом", "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 3 кг — 10–15 гостей", "price": "11500", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Ярус «Средний» — до 60 гостей", "price": "11000", "priceCurrency": "RUB",
+        { "@type": "Offer", "name": "Торт 4 кг — 15–20 гостей", "price": "13000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Ярус «Большой» — до 120 гостей", "price": "18000", "priceCurrency": "RUB",
+        { "@type": "Offer", "name": "Торт 4 кг — 20 гостей", "price": "17000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 5 кг — 20–25 гостей", "price": "20000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 6 кг — 30–35 гостей", "price": "23000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 8 кг — 40–45 гостей", "price": "26000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 8 кг — 40–45 гостей", "price": "29000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 9 кг — 45–50 гостей", "price": "31000", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Торт 10 кг — 50–55 гостей", "price": "32500", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Доставка по Самаре", "price": "1000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
@@ -580,16 +592,6 @@ select.inp{
   .dots{display:none}
 }
 @media(max-width:860px){
-  .hdr-nav{
-    position:fixed;inset:0 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
-    background:var(--white);padding:96px var(--gut) 34px;border-bottom:1px solid var(--line);
-    transform:translateY(-102%);transition:transform .55s var(--ease);
-    box-shadow:0 20px 50px rgba(22,22,26,.07);
-  }
-  .hdr-nav.is-open{transform:none}
-  .hdr-link{padding-block:16px;border-bottom:1px solid var(--line);font-size:14px}
-  .hdr-cta{margin-top:22px;text-align:center;padding-block:15px}
-  .burger{display:block;z-index:2}
   .works{gap:22px}
   .work,.work--tall,.work--wide{grid-column:span 12}
   .form-grid{grid-template-columns:1fr}
@@ -799,6 +801,174 @@ select.inp{
   .cart-panel{transition:none}
   .cart-btn.is-bump{animation:none}
 }
+
+/* ═════════ БЛОК А — зачем вообще торт ═════════
+   Тихая полоса сразу после героя: крупная засечная строка,
+   дальше обычный текст. Ширина ограничена по символам, а не по
+   пикселям, — так строка остаётся читаемой на любом экране. */
+.credo-in{max-width:60ch;margin:0 auto;text-align:center}
+.credo-lead{font-family:var(--ff-d);font-weight:300;
+  font-size:clamp(27px,3.6vw,46px);line-height:1.16;letter-spacing:-.015em;color:var(--graphite)}
+.credo-body{font-size:clamp(15.5px,1.4vw,17px);line-height:1.78;color:var(--body);margin-top:22px}
+.credo-mark{font-family:var(--ff-d);font-style:italic;font-weight:400;
+  font-size:clamp(19px,2.1vw,26px);line-height:1.4;color:var(--graphite);margin-top:26px}
+.credo-rule{width:34px;height:1px;background:var(--icon-ink);margin:30px auto 0}
+
+/* ═════════ НАЧИНКИ ═════════ */
+.fills{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.fill{background:var(--porcelain);border:1px solid var(--line);
+  padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;
+  transition:border-color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}
+.fill:hover{border-color:var(--graphite);transform:translateY(-3px);
+  box-shadow:0 18px 40px -22px rgba(22,22,26,.28)}
+.fill-n{font-family:var(--ff-d);font-size:24px;font-weight:500;line-height:1.15;color:var(--graphite)}
+.fill-d{font-size:14.5px;line-height:1.65;color:var(--body);margin-top:11px}
+/* Вариант прослойки — отдельной строкой, чтобы читался как выбор,
+   а не как продолжение состава. */
+.fill-c{font-size:12.5px;line-height:1.55;color:var(--muted);margin-top:auto;padding-top:14px}
+.fill-c b{font-weight:400;color:var(--body)}
+.fill-c::before{content:"";display:block;width:26px;height:1px;
+  background:var(--line-strong);margin-bottom:11px}
+
+/* ═════════ БЛОК Б — почему столько стоит ═════════ */
+.value{max-width:62ch;margin:0 auto clamp(40px,5vw,68px)}
+.value-lead{font-family:var(--ff-d);font-weight:300;
+  font-size:clamp(22px,2.7vw,34px);line-height:1.24;letter-spacing:-.01em;color:var(--graphite)}
+.value-h{margin-top:26px;font-size:15px;letter-spacing:.02em;color:var(--muted)}
+.value-list{list-style:none;margin-top:16px;display:grid;gap:13px}
+.value-list li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+  font-size:16px;line-height:1.68;color:var(--body)}
+.value-list svg{width:17px;height:17px;margin-top:5px;flex-shrink:0;
+  stroke:var(--rose-ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ═════════ ПРАЙС: карточки тортов ═════════
+   Девять позиций отличаются только весом, числом гостей и ценой —
+   имён у них нет. Поэтому заголовком работает вес. */
+.prices--cakes{margin-bottom:clamp(30px,3.6vw,52px)}
+.price-w{font-family:var(--ff-d);font-size:34px;font-weight:500;line-height:1;
+  color:var(--graphite);font-variant-numeric:tabular-nums}
+.price-g{font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:8px}
+.price--cake .price-tag{margin-bottom:20px}
+.price--cake .price-num{font-size:31px}
+.prices-sub{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.prices-sub::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* На телефоне девять карточек столбиком — это метры прокрутки.
+   Тот же список показываем строками: вес слева, цена и «плюс» справа. */
+@media(max-width:640px){
+  .prices--cakes{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+  .price--cake{flex-direction:row;align-items:center;gap:12px;background:transparent;
+    border:0;border-bottom:1px solid var(--line);padding:14px 2px}
+  .price--cake:hover{transform:none;box-shadow:none;border-bottom-color:var(--line-strong)}
+  .price-cake-l{flex:1;min-width:0}
+  .price--cake .price-w{font-size:25px}
+  .price--cake .price-g{margin-top:4px;font-size:12.5px}
+  .price--cake .price-tag{margin:0;padding:0;border:0;flex-direction:column;
+    align-items:flex-end;gap:1px;text-align:right}
+  .price--cake .price-num{font-size:20px}
+  .price--cake .price-unit{font-size:10.5px}
+  .price--cake .btn{width:44px;height:44px;min-height:44px;padding:0;margin:0;
+    border-radius:50%;flex-shrink:0}
+  .price--cake .btn .lbl{position:absolute;width:1px;height:1px;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+
+/* ═════════ ЗАГЛУШКИ: годовщина и кондитер ═════════ */
+.stub{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center}
+.stub--rev .stub-txt{order:2}
+.stub-txt .lead-lg{font-size:clamp(16px,1.5vw,18px);line-height:1.72;color:var(--body);
+  max-width:44ch;margin-top:20px}
+.stub-txt .btn{margin-top:30px}
+.stub-soon{display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.stub-soon::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--rose-soft);flex-shrink:0}
+
+/* ═════════ ГАЛЕРЕЯ СНИМКОВ СО СВАДЕБ ═════════
+   Колоночная кладка: кадры разной высоты укладываются без дыр
+   и ничего не обрезается — снимок виден целиком. Ширина и высота
+   каждого файла проставлены в разметке, поэтому место резервируется
+   заранее и вёрстка не дёргается по мере загрузки. */
+.shots{columns:4;column-gap:clamp(10px,1.4vw,18px);margin-top:clamp(26px,3vw,44px)}
+.shot{break-inside:avoid;margin-bottom:clamp(10px,1.4vw,18px);
+  position:relative;display:block;width:100%;padding:0;border:0;
+  background:var(--surface);overflow:hidden;cursor:zoom-in;
+  -webkit-tap-highlight-color:transparent}
+.shot img{display:block;width:100%;height:auto;
+  transition:transform .7s var(--ease)}
+.shot::after{content:"";position:absolute;inset:0;background:var(--graphite);
+  opacity:0;transition:opacity .45s var(--ease);pointer-events:none}
+.shot:hover img{transform:scale(1.035)}
+.shot:hover::after{opacity:.1}
+.shot-zoom{position:absolute;right:12px;bottom:12px;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.94);
+  opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.shot-zoom svg{width:15px;height:15px;stroke:var(--graphite);fill:none;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.shot:hover .shot-zoom,.shot:focus-visible .shot-zoom{opacity:1;transform:none}
+.shot:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}
+/* пока файлов нет — ровные пустые плитки вместо битых картинок */
+.shot--empty{cursor:default;aspect-ratio:3/4;display:grid;place-items:center}
+.shot--empty:hover::after{opacity:0}
+.shot--empty .ph-glyph{width:32px;height:32px;color:var(--icon-ink);opacity:.7}
+
+/* ═════════ ПРОСМОТР СНИМКА ═════════ */
+.lb{position:fixed;inset:0;z-index:200;display:none;
+  background:rgba(22,22,26,.93);padding:clamp(16px,4vw,56px);
+  place-items:center;opacity:0;transition:opacity .35s var(--ease)}
+.lb.is-open{display:grid}
+.lb.is-shown{opacity:1}
+.lb-fig{margin:0;max-width:100%;display:grid;place-items:center}
+.lb-fig img{max-width:100%;max-height:calc(100svh - clamp(110px,16vw,200px));
+  width:auto;height:auto;display:block;
+  opacity:0;transform:scale(.985);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.lb.is-shown .lb-fig img{opacity:1;transform:none}
+.lb-cap{margin-top:14px;text-align:center;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:#C9C9D0}
+.lb-btn{position:absolute;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.1);transition:background .3s var(--ease),transform .3s var(--ease)}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+.lb-btn:active{transform:scale(.94)}
+.lb-btn svg{width:20px;height:20px;stroke:#FFFFFF;fill:none;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.lb-x{top:clamp(12px,2.4vw,26px);right:clamp(12px,2.4vw,26px)}
+.lb-prev{left:clamp(8px,2vw,26px);top:50%;margin-top:-26px}
+.lb-next{right:clamp(8px,2vw,26px);top:50%;margin-top:-26px}
+.lb-btn:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}
+
+@media(max-width:1200px){ .shots{columns:3} }
+@media(max-width:1080px){
+  .stub{grid-template-columns:1fr;gap:36px}
+  .stub--rev .stub-txt{order:0}
+}
+@media(max-width:860px){
+  .fills{grid-template-columns:repeat(2,1fr)}
+  .shots{columns:2}
+  /* стрелки уводим вниз: по краям экрана они попадают под большой палец */
+  .lb-prev,.lb-next{top:auto;bottom:clamp(12px,3vw,24px);margin-top:0}
+  .lb-prev{left:calc(50% - 62px)}
+  .lb-next{right:calc(50% - 62px)}
+  .lb-fig img{max-height:calc(100svh - 210px)}
+}
+@media(max-width:560px){ .fills{grid-template-columns:1fr} }
+
+/* ═════════ ШАПКА: вкладок стало больше ═════════
+   Семь пунктов уже не помещаются рядом со знаком и кнопкой заказа
+   на средних экранах, поэтому меню уходит под бургер раньше —
+   на 1180px, а не на 860px, как было при пяти вкладках. */
+@media(max-width:1180px){
+  .hdr-nav{
+    position:fixed;inset:0 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--white);padding:96px var(--gut) 34px;border-bottom:1px solid var(--line);
+    transform:translateY(-102%);transition:transform .55s var(--ease);
+    box-shadow:0 20px 50px rgba(22,22,26,.07);
+  }
+  .hdr-nav.is-open{transform:none}
+  .hdr-link{padding-block:16px;border-bottom:1px solid var(--line);font-size:14px;min-height:44px}
+  .hdr-cta{margin-top:22px;text-align:center;padding-block:15px;min-height:44px}
+  .burger{display:block;z-index:2}
+}
 </style>
 </head>
 <body>
@@ -828,9 +998,11 @@ select.inp{
   <nav class="hdr-nav" id="nav">
     <a class="hdr-link" href="#works" data-jump="works">Работы</a>
     <a class="hdr-link" href="#process" data-jump="process">Процесс</a>
+    <a class="hdr-link" href="#prices" data-jump="prices">Цены</a>
+    <a class="hdr-link" href="#anniversary" data-jump="anniversary">Годовщина</a>
     <a class="hdr-link" href="#request" data-tab="delivery">Доставка</a>
     <a class="hdr-link" href="#gallery" data-jump="gallery">Отзывы</a>
-    <a class="hdr-link" href="#prices" data-jump="prices">Цены</a>
+    <a class="hdr-link" href="#about" data-jump="about">Кондитер</a>
     <button class="hdr-cta" data-tab="order">Заказать торт</button>
   </nav>
   <button class="cart-btn" id="cart-btn" aria-label="Корзина" aria-expanded="false">
@@ -870,6 +1042,18 @@ select.inp{
   <div class="hero-scroll">
     <svg viewBox="0 0 14 22"><rect x="1" y="1" width="12" height="20" rx="6"/><path d="M7 6v4" stroke-linecap="round"/></svg>
     <span>Листайте</span>
+  </div>
+</section>
+
+<!-- ═══════ ЗАЧЕМ ТОРТ (текст клиентки, дословно) ═══════ -->
+<section class="sec sec--surface" id="credo">
+  <div class="wrap">
+    <div class="credo-in rv">
+      <p class="credo-lead reveal-line">Торт не кормит гостей.<br>Он объединяет их.</p>
+      <p class="credo-body">Он собирает вокруг себя всех: и твою бабушку, и его лучшего друга. Все смотрят на одно&nbsp;— на вас. И на него. Гости запомнят платье, танец и... ваш торт.</p>
+      <p class="credo-mark">Мы берём ответственность за финал вашего торжества&nbsp;— свадебный ТОРТ! Делаем так, чтобы он стал самым вкусным впечатлением вечера.</p>
+      <div class="credo-rule" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -1018,8 +1202,8 @@ select.inp{
           <span class="step-n">03</span>
           <div class="step-b">
             <h3 class="d3">Пробуете начинки</h3>
-            <p>В студии на Молодогвардейской собираем набор из пяти начинок. Приходите вдвоём или с родителями — обычно решение принимается прямо за столом.</p>
-            <span class="step-tag">Час · записаться заранее</span>
+            <p>Собираем сет из всех семи начинок и отправляем курьером — или забираете сами. Пробуете дома, вдвоём или с родителями, без спешки и чужих глаз.</p>
+            <span class="step-tag">1 000 ₽ · вычитаем из заказа</span>
           </div>
         </li>
         <li class="step rv" data-step="4">
@@ -1036,26 +1220,244 @@ select.inp{
 </section>
 
 
+<!-- ═══════ НАЧИНКИ ═══════ -->
+<section class="sec" id="fillings">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l rv">
+        <p class="eyebrow">Начинки</p>
+        <h2 class="d2">Семь вкусов,<br>из которых <em>выбирают</em></h2>
+      </div>
+      <p class="sec-head-r note rv rv-1">Все семь входят в дегустационный сет — можно попробовать до того, как решите. Ярусы в одном торте бывают разными.</p>
+    </div>
+
+    <div class="fills" id="fill-grid">
+      <article class="fill rv">
+        <h3 class="fill-n">Клубничная нежность</h3>
+        <p class="fill-d">Классический воздушный бисквит, молочная пропитка, прослойки из ягод клубники, клубничный нежный крем с маскарпоне</p>
+      </article>
+      <article class="fill rv rv-1">
+        <h3 class="fill-n">Молочная девочка</h3>
+        <p class="fill-d">Тонкие нежные коржи на сгущённом молоке, нежный сливочный крем с маскарпоне</p>
+        <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / лимонная / вишнёвая / чёрносмородиновая</p>
+      </article>
+      <article class="fill rv rv-2">
+        <h3 class="fill-n">Красный бархат</h3>
+        <p class="fill-d">Красный влажный бисквит с ноткой шоколада, крем-чиз</p>
+        <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / вишнёвая</p>
+      </article>
+      <article class="fill rv">
+        <h3 class="fill-n">Морковный фреш</h3>
+        <p class="fill-d">Морковный пряный бисквит с грецким орехом, апельсиновая пропитка, апельсиновая прослойка, крем-чиз на сливках</p>
+      </article>
+      <article class="fill rv rv-1">
+        <h3 class="fill-n">Медовый</h3>
+        <p class="fill-d">Ароматные тонкие медовые коржи, сливочно-сметанный крем</p>
+        <p class="fill-c">Можно добавить грецкий орех</p>
+      </article>
+      <article class="fill rv rv-2">
+        <h3 class="fill-n">Шпинатный медовик с малиной</h3>
+        <p class="fill-d">Шпинатные медовые коржи, сливочный крем-чиз, малиновая прослойка без косточек</p>
+      </article>
+      <article class="fill rv">
+        <h3 class="fill-n">Шоколадная вишня</h3>
+        <p class="fill-d">Насыщенный шоколадный бисквит, шоколадная пропитка, ганаш на молочном шоколаде, вишнёвая прослойка</p>
+      </article>
+</div>
+  </div>
+</section>
+
 <!-- ═══════ ЦЕНЫ ═══════ -->
-<section class="sec" id="prices">
+<section class="sec sec--surface" id="prices">
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-head-l rv">
         <p class="eyebrow">Цены</p>
         <h2 class="d2">Что можно<br>заказать <em>сразу</em></h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Ярусы считаются по числу гостей, дегустация и доставка — фиксированные. Сложный декор обсуждаем отдельно: он в эти цены не входит.</p>
+      <p class="sec-head-r note rv rv-1">Цена зависит от веса торта и числа гостей. Сложный декор обсуждаем отдельно: он в эти цены не входит.</p>
     </div>
 
-    <div class="prices" id="price-grid">
+    <!-- Блок Б — текст клиентки, дословно. Стоит до цифр: сначала
+         человек читает, за что платит, и только потом видит суммы. -->
+    <div class="value rv">
+      <p class="value-lead">Свадебный торт&nbsp;— это не просто десерт. Это центр вашего стола, символ сладкой совместной жизни и самый красивый акцент торжества.</p>
+      <p class="value-h">Мы создаём торты, которые:</p>
+      <ul class="value-list">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Безумно вкусные и гости просят добавки.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Эстетичные, элегантные, изысканные, вписывающиеся в общую концепцию праздника.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Доставляем лично и бережно прямо к подаче</span></li>
+      </ul>
+    </div>
+
+    <p class="prices-sub rv">Торты по весу</p>
+
+    <div class="prices prices--cakes" id="price-grid">
+      <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 3 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-3.name">3 кг</h3>
+          <p class="price-g" itemprop="description">10–15 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-3.value">11 500 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="11500">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-3"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 4 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-4a.name">4 кг</h3>
+          <p class="price-g" itemprop="description">15–20 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-4a.value">13 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="13000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-4a"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 4 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-4b.name">4 кг</h3>
+          <p class="price-g" itemprop="description">20 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-4b.value">17 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="17000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-4b"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 5 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-5.name">5 кг</h3>
+          <p class="price-g" itemprop="description">20–25 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-5.value">20 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="20000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-5"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 6 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-6.name">6 кг</h3>
+          <p class="price-g" itemprop="description">30–35 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-6.value">23 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="23000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-6"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 8 кг (№1)">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-8a.name">8 кг</h3>
+          <p class="price-g" itemprop="description">40–45 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-8a.value">26 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="26000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-8a"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 8 кг (№9)">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-8b.name">8 кг</h3>
+          <p class="price-g" itemprop="description">40–45 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-8b.value">29 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="29000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-8b"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 9 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-9.name">9 кг</h3>
+          <p class="price-g" itemprop="description">45–50 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-9.value">31 000 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="31000">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-9"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+      <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="Торт 10 кг">
+        <div class="price-cake-l">
+          <h3 class="price-w" data-cms="price.cake-10.name">10 кг</h3>
+          <p class="price-g" itemprop="description">50–55 гостей</p>
+        </div>
+        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span class="price-num" data-cms="price.cake-10.value">32 500 ₽</span>
+          <span class="price-unit">за торт</span>
+          <meta itemprop="price" content="32500">
+          <meta itemprop="priceCurrency" content="RUB">
+          <link itemprop="availability" href="https://schema.org/InStock">
+        </div>
+        <button class="btn btn--ghost" type="button" data-add="cake-10"><span><span class="lbl">В корзину</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </span></button>
+      </article>
+</div>
+
+    <p class="prices-sub rv">Дегустация и доставка</p>
+    <div class="prices" id="service-grid">
       <article class="price rv" itemscope itemtype="https://schema.org/Product">
         <h3 class="price-name" itemprop="name" data-cms="price.tasting.name">Дегустационный сет</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.tasting.desc">Пять начинок, чай и час спокойного разговора об эскизе в студии на Молодогвардейской.</p>
+        <p class="price-desc" itemprop="description" data-cms="price.tasting.desc">Все семь начинок. Привозим курьером или забираете сами.</p>
         <p class="price-note" data-cms="price.tasting.note">Вычитаем из суммы заказа, если он состоится</p>
         <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <span class="price-num" data-cms="price.tasting.value">1 500 ₽</span>
-          <span class="price-unit">за визит</span>
-          <meta itemprop="price" content="1500">
+          <span class="price-num" data-cms="price.tasting.value">1 000 ₽</span>
+          <span class="price-unit">за сет</span>
+          <meta itemprop="price" content="1000">
           <meta itemprop="priceCurrency" content="RUB">
           <link itemprop="availability" href="https://schema.org/InStock">
         </div>
@@ -1064,56 +1466,11 @@ select.inp{
         </span></button>
       </article>
       <article class="price rv rv-1" itemscope itemtype="https://schema.org/Product">
-        <h3 class="price-name" itemprop="name" data-cms="price.tier-s.name">Ярус «Малый»</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.tier-s.desc">До 30 гостей. Один ярус, крем-чиз, сезонные ягоды, сборка на площадке.</p>
-        <p class="price-note" data-cms="price.tier-s.note">Цена ориентировочная — замените на свою</p>
-        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <span class="price-num" data-cms="price.tier-s.value">6 500 ₽</span>
-          <span class="price-unit">за ярус</span>
-          <meta itemprop="price" content="6500">
-          <meta itemprop="priceCurrency" content="RUB">
-          <link itemprop="availability" href="https://schema.org/InStock">
-        </div>
-        <button class="btn btn--ghost" type="button" data-add="tier-s"><span>В корзину
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
-        </span></button>
-      </article>
-      <article class="price rv rv-2 price--featured" itemscope itemtype="https://schema.org/Product">
-        <h3 class="price-name" itemprop="name" data-cms="price.tier-m.name">Ярус «Средний»</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.tier-m.desc">До 60 гостей. Два яруса, авторский декор по вашему эскизу, живые цветы.</p>
-        <p class="price-note" data-cms="price.tier-m.note">Цена ориентировочная — замените на свою</p>
-        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <span class="price-num" data-cms="price.tier-m.value">11 000 ₽</span>
-          <span class="price-unit">за ярус</span>
-          <meta itemprop="price" content="11000">
-          <meta itemprop="priceCurrency" content="RUB">
-          <link itemprop="availability" href="https://schema.org/InStock">
-        </div>
-        <button class="btn btn--ghost" type="button" data-add="tier-m"><span>В корзину
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
-        </span></button>
-      </article>
-      <article class="price rv" itemscope itemtype="https://schema.org/Product">
-        <h3 class="price-name" itemprop="name" data-cms="price.tier-l.name">Ярус «Большой»</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.tier-l.desc">До 120 гостей. Три яруса, рельефная текстура, оформление на месте.</p>
-        <p class="price-note" data-cms="price.tier-l.note">Цена ориентировочная — замените на свою</p>
-        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <span class="price-num" data-cms="price.tier-l.value">18 000 ₽</span>
-          <span class="price-unit">за ярус</span>
-          <meta itemprop="price" content="18000">
-          <meta itemprop="priceCurrency" content="RUB">
-          <link itemprop="availability" href="https://schema.org/InStock">
-        </div>
-        <button class="btn btn--ghost" type="button" data-add="tier-l"><span>В корзину
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
-        </span></button>
-      </article>
-      <article class="price rv rv-1" itemscope itemtype="https://schema.org/Product">
         <h3 class="price-name" itemprop="name" data-cms="price.delivery-city.name">Доставка по Самаре</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.delivery-city.desc">Ярусы едут раздельно в холодильном боксе. Сборка на площадке включена.</p>
+        <p class="price-desc" itemprop="description" data-cms="price.delivery-city.desc">Везём сами в боксе с хладагентами, собираем на площадке.</p>
         <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <span class="price-num" data-cms="price.delivery-city.value">1 000 ₽</span>
-          <span class="price-unit">за выезд</span>
+          <span class="price-unit">по городу</span>
           <meta itemprop="price" content="1000">
           <meta itemprop="priceCurrency" content="RUB">
           <link itemprop="availability" href="https://schema.org/InStock">
@@ -1124,11 +1481,11 @@ select.inp{
       </article>
       <article class="price rv rv-2" itemscope itemtype="https://schema.org/Product">
         <h3 class="price-name" itemprop="name" data-cms="price.delivery-region.name">Доставка по области</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.delivery-region.desc">Базы отдыха на Волге, загородные площадки. Точную сумму считаем по адресу.</p>
-        <p class="price-note" data-cms="price.delivery-region.note">От указанной суммы, зависит от расстояния</p>
+        <p class="price-desc" itemprop="description" data-cms="price.delivery-region.desc">Базы отдыха на Волге и площадки за городом.</p>
+        <p class="price-note" data-cms="price.delivery-region.note">Точную сумму считаем по адресу</p>
         <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <span class="price-num" data-cms="price.delivery-region.value">2 500 ₽</span>
-          <span class="price-unit">за выезд</span>
+          <span class="price-unit">от</span>
           <meta itemprop="price" content="2500">
           <meta itemprop="priceCurrency" content="RUB">
           <link itemprop="availability" href="https://schema.org/InStock">
@@ -1137,13 +1494,38 @@ select.inp{
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
         </span></button>
       </article>
-    </div>
+</div>
 
     <div class="prices-foot rv">
-      <p class="note" style="max-width:46ch">Нужен торт, которого нет в списке? Опишите задумку в заявке — посчитаем по эскизу.</p>
+      <p class="note" style="max-width:46ch">Нужен вес, которого нет в таблице, или сложный декор? Опишите задумку в заявке — посчитаем по эскизу.</p>
       <button class="btn btn--ghost" data-tab="order"><span>Заказать по эскизу
         <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ТОРТЫ НА ГОДОВЩИНУ ═══════
+     Заглушка: текста и цен по этому направлению клиентка ещё
+     не присылала, поэтому здесь только приглашение написать. -->
+<section class="sec" id="anniversary">
+  <div class="wrap">
+    <div class="stub">
+      <div class="stub-txt rv">
+        <p class="eyebrow">Торты на годовщину</p>
+        <h2 class="d2" style="margin-top:20px">Не только<br>на <em>свадьбу</em></h2>
+        <p class="lead-lg">Готовим индивидуальные торты на годовщину&nbsp;— под ваш повод и вкус.</p>
+        <button class="btn btn--solid" data-tab="order"><span>Обсудить торт на годовщину
+          <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span></button>
+        <p class="stub-soon">Цены и примеры готовим</p>
+      </div>
+      <div class="mask rv rv-1">
+        <div data-cms-photo="anniv" class="ph r-4x3">
+          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
+          <span class="ph-label">Фото · торт на годовщину</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1198,15 +1580,16 @@ select.inp{
             <label for="o-filling"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-5h6v5"/></svg>Начинка</label>
             <select class="inp" id="o-filling" name="filling" aria-describedby="o-filling-hint">
               <option value="">Выберите из ассортимента</option>
-              <option>Ванильный бисквит · крем-чиз · клубника</option>
-              <option>Шоколад · солёная карамель · пекан</option>
-              <option>Красный бархат · сливочный сыр</option>
-              <option>Фисташка · малина</option>
-              <option>Медовик · сметанный крем · чернослив</option>
-              <option>Лимон · маскарпоне · черника</option>
+              <option>Клубничная нежность</option>
+              <option>Молочная девочка</option>
+              <option>Красный бархат</option>
+              <option>Морковный фреш</option>
+              <option>Медовый</option>
+              <option>Шпинатный медовик с малиной</option>
+              <option>Шоколадная вишня</option>
               <option data-tasting="1">Хочу заказать дегустацию — выберу после</option>
             </select>
-            <span class="note" id="o-filling-hint" hidden>Отлично. После отправки заявки предложим ближайшие свободные даты в студии.</span>
+            <span class="note" id="o-filling-hint" hidden>Отлично. После отправки заявки договоримся, когда привезти дегустационный сет.</span>
           </div>
 
           <div class="field f-wide">
@@ -1239,7 +1622,6 @@ select.inp{
             <span class="legend"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>Как удобнее связаться</span>
             <div class="pills">
               <label class="pill"><input type="radio" name="channel" value="ВКонтакте" checked><span>ВКонтакте</span></label>
-              <label class="pill"><input type="radio" name="channel" value="WhatsApp"><span>WhatsApp</span></label>
               <label class="pill"><input type="radio" name="channel" value="Telegram"><span>Telegram</span></label>
               <label class="pill"><input type="radio" name="channel" value="Звонок"><span>Звонок</span></label>
             </div>
@@ -1290,19 +1672,22 @@ select.inp{
     <div class="pane" id="pane-tasting" role="tabpanel" aria-labelledby="tab-tasting">
       <div class="card" style="max-width:760px;margin:0 auto">
         <div style="margin-bottom:32px">
-          <h3 class="d3" style="margin-bottom:10px">Дегустация в студии</h3>
-          <p class="note" style="max-width:52ch" data-cms="text.tasting_note">Пять начинок, чай и час спокойного разговора об эскизе. Самара, ул. Молодогвардейская, 148. Стоимость 1 500 ₽ — вычитаем из суммы заказа, если он состоится.</p>
+          <h3 class="d3" style="margin-bottom:10px">Дегустационный сет</h3>
+          <p class="note" style="max-width:52ch" data-cms="text.tasting_note">Все семь начинок в одном наборе. Привозим курьером или забираете сами — пробуете дома, без спешки. Стоимость 1 000 ₽ — вычитаем из суммы заказа, если он состоится.</p>
         </div>
         <form class="form-grid" id="form-tasting" novalidate>
             <input type="hidden" name="form_type" value="tasting">
             <input type="text" name="company" class="trap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
-            <label for="t-date"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Желаемая дата</label>
+            <label for="t-date"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Когда удобно получить</label>
             <input class="inp" type="date" id="t-date" name="date" required>
           </div>
           <div class="field">
-            <label for="t-people"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5.5a3.2 3.2 0 0 1 0 5.6M17.5 20a6.4 6.4 0 0 0-2.2-4.8"/></svg>Сколько человек придёт</label>
-            <input class="inp" type="number" id="t-people" name="people" min="1" max="10" placeholder="Обычно двое" required>
+            <span class="legend"><svg viewBox="0 0 24 24"><path d="M2 7h11v10H2z"/><path d="M13 10h4l4 3.5V17h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg>Как получить сет</span>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="pickup" value="Курьером" checked><span>Курьером</span></label>
+              <label class="pill"><input type="radio" name="pickup" value="Заберу сам"><span>Заберу сам</span></label>
+            </div>
           </div>
           <div class="field">
             <label for="t-name"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Ваше имя</label>
@@ -1313,16 +1698,19 @@ select.inp{
             <input class="inp" type="tel" id="t-phone" name="phone" placeholder="+7 999 000-00-00" required>
           </div>
           <div class="field f-wide">
+            <label for="t-addr"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Куда привезти</label>
+            <input class="inp" type="text" id="t-addr" name="address" placeholder="Адрес в Самаре — если выбрали курьера">
+          </div>
+          <div class="field f-wide">
             <span class="legend"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>Как удобнее связаться</span>
             <div class="pills">
               <label class="pill"><input type="radio" name="channel" value="ВКонтакте" checked><span>ВКонтакте</span></label>
-              <label class="pill"><input type="radio" name="channel" value="WhatsApp"><span>WhatsApp</span></label>
               <label class="pill"><input type="radio" name="channel" value="Telegram"><span>Telegram</span></label>
               <label class="pill"><input type="radio" name="channel" value="Звонок"><span>Звонок</span></label>
             </div>
           </div>
           <div class="form-foot">
-            <p class="note" style="max-width:40ch">Текст скопируется — отправьте его нам в сообщество ВКонтакте, подтвердим время в ответ.</p>
+            <p class="note" style="max-width:40ch">Текст скопируется — отправьте его нам в сообщество ВКонтакте, подтвердим доставку в ответ.</p>
             <button class="btn btn--solid" type="submit"><span>Записаться
               <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span></button>
@@ -1337,7 +1725,7 @@ select.inp{
         <div class="sent" id="sent-tasting" role="status">
           <div class="sent-ic"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></div>
           <h3 class="d3">Записали</h3>
-          <p>Проверим расписание студии и подтвердим время выбранным способом связи.</p>
+          <p>Подтвердим дату и способ получения сета выбранным способом связи.</p>
         </div>
       </div>
     </div>
@@ -1348,8 +1736,8 @@ select.inp{
         <div class="deliv-txt">
           <p class="eyebrow" style="margin-bottom:18px">Доставка и сборка</p>
           <h3 class="d2" style="font-size:clamp(28px,3.4vw,46px);margin-bottom:20px">Мы везём торт<br>сами. Всегда.</h3>
-          <p>Свадебный торт не передают курьеру и не отправляют такси. Ярусы едут раздельно в холодильном боксе, в машине с подвесом — по дороге ничто не смещается и крем не плывёт.</p>
-          <p>На площадке мы собираем торт заново: ставим ярусы на шпильки, оформляем живыми цветами, согласуем с координатором место и время выноса. Обычно приезжаем за час-полтора до подачи.</p>
+          <p>Свадебные торты мы не доверяем курьерам и сторонним лицам. Мы возим их сами лично в специальном боксе с хладагентами и в автомобиле с кондиционером. По всем правилам бережной перевозки.</p>
+          <p>Как правило приезжаем за час-1.5 до подачи, проверяем все ли в порядке с тортом и передаём официантам. Либо презентую и нарезаю торт сама лично.</p>
 
           <ul class="deliv-list">
             <li>
@@ -1405,7 +1793,7 @@ select.inp{
         <p class="eyebrow">Отзывы и галерея</p>
         <h2 class="d2">Со свадеб<br>наших пар</h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения. Сюда же встанут фотографии со свадеб, как только они появятся.</p>
+      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения. Ниже — кадры с их свадеб: торты на площадке и та самая минута, когда их разрезают.</p>
     </div>
 
     <div class="gal">
@@ -1414,40 +1802,36 @@ select.inp{
         <p class="quote-a" data-cms="review.1.author">Дарья и Илья · сентябрь</p>
       </blockquote>
 
-      <div class="mask rv rv-1"><div data-cms-photo="gal-1" class="ph r-4x5">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Фото со свадьбы · Ольга и Артём</span>
-      </div></div>
-
-      <div class="mask rv rv-2"><div data-cms-photo="gal-2" class="ph r-1x1">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Фото · нарезка торта</span>
-      </div></div>
-
-      <blockquote class="quote rv">
+      <blockquote class="quote rv rv-1">
         <p class="quote-m" data-cms="review.2.text">«Приехали за полтора часа, собрали при нас и уехали. Единственное, о чём я в тот день не волновалась.»</p>
         <p class="quote-a" data-cms="review.2.author">Анна и Сергей · июль</p>
       </blockquote>
-
-      <div class="mask rv rv-1"><div data-cms-photo="gal-3" class="ph r-3x4">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Фото · десертный стол</span>
-      </div></div>
 
       <blockquote class="quote rv rv-2">
         <p class="quote-m" data-cms="review.3.text">«Начинку выбирали втроём с мамой и спорили час. Победил медовик — и не зря.»</p>
         <p class="quote-a" data-cms="review.3.author">Мария и Никита · май</p>
       </blockquote>
+    </div>
 
-      <div class="mask rv"><div data-cms-photo="gal-4" class="ph r-4x3">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Фото · шатёр на Волге</span>
-      </div></div>
-
-      <div class="mask rv rv-1"><div data-cms-photo="gal-5" class="ph r-1x1">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Фото · живые цветы на ярусах</span>
-      </div></div>
+    <p class="prices-sub rv" style="margin-top:clamp(46px,5vw,76px)">Снимки со свадеб</p>
+    <!-- Плитки собираются из assets/gallery.js: там лежат имена файлов
+         и их настоящие размеры. Пока файлов нет — видны ровные заглушки. -->
+    <div class="shots" id="shots">
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+    </div>
     </div>
   </div>
 </section>
@@ -1476,6 +1860,28 @@ select.inp{
 </aside>
 
 <!-- ═══════ ПОДВАЛ ═══════ -->
+<!-- ═══════ ЗНАКОМСТВО С КОНДИТЕРОМ ═══════
+     Заглушка: биографию и фото клиентка пришлёт позже.
+     Ничего за неё не сочиняем — только место и обещание. -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="stub stub--rev">
+      <div class="stub-txt rv rv-1">
+        <p class="eyebrow">Знакомство с кондитером</p>
+        <h2 class="d2" style="margin-top:20px">Кто стоит<br>за <em>вашими тортами</em></h2>
+        <p class="lead-lg">Скоро здесь будет история мастера, который печёт ваши торты.</p>
+        <p class="stub-soon">Фото и рассказ готовятся</p>
+      </div>
+      <div class="mask rv">
+        <div data-cms-photo="master" class="ph r-4x5">
+          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
+          <span class="ph-label">Фото · кондитер за работой</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="ftr" id="contacts">
   <div class="wrap">
     <div class="ftr-top">
@@ -1498,7 +1904,7 @@ select.inp{
         <p class="ftr-h">Студия и зона доставки</p>
         <ul class="ftr-list">
           <li><span><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-cms="contact.address">Самара, Молодогвардейская, 148</span></span></li>
-          <li><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span data-cms="contact.hours">Дегустации: по записи, вт–сб</span></span></li>
+          <li><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span data-cms="contact.hours">Дегустационный сет: курьером или самовывозом</span></span></li>
           <li><span><svg viewBox="0 0 24 24"><path d="M2 7h11v10H2z"/><path d="M13 10h4l4 3.5V17h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg><span data-cms="contact.zone">Самара, Тольятти, Сызрань, область</span></span></li>
         </ul>
       </div>
@@ -1511,7 +1917,24 @@ select.inp{
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+  <button class="lb-btn lb-x" id="lb-close" aria-label="Закрыть">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Предыдущее фото">
+    <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Следующее фото">
+    <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <figure class="lb-fig">
+    <img id="lb-img" alt="">
+    <figcaption class="lb-cap" id="lb-cap"></figcaption>
+  </figure>
+</div>
+
 <script src="assets/catalog.js"></script>
+<script src="assets/gallery.js"></script>
 <script src="assets/cart.js"></script>
 <script src="assets/api.js"></script>
 <script src="assets/vk-send.js"></script>
@@ -1648,7 +2071,8 @@ const hdr = $('#hdr');
    по нему считается и активная точка сбоку, и подсветка вкладки. */
 const SECTIONS = [
   ['top','Начало'], ['works','Работы'], ['process','Процесс'],
-  ['prices','Цены'], ['request','Заказ'], ['gallery','Отзывы'], ['contacts','Контакты']
+  ['fillings','Начинки'], ['prices','Цены'], ['anniversary','Годовщина'],
+  ['request','Заказ'], ['gallery','Отзывы'], ['about','Кондитер'], ['contacts','Контакты']
 ];
 const dotsWrap = $('#dots');
 SECTIONS.forEach(([id,label])=>{
@@ -1947,6 +2371,102 @@ if(!RM && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
     };
     btn.addEventListener('pointerleave', release);
     btn.addEventListener('blur', release);
+  });
+}
+
+/* ─────────────────────────────────────────
+   8.5 ГАЛЕРЕЯ СНИМКОВ СО СВАДЕБ
+   Плитки строятся из assets/gallery.js — там имена файлов и их
+   настоящие размеры. Размеры уходят в width/height картинки, поэтому
+   браузер резервирует место заранее и кладка не пересобирается,
+   пока снимки грузятся. Если списка нет, в разметке остаются
+   ровные заглушки — вёрстка не разъезжается.
+   ───────────────────────────────────────── */
+const shotsBox = $('#shots');
+const SHOTS = Array.isArray(window.GALLERY) ? window.GALLERY : [];
+
+if(shotsBox && SHOTS.length){
+  shotsBox.innerHTML = SHOTS.map((p,i)=>{
+    /* Размеры генератор мог не прочитать (например, webp старым GDI+).
+       Тогда берём вертикальную пропорцию по умолчанию — место всё
+       равно будет занято, просто чуть менее точно. */
+    const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;
+    const n = i + 1;
+    return '<button class="shot" type="button" data-i="' + i + '"' +
+      ' aria-label="Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран">' +
+      '<img src="' + p.src + '" width="' + w + '" height="' + h + '"' +
+      ' loading="lazy" decoding="async"' +
+      ' alt="Свадебный торт кондитерской «Торт по любви», фото ' + n + '">' +
+      '<span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24">' +
+      '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/>' +
+      '</svg></span></button>';
+  }).join('');
+}
+
+/* 8.6 Просмотр снимка во весь экран.
+   Открывается по клику и с клавиатуры, листается стрелками,
+   закрывается Esc или щелчком по фону. Фокус возвращается на ту
+   плитку, с которой открыли, — иначе он теряется в начале страницы. */
+const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
+let lbAt = -1, lbFrom = null;
+
+function lbShow(i){
+  if(!SHOTS.length) return;
+  lbAt = (i + SHOTS.length) % SHOTS.length;
+  const p = SHOTS[lbAt];
+  lbImg.src = p.src;
+  lbImg.alt = 'Свадебный торт кондитерской «Торт по любви», фото ' + (lbAt + 1);
+  lbCap.textContent = (lbAt + 1) + ' / ' + SHOTS.length;
+}
+function lbOpen(i){
+  lbFrom = document.activeElement;
+  lbShow(i);
+  lb.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  if(RM) lb.classList.add('is-shown');
+  else requestAnimationFrame(()=>lb.classList.add('is-shown'));
+  $('#lb-close').focus();
+}
+function lbClose(){
+  lb.classList.remove('is-shown');
+  const finish = ()=>{ lb.classList.remove('is-open'); lbImg.removeAttribute('src'); };
+  if(RM) finish(); else setTimeout(finish, 350);
+  document.body.style.overflow = '';
+  if(lbFrom && document.contains(lbFrom)) lbFrom.focus();
+}
+
+if(shotsBox){
+  shotsBox.addEventListener('click', e=>{
+    const tile = e.target.closest('.shot');
+    if(tile && tile.dataset.i !== undefined) lbOpen(Number(tile.dataset.i));
+  });
+}
+if(lb){
+  /* Одно фото листать некуда — стрелки только мешают. */
+  const arrows = [$('#lb-prev'), $('#lb-next')];
+  if(SHOTS.length < 2) arrows.forEach(b=>{ b.hidden = true; });
+
+  $('#lb-close').addEventListener('click', lbClose);
+  $('#lb-prev').addEventListener('click', ()=>lbShow(lbAt - 1));
+  $('#lb-next').addEventListener('click', ()=>lbShow(lbAt + 1));
+  lb.addEventListener('click', e=>{ if(e.target === lb) lbClose(); });
+
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('is-open')) return;
+    if(e.key === 'Escape'){ e.stopPropagation(); lbClose(); }
+    else if(e.key === 'ArrowLeft')  lbShow(lbAt - 1);
+    else if(e.key === 'ArrowRight') lbShow(lbAt + 1);
+    else if(e.key === 'Tab'){
+      /* Пока окно открыто, Tab ходит только по его кнопкам —
+         иначе фокус уезжает на страницу под затемнением. */
+      const keys = [$('#lb-close')].concat(arrows.filter(b=>!b.hidden));
+      const at = keys.indexOf(document.activeElement);
+      const next = e.shiftKey
+        ? (at <= 0 ? keys.length - 1 : at - 1)
+        : (at === keys.length - 1 ? 0 : at + 1);
+      e.preventDefault();
+      keys[next].focus();
+    }
   });
 }
 
