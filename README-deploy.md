@@ -41,7 +41,7 @@ api/                  серверная часть (Cloudflare Worker) — НЕ
 
 ### Обязательно после переезда на свой домен
 
-Замените `https://strangehul1-design.github.io/asiyatort` на свой адрес:
+Замените `https://strangehul1-design.github.io/tort-po-lyubvi` на свой адрес:
 
 | Файл | Что менять |
 |---|---|

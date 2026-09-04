@@ -6,4 +6,4 @@ Disallow: /demo-checkout/
 Disallow: /success/
 Disallow: /fail/
 
-Sitemap: https://strangehul1-design.github.io/asiyatort/sitemap.xml
+Sitemap: https://strangehul1-design.github.io/tort-po-lyubvi/sitemap.xml

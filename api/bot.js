@@ -81,7 +81,7 @@ const HOME_TEXT =
 
 function homeKeyboard() {
   const rows = content.GROUPS.map(([id, title]) => [{ text: title, callback_data: 'g:' + id }]);
-  rows.push([{ text: '🌐 Открыть сайт', url: 'https://strangehul1-design.github.io/asiyatort/' }]);
+  rows.push([{ text: '🌐 Открыть сайт', url: 'https://strangehul1-design.github.io/tort-po-lyubvi/' }]);
   return rows;
 }
 
