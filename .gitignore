@@ -11,6 +11,5 @@ api/wrangler.dev.toml
 # Исходники снимков со свадеб. На сайт выкладываются только облегчённые
 # копии из assets/photo/web — их собирает tools/gallery-manifest.ps1.
 # Оригиналы весят под два десятка мегабайт и в репозитории не нужны.
-assets/photo/*
-!assets/photo/README.md
-!assets/photo/web/
+assets/photo/prices/
+assets/photo/gallery/

@@ -969,6 +969,41 @@ select.inp{
   .hdr-cta{margin-top:22px;text-align:center;padding-block:15px;min-height:44px}
   .burger{display:block;z-index:2}
 }
+
+/* ═════════ ФОТО ТОРТА В КАРТОЧКЕ ЦЕНЫ ═════════
+   Снимок объясняет то, чего не объяснить цифрами: два торта одного
+   веса стоят по-разному, потому что это разные торты. Кадр вписываем
+   целиком (contain), а не обрезаем по рамке: при обрезке у трёхъярусных
+   пропал бы верхний ярус — ровно то, за что и доплачивают. */
+.price-ph{
+  display:block;width:100%;padding:0;border:0;margin-bottom:20px;
+  aspect-ratio:3/4;position:relative;overflow:hidden;cursor:zoom-in;
+  /* подложка под цвет карточки: у вписанного кадра остаются поля,
+     и на сером они читались бы рамкой вокруг снимка */
+  background:var(--porcelain);-webkit-tap-highlight-color:transparent;
+}
+.price-ph img{display:block;width:100%;height:100%;object-fit:contain;
+  transition:transform .7s var(--ease)}
+.price-ph:hover img{transform:scale(1.04)}
+.price-ph:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}
+.price-ph:hover .shot-zoom,.price-ph:focus-visible .shot-zoom{opacity:1;transform:none}
+
+/* В строке на телефоне снимок работает меткой, а не витриной:
+   разглядывают его уже в полноэкранном просмотре. */
+@media(max-width:640px){
+  .price--cake{gap:10px}
+  .price--cake .price-ph{width:50px;flex-shrink:0;margin:0}
+  .price--cake .price-ph .shot-zoom{display:none}
+  .price--cake .price-num{font-size:19px}
+}
+
+/* Кадров со свадеб пять, а не четырнадцать: торты уехали к своим ценам.
+   В четыре колонки пять снимков смотрятся обрывком, в три — рядом. */
+.shots{columns:3}
+/* Правило ниже прежнего в файле, поэтому мобильную раскладку
+   приходится повторить здесь — иначе три колонки победят две
+   и на телефоне снимки станут по сто точек шириной. */
+@media(max-width:860px){ .shots{columns:2} }
 </style>
 </head>
 <body>
@@ -1263,7 +1298,7 @@ select.inp{
         <h3 class="fill-n">Шоколадная вишня</h3>
         <p class="fill-d">Насыщенный шоколадный бисквит, шоколадная пропитка, ганаш на молочном шоколаде, вишнёвая прослойка</p>
       </article>
-</div>
+    </div>
   </div>
 </section>
 
@@ -1290,11 +1325,19 @@ select.inp{
       </ul>
     </div>
 
-    <p class="prices-sub rv">Торты по весу</p>
+    <p class="prices-sub rv">Торты по весу — с фотографиями работ</p>
 
     <div class="prices prices--cakes" id="price-grid">
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 3 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p05-1600.jpg"
+                aria-label="Свадебный торт 3 кг на 10–15 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p05-800.jpg" srcset="assets/photo/web/p05-800.jpg 800w, assets/photo/web/p05-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="1254" height="1254" loading="lazy" decoding="async"
+               alt="Свадебный торт 3 кг на 10–15 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-3.name">3 кг</h3>
           <p class="price-g" itemprop="description">10–15 гостей</p>
@@ -1312,6 +1355,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 4 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p08-1600.jpg"
+                aria-label="Свадебный торт 4 кг на 15–20 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p08-800.jpg" srcset="assets/photo/web/p08-800.jpg 800w, assets/photo/web/p08-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="854" height="1268" loading="lazy" decoding="async"
+               alt="Свадебный торт 4 кг на 15–20 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-4a.name">4 кг</h3>
           <p class="price-g" itemprop="description">15–20 гостей</p>
@@ -1329,6 +1380,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 4 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p03-1600.jpg"
+                aria-label="Свадебный торт 4 кг на 20 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p03-800.jpg" srcset="assets/photo/web/p03-800.jpg 800w, assets/photo/web/p03-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="1200" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 4 кг на 20 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-4b.name">4 кг</h3>
           <p class="price-g" itemprop="description">20 гостей</p>
@@ -1346,6 +1405,14 @@ select.inp{
       </article>
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 5 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p02-1600.jpg"
+                aria-label="Свадебный торт 5 кг на 20–25 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p02-800.jpg" srcset="assets/photo/web/p02-800.jpg 800w, assets/photo/web/p02-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="900" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 5 кг на 20–25 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-5.name">5 кг</h3>
           <p class="price-g" itemprop="description">20–25 гостей</p>
@@ -1363,6 +1430,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 6 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p07-1600.jpg"
+                aria-label="Свадебный торт 6 кг на 30–35 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p07-800.jpg" srcset="assets/photo/web/p07-800.jpg 800w, assets/photo/web/p07-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="531" height="1080" loading="lazy" decoding="async"
+               alt="Свадебный торт 6 кг на 30–35 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-6.name">6 кг</h3>
           <p class="price-g" itemprop="description">30–35 гостей</p>
@@ -1380,6 +1455,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 8 кг (№1)">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p01-1600.jpg"
+                aria-label="Свадебный торт 8 кг на 40–45 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p01-800.jpg" srcset="assets/photo/web/p01-800.jpg 800w, assets/photo/web/p01-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="901" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 8 кг на 40–45 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-8a.name">8 кг</h3>
           <p class="price-g" itemprop="description">40–45 гостей</p>
@@ -1397,6 +1480,14 @@ select.inp{
       </article>
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 8 кг (№9)">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p09-1600.jpg"
+                aria-label="Свадебный торт 8 кг на 40–45 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p09-800.jpg" srcset="assets/photo/web/p09-800.jpg 800w, assets/photo/web/p09-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="900" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 8 кг на 40–45 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-8b.name">8 кг</h3>
           <p class="price-g" itemprop="description">40–45 гостей</p>
@@ -1414,6 +1505,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 9 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p04-1600.jpg"
+                aria-label="Свадебный торт 9 кг на 45–50 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p04-800.jpg" srcset="assets/photo/web/p04-800.jpg 800w, assets/photo/web/p04-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="900" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 9 кг на 45–50 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-9.name">9 кг</h3>
           <p class="price-g" itemprop="description">45–50 гостей</p>
@@ -1431,6 +1530,14 @@ select.inp{
       </article>
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 10 кг">
+        <button class="price-ph" type="button" data-big="assets/photo/web/p06-1600.jpg"
+                aria-label="Свадебный торт 10 кг на 50–55 гостей — посмотреть крупнее">
+          <img itemprop="image" src="assets/photo/web/p06-800.jpg" srcset="assets/photo/web/p06-800.jpg 800w, assets/photo/web/p06-1600.jpg 1600w"
+               sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
+               width="900" height="1600" loading="lazy" decoding="async"
+               alt="Свадебный торт 10 кг на 50–55 гостей">
+          <span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/></svg></span>
+        </button>
         <div class="price-cake-l">
           <h3 class="price-w" data-cms="price.cake-10.name">10 кг</h3>
           <p class="price-g" itemprop="description">50–55 гостей</p>
@@ -1446,7 +1553,7 @@ select.inp{
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
         </span></button>
       </article>
-</div>
+    </div>
 
     <p class="prices-sub rv">Дегустация и доставка</p>
     <div class="prices" id="service-grid">
@@ -1494,7 +1601,7 @@ select.inp{
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
         </span></button>
       </article>
-</div>
+    </div>
 
     <div class="prices-foot rv">
       <p class="note" style="max-width:46ch">Нужен вес, которого нет в таблице, или сложный декор? Опишите задумку в заявке — посчитаем по эскизу.</p>
@@ -1793,7 +1900,7 @@ select.inp{
         <p class="eyebrow">Отзывы и галерея</p>
         <h2 class="d2">Со свадеб<br>наших пар</h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения. Ниже — кадры с их свадеб: торты на площадке и та самая минута, когда их разрезают.</p>
+      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения. Ниже — кадры с их свадеб: та самая минута, когда торт выносят и разрезают.</p>
     </div>
 
     <div class="gal">
@@ -1813,24 +1920,15 @@ select.inp{
       </blockquote>
     </div>
 
-    <p class="prices-sub rv" style="margin-top:clamp(46px,5vw,76px)">Снимки со свадеб</p>
+    <p class="prices-sub rv" style="margin-top:clamp(46px,5vw,76px)">С самих свадеб</p>
     <!-- Плитки собираются из assets/gallery.js: там лежат имена файлов
          и их настоящие размеры. Пока файлов нет — видны ровные заглушки. -->
     <div class="shots" id="shots">
       <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
     </div>
     </div>
   </div>
@@ -2387,9 +2485,8 @@ const SHOTS = Array.isArray(window.GALLERY) ? window.GALLERY : [];
 
 if(shotsBox && SHOTS.length){
   shotsBox.innerHTML = SHOTS.map((p,i)=>{
-    /* Размеры генератор мог не прочитать (например, webp старым GDI+).
-       Тогда берём вертикальную пропорцию по умолчанию — место всё
-       равно будет занято, просто чуть менее точно. */
+    /* Размеры генератор мог не прочитать — тогда берём вертикальную
+       пропорцию по умолчанию: место всё равно будет занято. */
     const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;
     const n = i + 1;
     /* В сетке плитка занимает 280-400 точек, поэтому туда идёт копия
@@ -2399,33 +2496,49 @@ if(shotsBox && SHOTS.length){
     return '<button class="shot" type="button" data-i="' + i + '"' +
       ' aria-label="Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран">' +
       '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
-      ' sizes="(max-width:860px) 46vw, (max-width:1200px) 30vw, 300px"' +
+      ' sizes="(max-width:860px) 46vw, 30vw"' +
       ' width="' + w + '" height="' + h + '"' +
       ' loading="lazy" decoding="async"' +
-      ' alt="Свадебный торт кондитерской «Торт по любви», фото ' + n + '">' +
+      ' alt="Со свадьбы: торт кондитерской «Торт по любви», фото ' + n + '">' +
       '<span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24">' +
       '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/>' +
       '</svg></span></button>';
   }).join('');
 }
 
+/* Торты в прайсе — второй набор для того же просмотрщика.
+   Список собираем из разметки, а не из каталога: тогда стрелки листают
+   торты в том порядке, в каком они стоят на странице, даже если
+   карточки пересортируют. */
+const priceShots = $$('.price-ph').map(b=>({
+  big: b.dataset.big,
+  label: b.querySelector('img') ? b.querySelector('img').alt : '',
+}));
+
 /* 8.6 Просмотр снимка во весь экран.
    Открывается по клику и с клавиатуры, листается стрелками,
    закрывается Esc или щелчком по фону. Фокус возвращается на ту
    плитку, с которой открыли, — иначе он теряется в начале страницы. */
 const lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
-let lbAt = -1, lbFrom = null;
+const lbPrev = $('#lb-prev'), lbNext = $('#lb-next');
+let lbList = [], lbAt = -1, lbFrom = null;
 
 function lbShow(i){
-  if(!SHOTS.length) return;
-  lbAt = (i + SHOTS.length) % SHOTS.length;
-  const p = SHOTS[lbAt];
+  if(!lbList.length) return;
+  lbAt = (i + lbList.length) % lbList.length;
+  const p = lbList[lbAt];
   lbImg.src = p.big;
-  lbImg.alt = 'Свадебный торт кондитерской «Торт по любви», фото ' + (lbAt + 1);
-  lbCap.textContent = (lbAt + 1) + ' / ' + SHOTS.length;
+  lbImg.alt = p.label || 'Свадебный торт кондитерской «Торт по любви»';
+  const count = lbList.length > 1 ? (lbAt + 1) + ' / ' + lbList.length : '';
+  lbCap.textContent = [p.label, count].filter(Boolean).join(' · ');
 }
-function lbOpen(i){
+function lbOpen(list, i){
+  if(!list.length) return;
+  lbList = list;
   lbFrom = document.activeElement;
+  /* Одно фото листать некуда — стрелки только мешают. */
+  const many = list.length > 1;
+  lbPrev.hidden = lbNext.hidden = !many;
   lbShow(i);
   lb.classList.add('is-open');
   document.body.style.overflow = 'hidden';
@@ -2444,17 +2557,18 @@ function lbClose(){
 if(shotsBox){
   shotsBox.addEventListener('click', e=>{
     const tile = e.target.closest('.shot');
-    if(tile && tile.dataset.i !== undefined) lbOpen(Number(tile.dataset.i));
+    if(tile && tile.dataset.i !== undefined) lbOpen(SHOTS, Number(tile.dataset.i));
   });
 }
-if(lb){
-  /* Одно фото листать некуда — стрелки только мешают. */
-  const arrows = [$('#lb-prev'), $('#lb-next')];
-  if(SHOTS.length < 2) arrows.forEach(b=>{ b.hidden = true; });
+/* Фото торта в карточке цены открывается так же, но листает торты. */
+$$('.price-ph').forEach((b,i)=>{
+  b.addEventListener('click', ()=>lbOpen(priceShots, i));
+});
 
+if(lb){
   $('#lb-close').addEventListener('click', lbClose);
-  $('#lb-prev').addEventListener('click', ()=>lbShow(lbAt - 1));
-  $('#lb-next').addEventListener('click', ()=>lbShow(lbAt + 1));
+  lbPrev.addEventListener('click', ()=>lbShow(lbAt - 1));
+  lbNext.addEventListener('click', ()=>lbShow(lbAt + 1));
   lb.addEventListener('click', e=>{ if(e.target === lb) lbClose(); });
 
   document.addEventListener('keydown', e=>{
@@ -2465,7 +2579,7 @@ if(lb){
     else if(e.key === 'Tab'){
       /* Пока окно открыто, Tab ходит только по его кнопкам —
          иначе фокус уезжает на страницу под затемнением. */
-      const keys = [$('#lb-close')].concat(arrows.filter(b=>!b.hidden));
+      const keys = [$('#lb-close'), lbPrev, lbNext].filter(b=>!b.hidden);
       const at = keys.indexOf(document.activeElement);
       const next = e.shiftKey
         ? (at <= 0 ? keys.length - 1 : at - 1)
