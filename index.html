@@ -1004,6 +1004,13 @@ select.inp{
    приходится повторить здесь — иначе три колонки победят две
    и на телефоне снимки станут по сто точек шириной. */
 @media(max-width:860px){ .shots{columns:2} }
+
+/* В блоке отзывов теперь и цитаты, и снимки. Прежняя одна колонка
+   была рассчитана на один текст: фотографии в ней раздуваются во всю
+   ширину. Две колонки держат и то и другое — но ниже 560px цитата
+   в половину экрана становится нечитаемой, там снова одна. */
+@media(max-width:860px){ .gal{columns:2} }
+@media(max-width:560px){ .gal{columns:1} }
 </style>
 </head>
 <body>
@@ -1900,10 +1907,10 @@ select.inp{
         <p class="eyebrow">Отзывы и галерея</p>
         <h2 class="d2">Со свадеб<br>наших пар</h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения. Ниже — кадры с их свадеб: та самая минута, когда торт выносят и разрезают.</p>
+      <p class="sec-head-r note rv rv-1">Слова пар — с их разрешения, и кадры с самих свадеб: та минута, когда торт выносят и разрезают.</p>
     </div>
 
-    <div class="gal">
+    <div class="gal" id="gal">
       <blockquote class="quote rv">
         <p class="quote-m" data-cms="review.1.text">«Мы просили торт „как платье“ — и получили ровно его. Гости весь вечер спрашивали, откуда.»</p>
         <p class="quote-a" data-cms="review.1.author">Дарья и Илья · сентябрь</p>
@@ -1918,18 +1925,17 @@ select.inp{
         <p class="quote-m" data-cms="review.3.text">«Начинку выбирали втроём с мамой и спорили час. Победил медовик — и не зря.»</p>
         <p class="quote-a" data-cms="review.3.author">Мария и Никита · май</p>
       </blockquote>
-    </div>
 
-    <p class="prices-sub rv" style="margin-top:clamp(46px,5vw,76px)">С самих свадеб</p>
-    <!-- Плитки собираются из assets/gallery.js: там лежат имена файлов
-         и их настоящие размеры. Пока файлов нет — видны ровные заглушки. -->
-    <div class="shots" id="shots">
+      <!-- Снимки со свадеб скрипт перемешивает с цитатами: отзыв,
+           пара кадров, отзыв. Плитки берутся из assets/gallery.js.
+           Снимок намеренно не привязан к соседнему отзыву: на фото
+           реальные люди, и подпись с чужим именем была бы неправдой.
+           Пока файлов нет — остаются эти ровные заглушки. -->
       <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
-    </div>
     </div>
   </div>
 </section>
@@ -2480,30 +2486,53 @@ if(!RM && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
    пока снимки грузятся. Если списка нет, в разметке остаются
    ровные заглушки — вёрстка не разъезжается.
    ───────────────────────────────────────── */
-const shotsBox = $('#shots');
+const galBox = $('#gal');
 const SHOTS = Array.isArray(window.GALLERY) ? window.GALLERY : [];
 
-if(shotsBox && SHOTS.length){
-  shotsBox.innerHTML = SHOTS.map((p,i)=>{
-    /* Размеры генератор мог не прочитать — тогда берём вертикальную
-       пропорцию по умолчанию: место всё равно будет занято. */
-    const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;
+if(galBox && SHOTS.length){
+  /* Плитку собираем целиком: в сетке она занимает 280-400 точек,
+     поэтому туда идёт копия на 800px, а кадр на 1600px браузер
+     скачает только если снимок откроют во весь экран. sizes описывает
+     ширину плитки в каждой раскладке — по нему браузер и выбирает. */
+  const tile = (p, i) => {
+    const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;   // размеры могли не прочитаться
     const n = i + 1;
-    /* В сетке плитка занимает 280-400 точек, поэтому туда идёт копия
-       на 800px, а кадр на 1600px браузер скачает только если его
-       откроют во весь экран. sizes описывает ширину плитки в каждой
-       раскладке — по нему браузер и выбирает файл. */
-    return '<button class="shot" type="button" data-i="' + i + '"' +
-      ' aria-label="Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран">' +
+    const el = document.createElement('button');
+    el.className = 'shot';
+    el.type = 'button';
+    el.dataset.i = i;
+    el.setAttribute('aria-label', 'Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран');
+    el.innerHTML =
       '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
       ' sizes="(max-width:860px) 46vw, 30vw"' +
-      ' width="' + w + '" height="' + h + '"' +
-      ' loading="lazy" decoding="async"' +
+      ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async"' +
       ' alt="Со свадьбы: торт кондитерской «Торт по любви», фото ' + n + '">' +
       '<span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24">' +
       '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/>' +
-      '</svg></span></button>';
-  }).join('');
+      '</svg></span>';
+    return el;
+  };
+
+  const quotes = $$('.quote', galBox);
+  $$('.shot', galBox).forEach(el => el.remove());          // заглушки больше не нужны
+  const shots = SHOTS.map(tile);
+
+  /* Раскладываем по кругу: отзыв — своя доля снимков — отзыв.
+     Иначе три цитаты встали бы стопкой в первой колонке кладки,
+     а все фотографии — в остальных. */
+  const per = Math.ceil(shots.length / Math.max(1, quotes.length));
+  let n = 0;
+  quotes.forEach((q, qi) => {
+    galBox.appendChild(q);
+    const last = qi === quotes.length - 1;
+    const take = last ? shots.length - n : Math.min(per, shots.length - n);
+    for (let k = 0; k < take; k++) galBox.appendChild(shots[n++]);
+  });
+
+  galBox.addEventListener('click', e => {
+    const t = e.target.closest('.shot');
+    if(t && t.dataset.i !== undefined) lbOpen(SHOTS, Number(t.dataset.i));
+  });
 }
 
 /* Торты в прайсе — второй набор для того же просмотрщика.
@@ -2554,12 +2583,6 @@ function lbClose(){
   if(lbFrom && document.contains(lbFrom)) lbFrom.focus();
 }
 
-if(shotsBox){
-  shotsBox.addEventListener('click', e=>{
-    const tile = e.target.closest('.shot');
-    if(tile && tile.dataset.i !== undefined) lbOpen(SHOTS, Number(tile.dataset.i));
-  });
-}
 /* Фото торта в карточке цены открывается так же, но листает торты. */
 $$('.price-ph').forEach((b,i)=>{
   b.addEventListener('click', ()=>lbOpen(priceShots, i));
