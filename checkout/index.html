@@ -92,6 +92,13 @@
           </div>
         </div>
 
+        <div class="field f-wide">
+          <label class="check">
+            <input type="checkbox" id="c-consent" name="consent" value="да" required><i></i>
+            <span>Согласен на обработку персональных данных и принимаю условия
+              <a href="../privacy/" target="_blank" rel="noopener">политики</a>.</span>
+          </label>
+        </div>
         <div style="margin-top:30px;padding-top:26px;border-top:1px solid var(--line);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
           <p class="note" style="max-width:42ch">Можно оплатить сразу или отправить заявку в наше сообщество ВКонтакте — тогда обсудим детали и оплату в переписке.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -155,11 +162,16 @@
 
   /* Отправка заявки в ВКонтакте: тот же состав заказа, но без оплаты */
   $('#send-vk').addEventListener('click', function () {
-    var bad = $$('[required]', form).filter(function (f) { return !f.value.trim(); });
+    var bad = $$('[required]', form).filter(function (f) {
+      // у флажка value всегда "on" — смотрим на checked
+      return f.type === 'checkbox' ? !f.checked : !f.value.trim();
+    });
     if (bad.length) {
       bad.forEach(function (f) {
-        f.classList.add('is-bad');
-        f.addEventListener('input', function () { f.classList.remove('is-bad'); }, { once: true });
+        var box = f.closest('.check') || f;
+        box.classList.add('is-bad');
+        f.addEventListener('change', function () { box.classList.remove('is-bad'); }, { once: true });
+        f.addEventListener('input', function () { box.classList.remove('is-bad'); }, { once: true });
       });
       bad[0].focus();
       return;
@@ -174,11 +186,16 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    var bad = $$('[required]', form).filter(function (f) { return !f.value.trim(); });
+    var bad = $$('[required]', form).filter(function (f) {
+      // у флажка value всегда "on" — смотрим на checked
+      return f.type === 'checkbox' ? !f.checked : !f.value.trim();
+    });
     if (bad.length) {
       bad.forEach(function (f) {
-        f.classList.add('is-bad');
-        f.addEventListener('input', function () { f.classList.remove('is-bad'); }, { once: true });
+        var box = f.closest('.check') || f;
+        box.classList.add('is-bad');
+        f.addEventListener('change', function () { box.classList.remove('is-bad'); }, { once: true });
+        f.addEventListener('input', function () { box.classList.remove('is-bad'); }, { once: true });
       });
       bad[0].focus();
       return;

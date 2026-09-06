@@ -570,6 +570,23 @@ select.inp{
 .ftr-bot{border-top:1px solid rgba(242,242,244,.16);padding-top:26px;
   display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
   font-size:12.5px;color:#9A9AA2;letter-spacing:.05em}
+/* Ссылки на политику и оферту: по закону они должны быть доступны,
+   но это не то, ради чего пришли, — поэтому в подвале и без нажима. */
+.ftr-docs{display:flex;gap:20px;flex-wrap:wrap}
+.ftr-docs a{color:#9A9AA2;text-decoration:underline;text-underline-offset:3px;
+  transition:color .3s var(--ease)}
+.ftr-docs a:hover{color:#F2F2F4}
+
+/* Незаполненная галочка согласия: сам вход скрыт, поэтому
+   краснеет рамка рядом с текстом. */
+.check.is-bad i{border-color:#B4382A}
+.check.is-bad span{color:#B4382A}
+/* Ссылка на политику стоит внутри предложения, поэтому её нельзя
+   растянуть до 44px по высоте — строка разъедется. Отрицательный
+   отступ наращивает область нажатия, не двигая текст. */
+.check a{color:var(--graphite);text-decoration:underline;text-underline-offset:3px;
+  padding:7px 3px;margin:-7px -3px}
+.check a:hover{color:var(--rose-ink)}
 
 /* ═══════════════════════════════════════════
    АДАПТИВ
@@ -780,6 +797,8 @@ select.inp{
   /* Контакты в подвале — это ссылки на звонок и переписку,
      по ним жмут чаще всего. Строка в 26px для пальца мала. */
   .ftr-list a,.ftr-list span{min-height:44px}
+  .ftr-docs a{min-height:44px;display:inline-flex;align-items:center}
+  .ftr-docs{gap:2px 20px}
   .ftr-list{gap:4px}
   .pill span,.tab,.qty{display:inline-flex;align-items:center;justify-content:center}
   .brand{min-height:44px;justify-content:center}
@@ -1761,6 +1780,13 @@ select.inp{
             <textarea class="inp" id="o-more" name="more" placeholder="Аллергии, пожелания по цвету, тайминг вечера, вопросы — всё, что важно."></textarea>
           </div>
 
+          <div class="field f-wide">
+            <label class="check">
+              <input type="checkbox" id="o-consent" name="consent" value="да" required><i></i>
+              <span>Согласен на обработку персональных данных и принимаю условия
+                <a href="privacy/" target="_blank" rel="noopener">политики</a>.</span>
+            </label>
+          </div>
           <div class="form-foot">
             <p class="note" style="max-width:44ch">Текст заявки скопируется, и мы отправим вас в наше сообщество ВКонтакте — останется вставить и отправить. Эскиз и расчёт бесплатны.</p>
             <button class="btn btn--solid" type="submit"><span>Отправить заявку
@@ -1822,6 +1848,13 @@ select.inp{
               <label class="pill"><input type="radio" name="channel" value="Telegram"><span>Telegram</span></label>
               <label class="pill"><input type="radio" name="channel" value="Звонок"><span>Звонок</span></label>
             </div>
+          </div>
+          <div class="field f-wide">
+            <label class="check">
+              <input type="checkbox" id="t-consent" name="consent" value="да" required><i></i>
+              <span>Согласен на обработку персональных данных и принимаю условия
+                <a href="privacy/" target="_blank" rel="noopener">политики</a>.</span>
+            </label>
           </div>
           <div class="form-foot">
             <p class="note" style="max-width:40ch">Текст скопируется — отправьте его нам в сообщество ВКонтакте, подтвердим доставку в ответ.</p>
@@ -2016,6 +2049,10 @@ select.inp{
 
     <div class="ftr-bot">
       <span>© 2026 Кондитерская «Торт по любви»</span>
+      <span class="ftr-docs">
+        <a href="privacy/">Обработка персональных данных</a>
+        <a href="offer/">Публичная оферта</a>
+      </span>
       <span>Самарская область · доставка и сборка на площадке</span>
     </div>
   </div>
@@ -2354,13 +2391,20 @@ function wireForm(formId, kind, sentId, failId){
   form.addEventListener('submit', async e=>{
     e.preventDefault();
 
-    const bad = $$('[required]', form).filter(f=>!f.value.trim());
+    /* У флажка value всегда "on", отмечен он или нет, поэтому его
+       проверяем по checked, а подсвечиваем не сам вход (он скрыт),
+       а рамку рядом с текстом. */
+    const bad = $$('[required]', form).filter(f=>
+      f.type === 'checkbox' ? !f.checked : !f.value.trim());
     if(bad.length){
       bad.forEach(f=>{
-        f.classList.add('is-bad');
-        f.addEventListener('input', ()=>f.classList.remove('is-bad'), {once:true});
+        (f.closest('.check') || f).classList.add('is-bad');
+        f.addEventListener('change', ()=>(f.closest('.check') || f).classList.remove('is-bad'), {once:true});
+        f.addEventListener('input', ()=>(f.closest('.check') || f).classList.remove('is-bad'), {once:true});
       });
-      bad[0].focus();
+      const first = bad[0];
+      (first.closest('.check') || first).scrollIntoView({block:'center', behavior: RM ? 'auto' : 'smooth'});
+      first.focus({preventScroll:true});
       return;
     }
 

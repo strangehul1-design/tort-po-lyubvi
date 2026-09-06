@@ -149,3 +149,59 @@ textarea.inp{resize:vertical;min-height:88px;line-height:1.65}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+/* ═══════════════════════════════════════════
+   ДОКУМЕНТЫ: политика и оферта.
+   Длинный текст, который читают редко, но внимательно:
+   узкая колонка, крупный интервал, ясная нумерация.
+   ═══════════════════════════════════════════ */
+.doc{max-width:74ch;margin:0 auto}
+.doc h2{font-family:var(--ff-d);font-weight:500;font-size:clamp(21px,2.2vw,27px);
+  line-height:1.22;color:var(--graphite);margin:clamp(34px,4vw,52px) 0 14px}
+.doc h3{font-size:15px;font-weight:400;color:var(--graphite);margin:22px 0 8px}
+.doc p{font-size:15.5px;line-height:1.75;color:var(--body);margin-bottom:13px}
+.doc ul,.doc ol{margin:0 0 15px;padding-left:22px}
+.doc li{font-size:15.5px;line-height:1.72;color:var(--body);margin-bottom:8px}
+.doc a{color:var(--graphite);text-decoration:underline;text-underline-offset:3px}
+.doc a:hover{color:var(--rose-ink)}
+
+/* Незаполненное место должно быть видно сразу, иначе документ
+   уедет в сеть с дырой на месте реквизитов. */
+.fill-me{background:#FDF0C7;border-bottom:1px solid #A8871F;color:#4A3700;
+  padding:1px 5px;font-size:.94em}
+.doc-warn{border:1px solid #A8871F;background:#FDF9EC;padding:18px 20px;margin-bottom:30px}
+.doc-warn p{margin:0;font-size:14.5px;line-height:1.7;color:#4A3700}
+.doc-warn b{font-weight:500}
+
+.doc-toc{border:1px solid var(--line);background:var(--porcelain);padding:20px 24px}
+.doc-toc p{margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.doc-toc ol{margin:12px 0 0;padding-left:20px}
+.doc-toc li{margin-bottom:5px;font-size:14.5px}
+
+/* Пары «термин — значение»: реквизиты, определения, сроки */
+.doc-defs{list-style:none;padding:0;margin:0 0 15px}
+.doc-defs li{display:grid;grid-template-columns:minmax(160px,auto) 1fr;gap:4px 22px;
+  padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+.doc-defs b{font-weight:400;color:var(--graphite)}
+@media(max-width:600px){ .doc-defs li{grid-template-columns:1fr;gap:3px} }
+
+.doc-updated{margin-top:clamp(34px,4vw,50px);padding-top:22px;
+  border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+
+/* Незаполненная галочка согласия: сам вход скрыт, краснеет рамка. */
+.check{display:inline-flex;align-items:flex-start;gap:11px;cursor:pointer;
+  font-size:13px;line-height:1.55;color:var(--body)}
+.check input{position:absolute;opacity:0;width:0;height:0}
+.check i{width:17px;height:17px;border:1px solid var(--muted);flex-shrink:0;margin-top:2px;
+  position:relative;transition:all .3s var(--ease)}
+.check i::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+  border:solid var(--white);border-width:0 1.5px 1.5px 0;
+  transform:rotate(45deg) scale(0);transition:transform .25s var(--ease)}
+.check input:checked+i{background:var(--graphite);border-color:var(--graphite)}
+.check input:checked+i::after{transform:rotate(45deg) scale(1)}
+.check input:focus-visible+i{outline:2px solid var(--rose-ink);outline-offset:3px}
+.check a{color:var(--graphite);text-decoration:underline;text-underline-offset:3px}
+.check.is-bad i{border-color:#B4382A}
+.check.is-bad span{color:#B4382A}
+.check a{padding:7px 3px;margin:-7px -3px}   /* область нажатия, не двигая строку */
+@media(max-width:860px){ .ftr a{min-height:44px;display:inline-flex;align-items:center} }
