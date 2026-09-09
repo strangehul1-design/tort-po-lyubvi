@@ -578,6 +578,20 @@ select.inp{
    а не проглядывают. Селектор длиннее, чтобы перебить .field>label. */
 .field>label.check{font-size:13px;letter-spacing:0;text-transform:none;
   color:var(--body);line-height:1.55}
+/* Кнопка «Скриншот» под отзывом: отзыв читается текстом,
+   а оригинал открывается по нажатию — как доказательство. */
+.quote-shot{display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  min-height:44px;padding:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);transition:color .3s var(--ease)}
+.quote-shot:hover{color:var(--graphite)}
+.quote-shot svg{width:15px;height:15px;flex-shrink:0;stroke:var(--icon-ink);fill:none;
+  stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.quote-shot:hover svg{stroke:var(--graphite)}
+.quote-shot:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}
+
+/* Фото в разделах «Годовщина» и «Кондитер» */
+.sec-img{display:block;width:100%;height:auto}
+
 .check.is-bad i{border-color:#B4382A}
 .check.is-bad span{color:#B4382A}
 /* Отдельная строка со ссылкой на документ. Своя зона нажатия
@@ -1665,10 +1679,10 @@ select.inp{
         <p class="stub-soon">Цены и примеры готовим</p>
       </div>
       <div class="mask rv rv-1">
-        <div data-cms-photo="anniv" class="ph r-4x3">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · торт на годовщину</span>
-        </div>
+        <img class="sec-img" src="assets/photo/web/s01-800.jpg"
+          srcset="assets/photo/web/s01-800.jpg 800w, assets/photo/web/s01-1600.jpg 1600w"
+          sizes="(max-width:1080px) 92vw, 46vw" width="1200" height="1600" loading="lazy" decoding="async"
+          alt="Торт на годовщину свадьбы от кондитерской «Торт по любви»">
       </div>
     </div>
   </div>
@@ -1966,18 +1980,83 @@ select.inp{
 
     <div class="gal" id="gal">
       <blockquote class="quote rv">
-        <p class="quote-m" data-cms="review.1.text">«Мы просили торт „как платье“ — и получили ровно его. Гости весь вечер спрашивали, откуда.»</p>
-        <p class="quote-a" data-cms="review.1.author">Дарья и Илья · сентябрь</p>
+        <p class="quote-m" data-cms="review.1.text">«Асия, большое спасибо за торт! Это был самый вкусный торт в жизни — так сказали все наши гости! Просто ооочень красиво, вкусно и бомбезно!!!»</p>
+        <p class="quote-a" data-cms="review.1.author">Ольга Абрамова</p>
+        <button class="quote-shot" type="button" data-rev="4"
+                aria-label="Посмотреть скриншот отзыва: Ольга Абрамова">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
       </blockquote>
 
       <blockquote class="quote rv rv-1">
-        <p class="quote-m" data-cms="review.2.text">«Приехали за полтора часа, собрали при нас и уехали. Единственное, о чём я в тот день не волновалась.»</p>
-        <p class="quote-a" data-cms="review.2.author">Анна и Сергей · июль</p>
+        <p class="quote-m" data-cms="review.2.text">«Асия, дорогая, спасибо большое за наивкуснейший торт. Все гости в восторге. Большая благодарность, что ушла все наши пожелания. Любим тебя»</p>
+        <p class="quote-a" data-cms="review.2.author">Алена Климанова</p>
+        <button class="quote-shot" type="button" data-rev="1"
+                aria-label="Посмотреть скриншот отзыва: Алена Климанова">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
       </blockquote>
 
       <blockquote class="quote rv rv-2">
-        <p class="quote-m" data-cms="review.3.text">«Начинку выбирали втроём с мамой и спорили час. Победил медовик — и не зря.»</p>
-        <p class="quote-a" data-cms="review.3.author">Мария и Никита · май</p>
+        <p class="quote-m" data-cms="review.3.text">«Здравствуйте! Тортик всем очень понравился!!! Спасибо большое!!!»</p>
+        <p class="quote-a" data-cms="review.3.author">Карина</p>
+        <button class="quote-shot" type="button" data-rev="7"
+                aria-label="Посмотреть скриншот отзыва: Карина">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
+      </blockquote>
+
+      <blockquote class="quote rv">
+        <p class="quote-m" data-cms="review.4.text">«Доброе утро. Хочу выразить вам большую благодарность, торт получился оооооочень вкусный и красивый. Даже те кто не очень любит сладкое забрали кусочки домой. Очень рады что заказывали у вас!»</p>
+        <p class="quote-a" data-cms="review.4.author">Лиза</p>
+        <button class="quote-shot" type="button" data-rev="5"
+                aria-label="Посмотреть скриншот отзыва: Лиза">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
+      </blockquote>
+
+      <blockquote class="quote rv rv-1">
+        <p class="quote-m" data-cms="review.5.text">«Безумно красивый и обалденный на вкус. Спасибо, Вам огромное!»</p>
+        <p class="quote-a" data-cms="review.5.author">Natali Art</p>
+        <button class="quote-shot" type="button" data-rev="2"
+                aria-label="Посмотреть скриншот отзыва: Natali Art">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
+      </blockquote>
+
+      <blockquote class="quote rv rv-2">
+        <p class="quote-m" data-cms="review.6.text">«Доброе утро! Спасибо огромное, торт шикарный!!! Всем гостям оочень понравился!»</p>
+        <p class="quote-a" data-cms="review.6.author">Из переписки</p>
+        <button class="quote-shot" type="button" data-rev="6"
+                aria-label="Посмотреть скриншот отзыва: Из переписки">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
+      </blockquote>
+
+      <blockquote class="quote rv">
+        <p class="quote-m" data-cms="review.7.text">«Прекрасный тортик, гости были в восторге, только и говорили какой он вкусный)) даже самым привередливым очень понравилось. А по дизайну вообще бомба, я в восторге) спасибо большое, за ваши талантливые ручки»</p>
+        <p class="quote-a" data-cms="review.7.author">Из переписки</p>
+        <button class="quote-shot" type="button" data-rev="3"
+                aria-label="Посмотреть скриншот отзыва: Из переписки">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
+      </blockquote>
+
+      <blockquote class="quote rv rv-1">
+        <p class="quote-m" data-cms="review.8.text">«Асия вы как всегда, просто умничка! Торт был супер! Гости в восторге, спасибо Вам!»</p>
+        <p class="quote-a" data-cms="review.8.author">Отзыв в сообществе · сентябрь 2017</p>
+        <button class="quote-shot" type="button" data-rev="0"
+                aria-label="Посмотреть скриншот отзыва: Отзыв в сообществе · сентябрь 2017">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m5 16 4-4 3 3 3.5-3.5L21 16"/><circle cx="9" cy="9.5" r="1.2"/></svg>
+          Скриншот
+        </button>
       </blockquote>
 
       <!-- Снимки со свадеб скрипт перемешивает с цитатами: отзыв,
@@ -2028,13 +2107,13 @@ select.inp{
         <p class="eyebrow">Знакомство с кондитером</p>
         <h2 class="d2" style="margin-top:20px">Кто стоит<br>за <em>вашими тортами</em></h2>
         <p class="lead-lg">Скоро здесь будет история мастера, который печёт ваши торты.</p>
-        <p class="stub-soon">Фото и рассказ готовятся</p>
+        <p class="stub-soon">Рассказ о себе готовится</p>
       </div>
       <div class="mask rv">
-        <div data-cms-photo="master" class="ph r-4x5">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · кондитер за работой</span>
-        </div>
+        <img class="sec-img" src="assets/photo/web/s02-800.jpg"
+          srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
+          sizes="(max-width:1080px) 92vw, 46vw" width="900" height="1600" loading="lazy" decoding="async"
+          alt="Асия Зубаирова, кондитер «Торт по любви»">
       </div>
     </div>
   </div>
@@ -2647,6 +2726,17 @@ function lbClose(){
   document.body.style.overflow = '';
   if(lbFrom && document.contains(lbFrom)) lbFrom.focus();
 }
+
+/* Скриншоты отзывов — третий набор. Порядок берём из разметки,
+   чтобы стрелки листали их в том же порядке, в каком идут отзывы. */
+const revShots = $$('.quote-shot')
+  .map(b => (window.REVIEW_SHOTS || [])[Number(b.dataset.rev)])
+  .filter(Boolean);
+$$('.quote-shot').forEach((b, i) => {
+  const who = b.closest('.quote').querySelector('.quote-a');
+  if (revShots[i] && who) revShots[i].label = who.textContent.trim();
+  b.addEventListener('click', () => lbOpen(revShots, i));
+});
 
 /* Фото торта в карточке цены открывается так же, но листает торты. */
 $$('.price-ph').forEach((b,i)=>{

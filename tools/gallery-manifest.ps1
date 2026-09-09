@@ -54,7 +54,10 @@ function Get-ExifRotation($img) {
     }
 }
 
-function Save-Resized($img, $path, $maxSide) {
+function Save-Resized($img, $path, $maxSide, $quality = 82) {
+    $pr = New-Object System.Drawing.Imaging.EncoderParameters(1)
+    $pr.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter(
+        [System.Drawing.Imaging.Encoder]::Quality, [int64]$quality)
     $k = [Math]::Min(1.0, $maxSide / [Math]::Max($img.Width, $img.Height))  # мелкие не растягиваем
     $nw = [int][Math]::Round($img.Width * $k); $nh = [int][Math]::Round($img.Height * $k)
     $bmp = New-Object System.Drawing.Bitmap($nw, $nh)
@@ -66,7 +69,7 @@ function Save-Resized($img, $path, $maxSide) {
     $g.Clear([System.Drawing.Color]::White)   # прозрачность PNG в JPEG стала бы чёрной
     $g.DrawImage($img, 0, 0, $nw, $nh)
     $g.Dispose()
-    $bmp.Save($path, $jpeg, $prm)
+    $bmp.Save($path, $jpeg, $pr)
     $bmp.Dispose()
     return @($nw, $nh)
 }
@@ -74,7 +77,7 @@ function Save-Resized($img, $path, $maxSide) {
 $script:totalIn = 0
 $script:totalOut = 0
 
-function Convert-Folder($dir, $prefix, $label) {
+function Convert-Folder($dir, $prefix, $label, $quality = 82) {
     if (-not (Test-Path $dir)) { return @() }
     $files = Get-ChildItem -LiteralPath $dir -File |
              Where-Object { $_.Extension -match '^\.(jpg|jpeg|png|bmp)$' } |
@@ -94,8 +97,8 @@ function Convert-Folder($dir, $prefix, $label) {
             if ($rot) { $img.RotateFlip($rot) }
             $big   = Join-Path $web ($stem + '-1600.jpg')
             $small = Join-Path $web ($stem + '-800.jpg')
-            $dim = Save-Resized $img $big 1600
-            Save-Resized $img $small 800 | Out-Null
+            $dim = Save-Resized $img $big 1600 $quality
+            Save-Resized $img $small 800 $quality | Out-Null
         } finally { $img.Dispose() }
 
         $sizeOut = (Get-Item $big).Length + (Get-Item $small).Length
@@ -113,6 +116,8 @@ Get-ChildItem -LiteralPath $web -File -Filter *.jpg -ErrorAction SilentlyContinu
 
 $priceLines = @(Convert-Folder (Join-Path $base 'prices')  'p' 'Торты из прайса (порядок = номер позиции):')
 $galLines   = @(Convert-Folder (Join-Path $base 'gallery') 'g' 'Кадры со свадеб для галереи:')
+$revLines   = @(Convert-Folder (Join-Path $base 'reviews') 'r' 'Скриншоты отзывов:' 90)
+$secLines   = @(Convert-Folder (Join-Path $base 'sections') 's' 'Фото разделов, по алфавиту имён:')
 
 $body = @()
 $body += '/* ═══════════════════════════════════════════'
@@ -132,11 +137,21 @@ $body += '/* Кадры со свадеб под отзывами. */'
 $body += 'window.GALLERY = ['
 $body += $galLines
 $body += '];'
+$body += ''
+$body += '/* Скриншоты отзывов — порядок как в assets/photo/reviews. */'
+$body += 'window.REVIEW_SHOTS = ['
+$body += $revLines
+$body += '];'
+$body += ''
+$body += '/* Фото разделов: s01 — годовщина, s02 — кондитер. */'
+$body += 'window.SECTION_PHOTOS = ['
+$body += $secLines
+$body += '];'
 
 [System.IO.File]::WriteAllLines($out, $body, (New-Object System.Text.UTF8Encoding $false))
 
 Write-Host ''
-Write-Host ("Готово: {0} тортов и {1} кадров со свадеб." -f $priceLines.Count, $galLines.Count)
+Write-Host ("Готово: {0} тортов, {1} со свадеб, {2} отзывов, {3} фото разделов." -f $priceLines.Count, $galLines.Count, $revLines.Count, $secLines.Count)
 if ($script:totalIn -gt 0) {
     Write-Host ("Вес: {0:N1} МБ вместо {1:N1} МБ." -f ($script:totalOut/1MB), ($script:totalIn/1MB))
 }

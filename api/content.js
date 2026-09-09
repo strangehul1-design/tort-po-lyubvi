@@ -61,7 +61,7 @@ for (const [id, title] of PRODUCTS) {
 }
 
 /* Отзывы — редактируем те, что уже стоят на сайте */
-export const REVIEWS = ['1', '2', '3'];
+export const REVIEWS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 for (const n of REVIEWS) {
   FIELDS[`review.${n}.text`]   = { group: 'reviews', review: n, label: 'Текст отзыва', type: 'multiline' };
   FIELDS[`review.${n}.author`] = { group: 'reviews', review: n, label: 'Кто и когда',  type: 'text' };

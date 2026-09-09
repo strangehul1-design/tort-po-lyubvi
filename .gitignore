@@ -13,3 +13,5 @@ api/wrangler.dev.toml
 # Оригиналы весят под два десятка мегабайт и в репозитории не нужны.
 assets/photo/prices/
 assets/photo/gallery/
+assets/photo/reviews/
+assets/photo/sections/
