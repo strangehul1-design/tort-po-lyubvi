@@ -1006,6 +1006,8 @@ select.inp{
 .lb-next{right:clamp(8px,2vw,26px);top:50%;margin-top:-26px}
 .lb-btn:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}
 
+/* В работах снимок — главное, поэтому колонок меньше, а плитки крупнее. */
+.shots--works{columns:3}
 @media(max-width:1200px){ .shots{columns:3} }
 @media(max-width:1080px){
   .stub{grid-template-columns:1fr;gap:36px}
@@ -1202,64 +1204,19 @@ select.inp{
         <p class="eyebrow">Наши работы</p>
         <h2 class="d2">Каждый торт собран<br>для одной пары</h2>
       </div>
-      <p class="sec-head-r note rv rv-1" data-cms="text.works_note">Мы не повторяем торты. Ниже — работы за прошлый сезон: с площадок в Самаре, Тольятти и на волжских базах отдыха.</p>
+      <p class="sec-head-r note rv rv-1" data-cms="text.works_note">Каждый торт делается под свою пару. Нажмите на снимок, чтобы рассмотреть его крупнее.</p>
     </div>
 
-    <div class="works">
-      <article class="work work--tall rv">
-        <div class="mask"><div data-cms-photo="work-1" class="ph r-4x5">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · Ольга и Артём</span>
-        </div></div>
-        <div class="work-meta">
-          <h3 class="work-name">Ольга и Артём</h3>
-          <p class="work-desc">Три яруса · крем-чиз, пионы и эвкалипт · 120 гостей · усадьба под Самарой</p>
-        </div>
-      </article>
-
-      <article class="work work--wide rv rv-1">
-        <div class="mask"><div data-cms-photo="work-2" class="ph r-4x3">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · Дарья и Илья</span>
-        </div></div>
-        <div class="work-meta">
-          <h3 class="work-name">Дарья и Илья</h3>
-          <p class="work-desc">Два яруса · белый бархат, ягоды и сусальное золото · 60 гостей · лофт на набережной</p>
-        </div>
-      </article>
-
-      <article class="work rv">
-        <div class="mask"><div data-cms-photo="work-3" class="ph r-1x1">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · Мария и Никита</span>
-        </div></div>
-        <div class="work-meta">
-          <h3 class="work-name">Мария и Никита</h3>
-          <p class="work-desc">Один ярус · голая сборка, инжир и розмарин · 30 гостей · камерная роспись</p>
-        </div>
-      </article>
-
-      <article class="work rv rv-1">
-        <div class="mask"><div data-cms-photo="work-4" class="ph r-1x1">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · Анна и Сергей</span>
-        </div></div>
-        <div class="work-meta">
-          <h3 class="work-name">Анна и Сергей</h3>
-          <p class="work-desc">Четыре яруса · рельефная текстура, сухоцветы · 180 гостей · загородный клуб</p>
-        </div>
-      </article>
-
-      <article class="work rv rv-2">
-        <div class="mask"><div data-cms-photo="work-5" class="ph r-1x1">
-          <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-          <span class="ph-label">Фото · Вера и Максим</span>
-        </div></div>
-        <div class="work-meta">
-          <h3 class="work-name">Вера и Максим</h3>
-          <p class="work-desc">Два яруса · пудровая акварель по крему · 80 гостей · шатёр на Волге</p>
-        </div>
-      </article>
+    <!-- Плитки собираются из assets/gallery.js: сначала торты
+         из прайса, затем всё, что лежит в assets/photo/works.
+         Пока списка нет, видны ровные заглушки. -->
+    <div class="shots shots--works" id="works-grid">
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/3"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+      <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
     </div>
   </div>
 </section>
@@ -1314,7 +1271,7 @@ select.inp{
               <path class="ln hair" pathLength="1" d="M120 54 m-9 0 a9 7 0 1 0 18 0 a9 7 0 1 0 -18 0 M100 44 m-7 -2 a7 6 0 1 0 14 0 a7 6 0 1 0 -14 0 M142 50 m-7 -1 a7 6 0 1 0 14 0 a7 6 0 1 0 -14 0"/>
             </g>
           </svg>
-          <p class="proc-cap">Эскиз № 214 · Ольга и Артём</p>
+          <p class="proc-cap">Набросок трёхъярусного торта</p>
         </div>
       </div>
 
@@ -2706,6 +2663,32 @@ if(galBox && SHOTS.length){
   galBox.addEventListener('click', e => {
     const t = e.target.closest('.shot');
     if(t && t.dataset.i !== undefined) lbOpen(SHOTS, Number(t.dataset.i));
+  });
+}
+
+/* Галерея работ: торты из прайса, а следом всё, что положили
+   в assets/photo/works. Отдельного списка не держим — он бы
+   разъезжался с прайсом при каждой правке цен. */
+const worksBox = $('#works-grid');
+const WORKS = (window.PRICE_PHOTOS || []).concat(window.WORK_PHOTOS || []);
+
+if(worksBox && WORKS.length){
+  worksBox.innerHTML = WORKS.map((p,i)=>{
+    const w = p.w > 0 ? p.w : 3, h = p.h > 0 ? p.h : 4;
+    const n = i + 1;
+    return '<button class="shot" type="button" data-i="' + i + '"' +
+      ' aria-label="Открыть работу ' + n + ' из ' + WORKS.length + ' во весь экран">' +
+      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+      ' sizes="(max-width:860px) 46vw, 30vw"' +
+      ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async"' +
+      ' alt="Свадебный торт кондитерской «Торт по любви», работа ' + n + '">' +
+      '<span class="shot-zoom" aria-hidden="true"><svg viewBox="0 0 24 24">' +
+      '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8.6v4.8M8.6 11h4.8"/>' +
+      '</svg></span></button>';
+  }).join('');
+  worksBox.addEventListener('click', e=>{
+    const t = e.target.closest('.shot');
+    if(t && t.dataset.i !== undefined) lbOpen(WORKS, Number(t.dataset.i));
   });
 }
 

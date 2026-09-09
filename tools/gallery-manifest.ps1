@@ -118,6 +118,7 @@ $priceLines = @(Convert-Folder (Join-Path $base 'prices')  'p' 'Торты из 
 $galLines   = @(Convert-Folder (Join-Path $base 'gallery') 'g' 'Кадры со свадеб для галереи:')
 $revLines   = @(Convert-Folder (Join-Path $base 'reviews') 'r' 'Скриншоты отзывов:' 90)
 $secLines   = @(Convert-Folder (Join-Path $base 'sections') 's' 'Фото разделов, по алфавиту имён:')
+$wrkLines   = @(Convert-Folder (Join-Path $base 'works') 'w' 'Дополнительные работы:')
 
 $body = @()
 $body += '/* ═══════════════════════════════════════════'
@@ -146,6 +147,11 @@ $body += ''
 $body += '/* Фото разделов: s01 — годовщина, s02 — кондитер. */'
 $body += 'window.SECTION_PHOTOS = ['
 $body += $secLines
+$body += '];'
+$body += ''
+$body += '/* Работы сверх прайса — идут в галерее следом за ним. */'
+$body += 'window.WORK_PHOTOS = ['
+$body += $wrkLines
 $body += '];'
 
 [System.IO.File]::WriteAllLines($out, $body, (New-Object System.Text.UTF8Encoding $false))
