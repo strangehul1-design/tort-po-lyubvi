@@ -205,3 +205,8 @@ textarea.inp{resize:vertical;min-height:88px;line-height:1.65}
 .check.is-bad span{color:#B4382A}
 .check a{padding:7px 3px;margin:-7px -3px}   /* область нажатия, не двигая строку */
 @media(max-width:860px){ .ftr a{min-height:44px;display:inline-flex;align-items:center} }
+
+/* Атрибут hidden задаёт display:none стилем браузера, а любой класс
+   с собственным display его перебивает — например .btn{display:inline-flex}.
+   Поэтому скрытая кнопка оставалась на странице. */
+[hidden]{display:none!important}

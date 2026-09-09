@@ -71,8 +71,8 @@
             <input class="inp" type="tel" id="c-phone" name="phone" placeholder="+7 999 000-00-00" autocomplete="tel" required>
           </div>
           <div class="field f-wide">
-            <label for="c-email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Электронная почта</label>
-            <input class="inp" type="email" id="c-email" name="email" placeholder="Чек и подтверждение придут сюда" autocomplete="email" required>
+            <label for="c-email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Электронная почта <span class="note" style="text-transform:none;letter-spacing:0">— если удобно</span></label>
+            <input class="inp" type="email" id="c-email" name="email" placeholder="Не обязательно" autocomplete="email">
           </div>
           <div class="field f-wide">
             <span class="legend"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 4z"/></svg>Как удобнее связаться</span>
@@ -100,10 +100,15 @@
           </label>
         </div>
         <div style="margin-top:30px;padding-top:26px;border-top:1px solid var(--line);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-          <p class="note" style="max-width:42ch">Можно оплатить сразу или отправить заявку в наше сообщество ВКонтакте — тогда обсудим детали и оплату в переписке.</p>
+          <p class="note" style="max-width:42ch">Состав заказа уйдёт нам в сообщество ВКонтакте — обсудим детали, подтвердим дату и договоримся об оплате. Предоплата 50%, переводом на карту или наличными при встрече.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <button class="btn btn--ghost" type="button" id="send-vk"><span>Отправить заявку в ВК</span></button>
-            <button class="btn btn--solid" type="submit" id="pay"><span>Оплатить
+            <!-- Оплата на сайте не принимается: расчёт переводом или наличными.
+                 Кнопка оставлена скрытой — когда подключат ЮKassa, снять hidden
+                 здесь и вернуть обработчик отправки формы ниже. -->
+            <button class="btn btn--solid" type="button" id="send-vk"><span>Отправить заявку
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span></button>
+            <button class="btn btn--solid" type="submit" id="pay" hidden><span>Оплатить
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span></button>
           </div>
@@ -113,7 +118,7 @@
           <p class="fail-t">Не получилось перейти к оплате</p>
           <p class="fail-p">Похоже, пропала связь. Попробуйте ещё раз или напишите нам напрямую —
             <a href="https://vk.me/asiyatort">ВКонтакте</a> или
-            <a href="tel:+79990000000">+7 999 000-00-00</a>.</p>
+            <a href="tel:+79083677951">+7 908 367-79-51</a>.</p>
         </div>
       </form>
     </div>
@@ -185,6 +190,10 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    /* Оплата выключена: нажатие Enter в поле не должно обходить
+       спрятанную кнопку и уводить на платёжную страницу. */
+    if (btn.hidden) { $('#send-vk').click(); return; }
 
     var bad = $$('[required]', form).filter(function (f) {
       // у флажка value всегда "on" — смотрим на checked
