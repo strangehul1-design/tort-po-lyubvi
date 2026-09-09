@@ -592,6 +592,12 @@ select.inp{
 /* Фото в разделах «Годовщина» и «Кондитер» */
 .sec-img{display:block;width:100%;height:auto}
 
+/* Портрет на первом экране. Исходник 9:16 — во всю высоту он бы
+   вытянул первый экран на тысячу точек, поэтому кадрируем до 3:4.
+   Фокус держим выше середины: там лицо и верх торта. */
+.hero-img{display:block;width:100%;height:auto;aspect-ratio:3/4;
+  object-fit:cover;object-position:center 22%}
+
 .check.is-bad i{border-color:#B4382A}
 .check.is-bad span{color:#B4382A}
 /* Отдельная строка со ссылкой на документ. Своя зона нажатия
@@ -1081,13 +1087,13 @@ select.inp{
     <span class="brand-sub">Свадебные торты · Самара</span>
   </a>
   <nav class="hdr-nav" id="nav">
+    <a class="hdr-link" href="#about" data-jump="about">Кондитер</a>
     <a class="hdr-link" href="#works" data-jump="works">Работы</a>
     <a class="hdr-link" href="#process" data-jump="process">Процесс</a>
     <a class="hdr-link" href="#prices" data-jump="prices">Цены</a>
     <a class="hdr-link" href="#anniversary" data-jump="anniversary">Годовщина</a>
     <a class="hdr-link" href="#request" data-tab="delivery">Доставка</a>
     <a class="hdr-link" href="#gallery" data-jump="gallery">Отзывы</a>
-    <a class="hdr-link" href="#about" data-jump="about">Кондитер</a>
     <button class="hdr-cta" data-tab="order">Заказать торт</button>
   </nav>
   <button class="cart-btn" id="cart-btn" aria-label="Корзина" aria-expanded="false">
@@ -1117,16 +1123,32 @@ select.inp{
 
   <div class="hero-art">
     <div class="mask rv">
-      <div data-cms-photo="hero" class="ph r-3x4">
-        <svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg>
-        <span class="ph-label">Главное фото · трёхъярусный торт</span>
-      </div>
+      <img class="hero-img" src="assets/photo/web/s02-800.jpg"
+        srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
+        sizes="(max-width:1080px) 92vw, 44vw" width="900" height="1600"
+        fetchpriority="high" decoding="async"
+        alt="Асия Зубаирова, кондитер «Торт по любви», собирает свадебный торт">
     </div>
   </div>
 
   <div class="hero-scroll">
     <svg viewBox="0 0 14 22"><rect x="1" y="1" width="12" height="20" rx="6"/><path d="M7 6v4" stroke-linecap="round"/></svg>
     <span>Листайте</span>
+  </div>
+</section>
+
+<!-- ═══════ ЗНАКОМСТВО С КОНДИТЕРОМ ═══════
+     Стоит первым после героя: портрет мастера уже на первом экране,
+     и этот блок объясняет, кто на нём. Своей фотографии у блока нет
+     намеренно — она прямо над ним. -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="credo-in rv">
+      <p class="eyebrow" style="justify-content:center">Знакомство с кондитером</p>
+      <h2 class="d2" style="margin-top:18px">Кто стоит<br>за <em>вашими тортами</em></h2>
+      <p class="credo-body">Скоро здесь будет история мастера, который печёт ваши торты.</p>
+      <p class="stub-soon">Рассказ о себе готовится</p>
+    </div>
   </div>
 </section>
 
@@ -2097,28 +2119,6 @@ select.inp{
 </aside>
 
 <!-- ═══════ ПОДВАЛ ═══════ -->
-<!-- ═══════ ЗНАКОМСТВО С КОНДИТЕРОМ ═══════
-     Заглушка: биографию и фото клиентка пришлёт позже.
-     Ничего за неё не сочиняем — только место и обещание. -->
-<section class="sec" id="about">
-  <div class="wrap">
-    <div class="stub stub--rev">
-      <div class="stub-txt rv rv-1">
-        <p class="eyebrow">Знакомство с кондитером</p>
-        <h2 class="d2" style="margin-top:20px">Кто стоит<br>за <em>вашими тортами</em></h2>
-        <p class="lead-lg">Скоро здесь будет история мастера, который печёт ваши торты.</p>
-        <p class="stub-soon">Рассказ о себе готовится</p>
-      </div>
-      <div class="mask rv">
-        <img class="sec-img" src="assets/photo/web/s02-800.jpg"
-          srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
-          sizes="(max-width:1080px) 92vw, 46vw" width="900" height="1600" loading="lazy" decoding="async"
-          alt="Асия Зубаирова, кондитер «Торт по любви»">
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer class="ftr" id="contacts">
   <div class="wrap">
     <div class="ftr-top">
@@ -2311,9 +2311,9 @@ const hdr = $('#hdr');
 /* Порядок должен совпадать с порядком секций в документе:
    по нему считается и активная точка сбоку, и подсветка вкладки. */
 const SECTIONS = [
-  ['top','Начало'], ['works','Работы'], ['process','Процесс'],
+  ['top','Начало'], ['about','Кондитер'], ['works','Работы'], ['process','Процесс'],
   ['fillings','Начинки'], ['prices','Цены'], ['anniversary','Годовщина'],
-  ['request','Заказ'], ['gallery','Отзывы'], ['about','Кондитер'], ['contacts','Контакты']
+  ['request','Заказ'], ['gallery','Отзывы'], ['contacts','Контакты']
 ];
 const dotsWrap = $('#dots');
 SECTIONS.forEach(([id,label])=>{
