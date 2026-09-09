@@ -116,7 +116,6 @@ Get-ChildItem -LiteralPath $web -File -Filter *.jpg -ErrorAction SilentlyContinu
 
 $priceLines = @(Convert-Folder (Join-Path $base 'prices')  'p' 'Торты из прайса (порядок = номер позиции):')
 $galLines   = @(Convert-Folder (Join-Path $base 'gallery') 'g' 'Кадры со свадеб для галереи:')
-$revLines   = @(Convert-Folder (Join-Path $base 'reviews') 'r' 'Скриншоты отзывов:' 90)
 $secLines   = @(Convert-Folder (Join-Path $base 'sections') 's' 'Фото разделов, по алфавиту имён:')
 $wrkLines   = @(Convert-Folder (Join-Path $base 'works') 'w' 'Дополнительные работы:')
 
@@ -139,11 +138,6 @@ $body += 'window.GALLERY = ['
 $body += $galLines
 $body += '];'
 $body += ''
-$body += '/* Скриншоты отзывов — порядок как в assets/photo/reviews. */'
-$body += 'window.REVIEW_SHOTS = ['
-$body += $revLines
-$body += '];'
-$body += ''
 $body += '/* Фото разделов: s01 — годовщина, s02 — кондитер. */'
 $body += 'window.SECTION_PHOTOS = ['
 $body += $secLines
@@ -157,7 +151,7 @@ $body += '];'
 [System.IO.File]::WriteAllLines($out, $body, (New-Object System.Text.UTF8Encoding $false))
 
 Write-Host ''
-Write-Host ("Готово: {0} тортов, {1} со свадеб, {2} отзывов, {3} фото разделов." -f $priceLines.Count, $galLines.Count, $revLines.Count, $secLines.Count)
+Write-Host ("Готово: {0} тортов, {1} со свадеб, {2} фото разделов, {3} работ." -f $priceLines.Count, $galLines.Count, $secLines.Count, $wrkLines.Count)
 if ($script:totalIn -gt 0) {
     Write-Host ("Вес: {0:N1} МБ вместо {1:N1} МБ." -f ($script:totalOut/1MB), ($script:totalIn/1MB))
 }

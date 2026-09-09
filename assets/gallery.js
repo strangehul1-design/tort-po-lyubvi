@@ -28,20 +28,12 @@ window.GALLERY = [
   { small: 'assets/photo/web/g05-800.jpg', big: 'assets/photo/web/g05-1600.jpg', w: 640, h: 916 },
 ];
 
-/* Скриншоты отзывов — порядок как в assets/photo/reviews. */
-window.REVIEW_SHOTS = [
-  { small: 'assets/photo/web/r01-800.jpg', big: 'assets/photo/web/r01-1600.jpg', w: 1068, h: 1280 },
-  { small: 'assets/photo/web/r02-800.jpg', big: 'assets/photo/web/r02-1600.jpg', w: 1080, h: 1515 },
-  { small: 'assets/photo/web/r03-800.jpg', big: 'assets/photo/web/r03-1600.jpg', w: 842, h: 1600 },
-  { small: 'assets/photo/web/r04-800.jpg', big: 'assets/photo/web/r04-1600.jpg', w: 900, h: 1600 },
-  { small: 'assets/photo/web/r05-800.jpg', big: 'assets/photo/web/r05-1600.jpg', w: 1139, h: 1600 },
-  { small: 'assets/photo/web/r06-800.jpg', big: 'assets/photo/web/r06-1600.jpg', w: 1600, h: 1218 },
-  { small: 'assets/photo/web/r07-800.jpg', big: 'assets/photo/web/r07-1600.jpg', w: 1319, h: 1600 },
-  { small: 'assets/photo/web/r08-800.jpg', big: 'assets/photo/web/r08-1600.jpg', w: 1199, h: 1600 },
-];
-
 /* Фото разделов: s01 — годовщина, s02 — кондитер. */
 window.SECTION_PHOTOS = [
   { small: 'assets/photo/web/s01-800.jpg', big: 'assets/photo/web/s01-1600.jpg', w: 1200, h: 1600 },
   { small: 'assets/photo/web/s02-800.jpg', big: 'assets/photo/web/s02-1600.jpg', w: 900, h: 1600 },
+];
+
+/* Работы сверх прайса — идут в галерее следом за ним. */
+window.WORK_PHOTOS = [
 ];
