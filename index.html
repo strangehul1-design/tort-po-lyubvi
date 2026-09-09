@@ -592,6 +592,18 @@ select.inp{
 /* Фото в разделах «Годовщина» и «Кондитер» */
 .sec-img{display:block;width:100%;height:auto}
 
+/* Знакомство с кондитером: заголовок слева, рассказ справа.
+   Три абзаца по центру читались бы тяжело. */
+.about-in{display:grid;grid-template-columns:.85fr 1.15fr;
+  gap:clamp(28px,5vw,80px);align-items:start}
+.about-txt{max-width:52ch}
+.about-txt p{font-size:clamp(15.5px,1.4vw,17px);line-height:1.78;color:var(--body)}
+.about-txt p+p{margin-top:16px}
+/* Последняя фраза — почти подпись под письмом, поэтому засечными. */
+.about-sign{font-family:var(--ff-d);font-style:italic;font-weight:400;
+  font-size:clamp(18px,2vw,23px)!important;line-height:1.45;color:var(--graphite)}
+@media(max-width:1080px){ .about-in{grid-template-columns:1fr;gap:26px} }
+
 /* Портрет на первом экране. Исходник 9:16 — во всю высоту он бы
    вытянул первый экран на тысячу точек, поэтому кадрируем до 3:4.
    Фокус держим выше середины: там лицо и верх торта. */
@@ -1143,11 +1155,16 @@ select.inp{
      намеренно — она прямо над ним. -->
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="credo-in rv">
-      <p class="eyebrow" style="justify-content:center">Знакомство с кондитером</p>
-      <h2 class="d2" style="margin-top:18px">Кто стоит<br>за <em>вашими тортами</em></h2>
-      <p class="credo-body">Скоро здесь будет история мастера, который печёт ваши торты.</p>
-      <p class="stub-soon">Рассказ о себе готовится</p>
+    <div class="about-in">
+      <div class="rv">
+        <p class="eyebrow">Знакомство с кондитером</p>
+        <h2 class="d2" style="margin-top:20px">Ваша свадьба<br>в <em>надёжных руках</em></h2>
+      </div>
+      <div class="about-txt rv rv-1">
+        <p>Меня зовут Асия. Я занимаюсь созданием тортов с 2013 года, но свадебные торты&nbsp;— моя острая страсть.</p>
+        <p>Люблю свадебные проекты за их масштаб, особую эстетику, ответственность и обожаю видеть ваши трепетные эмоции.</p>
+        <p class="about-sign">Я беру ответственность за кульминацию вашего праздника, а вам оставляю предвкушение...</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1698,13 +1715,13 @@ select.inp{
         <button class="btn btn--solid" data-tab="order"><span>Обсудить торт на годовщину
           <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span></button>
-        <p class="stub-soon">Цены и примеры готовим</p>
+        <p class="stub-soon">Цены готовим</p>
       </div>
       <div class="mask rv rv-1">
         <img class="sec-img" src="assets/photo/web/s01-800.jpg"
           srcset="assets/photo/web/s01-800.jpg 800w, assets/photo/web/s01-1600.jpg 1600w"
           sizes="(max-width:1080px) 92vw, 46vw" width="1200" height="1600" loading="lazy" decoding="async"
-          alt="Торт на годовщину свадьбы от кондитерской «Торт по любви»">
+          alt="Торт на годовщину: лягушки-молодожёны и надпись «Семья Эчмаков»">
       </div>
     </div>
   </div>
