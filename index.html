@@ -594,11 +594,19 @@ select.inp{
 
 /* Знакомство с кондитером: заголовок слева, рассказ справа.
    Три абзаца по центру читались бы тяжело. */
-.about-in{display:grid;grid-template-columns:.85fr 1.15fr;
-  gap:clamp(28px,5vw,80px);align-items:start}
+.about-in{display:grid;grid-template-columns:.88fr 1.12fr;
+  gap:clamp(28px,5vw,72px);align-items:center}
+/* Портрет вертикальный, 9:16. Рядом с текстом во всю высоту он бы
+   перевесил колонку, поэтому кадрируем до 4:5 с фокусом выше
+   середины — там лицо и верх торта. */
+.about-img{display:block;width:100%;height:auto;aspect-ratio:4/5;
+  object-fit:cover;object-position:center 20%}
 .about-txt{max-width:52ch}
-.about-txt p{font-size:clamp(15.5px,1.4vw,17px);line-height:1.78;color:var(--body)}
-.about-txt p+p{margin-top:16px}
+.about-txt .d2{margin-top:20px}
+/* Надзаголовок — тоже абзац, поэтому размер задаём всем, кроме него. */
+.about-txt p:not(.eyebrow){font-size:clamp(15.5px,1.4vw,17px);line-height:1.78;color:var(--body)}
+.about-txt .d2+p{margin-top:26px}
+.about-txt p:not(.eyebrow)+p{margin-top:16px}
 /* Последняя фраза — почти подпись под письмом, поэтому засечными. */
 .about-sign{font-family:var(--ff-d);font-style:italic;font-weight:400;
   font-size:clamp(18px,2vw,23px)!important;line-height:1.45;color:var(--graphite)}
@@ -1135,11 +1143,11 @@ select.inp{
 
   <div class="hero-art">
     <div class="mask rv">
-      <img class="hero-img" src="assets/photo/web/s02-800.jpg"
-        srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
+      <img class="hero-img" src="assets/photo/web/p04-800.jpg"
+        srcset="assets/photo/web/p04-800.jpg 800w, assets/photo/web/p04-1600.jpg 1600w"
         sizes="(max-width:1080px) 92vw, 44vw" width="900" height="1600"
         fetchpriority="high" decoding="async"
-        alt="Асия Зубаирова, кондитер «Торт по любви», собирает свадебный торт">
+        alt="Двухъярусный свадебный торт с лепестковой юбкой из крема">
     </div>
   </div>
 
@@ -1156,11 +1164,16 @@ select.inp{
 <section class="sec" id="about">
   <div class="wrap">
     <div class="about-in">
-      <div class="rv">
-        <p class="eyebrow">Знакомство с кондитером</p>
-        <h2 class="d2" style="margin-top:20px">Ваша свадьба<br>в <em>надёжных руках</em></h2>
+      <div class="mask rv">
+        <img class="about-img" src="assets/photo/web/s02-800.jpg"
+          srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
+          sizes="(max-width:1080px) 92vw, 42vw" width="900" height="1600"
+          loading="lazy" decoding="async"
+          alt="Асия Зубаирова, кондитер «Торт по любви», собирает свадебный торт">
       </div>
       <div class="about-txt rv rv-1">
+        <p class="eyebrow">Знакомство с кондитером</p>
+        <h2 class="d2">Ваша свадьба<br>в <em>надёжных руках</em></h2>
         <p>Меня зовут Асия. Я занимаюсь созданием тортов с 2013 года, но свадебные торты&nbsp;— моя острая страсть.</p>
         <p>Люблю свадебные проекты за их масштаб, особую эстетику, ответственность и обожаю видеть ваши трепетные эмоции.</p>
         <p class="about-sign">Я беру ответственность за кульминацию вашего праздника, а вам оставляю предвкушение...</p>
