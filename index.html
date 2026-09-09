@@ -573,14 +573,23 @@ select.inp{
 
 /* Незаполненная галочка согласия: сам вход скрыт, поэтому
    краснеет рамка рядом с текстом. */
+/* Галочка лежит внутри .field, а там подписи полей — капитель
+   в 11px. Для согласия и вопроса про референс это неверно: их читают,
+   а не проглядывают. Селектор длиннее, чтобы перебить .field>label. */
+.field>label.check{font-size:13px;letter-spacing:0;text-transform:none;
+  color:var(--body);line-height:1.55}
 .check.is-bad i{border-color:#B4382A}
 .check.is-bad span{color:#B4382A}
-/* Ссылка на политику стоит внутри предложения, поэтому её нельзя
-   растянуть до 44px по высоте — строка разъедется. Отрицательный
-   отступ наращивает область нажатия, не двигая текст. */
-.check a{color:var(--graphite);text-decoration:underline;text-underline-offset:3px;
-  padding:7px 3px;margin:-7px -3px}
-.check a:hover{color:var(--rose-ink)}
+/* Отдельная строка со ссылкой на документ. Своя зона нажатия
+   в 44px, и она не перекрывает подпись галочки над собой. */
+.check-doc{display:inline-flex;align-items:center;gap:9px;min-height:44px;
+  margin-top:2px;font-size:12.5px;color:var(--muted);text-decoration:underline;
+  text-underline-offset:3px;transition:color .3s var(--ease)}
+.check-doc:hover{color:var(--graphite)}
+.check-doc svg{width:15px;height:15px;flex-shrink:0;stroke:var(--icon-ink);fill:none;
+  stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.check-doc:hover svg{stroke:var(--graphite)}
+.check-doc:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}
 
 /* ═══════════════════════════════════════════
    АДАПТИВ
@@ -898,6 +907,13 @@ select.inp{
 .stub-soon::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--rose-soft);flex-shrink:0}
 
+/* Пометка «скоро» внутри шага: то же, но в строку с переносом —
+   фраза длиннее, чем помещается без него. */
+.step-soon{display:flex;gap:9px;margin-top:12px;max-width:46ch;
+  font-size:12.5px;line-height:1.55;color:var(--muted)}
+.step-soon::before{content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--rose-soft);flex-shrink:0;margin-top:6px}
+
 /* ═════════ ГАЛЕРЕЯ СНИМКОВ СО СВАДЕБ ═════════
    Колоночная кладка: кадры разной высоты укладываются без дыр
    и ничего не обрезается — снимок виден целиком. Ширина и высота
@@ -1188,7 +1204,7 @@ select.inp{
     <div class="sec-head">
       <div class="sec-head-l rv">
         <p class="eyebrow">Как проходит заказ</p>
-        <h2 class="d2">Всё начинается<br>с <em>разговора</em></h2>
+        <h2 class="d2">Всё начинается<br>с <em>эскиза</em></h2>
       </div>
       <p class="sec-head-r note rv rv-1">Четыре шага от первого сообщения до торта на площадке. Обычно занимает от двух недель — но мы беремся и за срочные даты.</p>
     </div>
@@ -1248,9 +1264,10 @@ select.inp{
         <li class="step rv" data-step="2">
           <span class="step-n">02</span>
           <div class="step-b">
-            <h3 class="d3">Согласуем внешний вид</h3>
-            <p>Разбираем форму, цвет и декор по вашим фотографиям-референсам и нашим прошлым работам, считаем размер под число гостей. Отрисовка индивидуального эскиза скоро станет доступна.</p>
-            <span class="step-tag">В переписке</span>
+            <h3 class="d3">Согласуем эскиз</h3>
+            <p>Разбираем форму, цвет и декор по вашим фотографиям-референсам и прошлым работам, считаем размер под число гостей. Эскиз входит в стоимость торта — отдельно за него платить не нужно.</p>
+            <span class="step-tag">Входит в стоимость заказа</span>
+            <p class="step-soon">Эскиз отдельным документом скоро будет доступен. Также, как и эскиз, скоро будет доступен договор на оказание услуг</p>
           </div>
         </li>
         <li class="step rv" data-step="3">
@@ -1624,7 +1641,7 @@ select.inp{
     </div>
 
     <div class="prices-foot rv">
-      <p class="note" style="max-width:46ch">Нужен вес, которого нет в таблице, или сложный декор? Опишите задумку в заявке — посчитаем по вашему описанию.</p>
+      <p class="note" style="max-width:46ch">Нужен вес, которого нет в таблице, или сложный декор? Опишите задумку в заявке — посчитаем по эскизу.</p>
       <button class="btn btn--ghost" data-tab="order"><span>Обсудить свой торт
         <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span></button>
@@ -1777,9 +1794,14 @@ select.inp{
           <div class="field f-wide">
             <label class="check">
               <input type="checkbox" id="o-consent" name="consent" value="да" required><i></i>
-              <span>Согласен на обработку персональных данных и принимаю условия
-                <a href="privacy/" target="_blank" rel="noopener">политики</a>.</span>
+              <span>Согласен на обработку персональных данных</span>
             </label>
+            <!-- Ссылка вынесена из подписи: внутри предложения её область
+                 нажатия перекрывала галочку, и палец попадал в неё. -->
+            <a class="check-doc" href="privacy/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+              Политика обработки персональных данных
+            </a>
           </div>
           <div class="form-foot">
             <p class="note" style="max-width:44ch">Текст заявки скопируется, и мы отправим вас в наше сообщество ВКонтакте — останется вставить и отправить. Эскиз и расчёт бесплатны.</p>
@@ -1846,9 +1868,14 @@ select.inp{
           <div class="field f-wide">
             <label class="check">
               <input type="checkbox" id="t-consent" name="consent" value="да" required><i></i>
-              <span>Согласен на обработку персональных данных и принимаю условия
-                <a href="privacy/" target="_blank" rel="noopener">политики</a>.</span>
+              <span>Согласен на обработку персональных данных</span>
             </label>
+            <!-- Ссылка вынесена из подписи: внутри предложения её область
+                 нажатия перекрывала галочку, и палец попадал в неё. -->
+            <a class="check-doc" href="privacy/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+              Политика обработки персональных данных
+            </a>
           </div>
           <div class="form-foot">
             <p class="note" style="max-width:40ch">Текст скопируется — отправьте его нам в сообщество ВКонтакте, подтвердим доставку в ответ.</p>

@@ -95,23 +95,35 @@
         <div class="field f-wide">
           <label class="check">
             <input type="checkbox" id="c-consent" name="consent" value="да" required><i></i>
-            <span>Согласен на обработку персональных данных и принимаю условия
-              <a href="../privacy/" target="_blank" rel="noopener">политики</a>.</span>
+            <span>Согласен на обработку персональных данных</span>
           </label>
+          <!-- Ссылка вынесена из подписи: внутри предложения её область
+               нажатия перекрывала галочку, и палец попадал в неё. -->
+          <a class="check-doc" href="../privacy/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+            Политика обработки персональных данных
+          </a>
         </div>
         <div style="margin-top:30px;padding-top:26px;border-top:1px solid var(--line);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
           <p class="note" style="max-width:42ch">Состав заказа уйдёт нам в сообщество ВКонтакте — обсудим детали, подтвердим дату и договоримся об оплате. Предоплата 50%, переводом на карту или наличными при встрече.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <!-- Оплата на сайте не принимается: расчёт переводом или наличными.
-                 Кнопка оставлена скрытой — когда подключат ЮKassa, снять hidden
-                 здесь и вернуть обработчик отправки формы ниже. -->
-            <button class="btn btn--solid" type="button" id="send-vk"><span>Отправить заявку
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span></button>
-            <button class="btn btn--solid" type="submit" id="pay" hidden><span>Оплатить
+            <!-- Оплаты на сайте нет: расчёт переводом на карту или наличными.
+                 Заявка уходит тем же путём, что и формы на главной — в воркер,
+                 а оттуда в Telegram. Приём оплаты через ЮKassa остаётся
+                 в воркере (маршрут /create-payment) и включается отдельно. -->
+            <button class="btn btn--solid" type="submit" id="send"><span>Отправить заявку
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span></button>
           </div>
+        </div>
+
+        <div class="done" id="done" role="status" hidden>
+          <div class="done-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg></div>
+          <h2 class="d3">Заявка отправлена</h2>
+          <p class="note" style="margin-top:10px">Состав заказа у нас. Свяжемся выбранным способом,
+          подтвердим дату и договоримся об оплате — предоплата 50%, переводом на карту
+          или наличными при встрече.</p>
+          <a class="btn btn--ghost" href="../" style="margin-top:24px"><span>На главную</span></a>
         </div>
 
         <div class="fail" id="fail">
@@ -161,99 +173,93 @@
   });
   $('#total').textContent = Cart.money(Cart.subtotal());
 
-  var form = $('#form'), fail = $('#fail'), btn = $('#pay');
+  var form = $('#form'), fail = $('#fail'), btn = $('#send');
   var label = btn.querySelector('span');
   var original = label.innerHTML;
 
-  /* Отправка заявки в ВКонтакте: тот же состав заказа, но без оплаты */
-  $('#send-vk').addEventListener('click', function () {
+  function restore() {
+    btn.disabled = false;
+    btn.style.opacity = '';
+    label.innerHTML = original;
+  }
+
+  /* Проверка полей. У флажка value всегда "on", отмечен он или нет,
+     поэтому его смотрим по checked, а подсвечиваем рамку рядом
+     с подписью: сам вход скрыт и покраснеть не может. */
+  function invalid() {
     var bad = $$('[required]', form).filter(function (f) {
-      // у флажка value всегда "on" — смотрим на checked
       return f.type === 'checkbox' ? !f.checked : !f.value.trim();
     });
-    if (bad.length) {
-      bad.forEach(function (f) {
-        var box = f.closest('.check') || f;
-        box.classList.add('is-bad');
-        f.addEventListener('change', function () { box.classList.remove('is-bad'); }, { once: true });
-        f.addEventListener('input', function () { box.classList.remove('is-bad'); }, { once: true });
-      });
-      bad[0].focus();
-      return;
-    }
+    if (!bad.length) return false;
+    bad.forEach(function (f) {
+      var box = f.closest('.check') || f;
+      box.classList.add('is-bad');
+      f.addEventListener('change', function () { box.classList.remove('is-bad'); }, { once: true });
+      f.addEventListener('input', function () { box.classList.remove('is-bad'); }, { once: true });
+    });
+    var first = bad[0];
+    (first.closest('.check') || first).scrollIntoView({ block: 'center' });
+    first.focus({ preventScroll: true });
+    return true;
+  }
+
+  /* Состав заказа строками — для запасной отправки в ВКонтакте */
+  function cartRows() {
     var rows = lines.map(function (l) {
       return ['Позиция', l.name + ' × ' + l.qty + ' — ' + Cart.money(l.price * l.qty)];
     });
     rows.push(['Итого', Cart.money(Cart.subtotal())]);
-    VKSend.open(VKSend.buildText(form, 'checkout', rows));
-  });
+    return rows;
+  }
+
+  /* Тот же состав простым текстом. Воркер собирает сообщение по своему
+     списку полей и корзину сам не знает, поэтому кладём её в комментарий —
+     так состав доезжает до Telegram без правок на сервере. */
+  function cartText() {
+    var out = lines.map(function (l) {
+      return '• ' + l.name + ' × ' + l.qty + ' — ' + Cart.money(l.price * l.qty);
+    });
+    out.push('Итого: ' + Cart.money(Cart.subtotal()));
+    return 'Состав заказа:\n' + out.join('\n');
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-
-    /* Оплата выключена: нажатие Enter в поле не должно обходить
-       спрятанную кнопку и уводить на платёжную страницу. */
-    if (btn.hidden) { $('#send-vk').click(); return; }
-
-    var bad = $$('[required]', form).filter(function (f) {
-      // у флажка value всегда "on" — смотрим на checked
-      return f.type === 'checkbox' ? !f.checked : !f.value.trim();
-    });
-    if (bad.length) {
-      bad.forEach(function (f) {
-        var box = f.closest('.check') || f;
-        box.classList.add('is-bad');
-        f.addEventListener('change', function () { box.classList.remove('is-bad'); }, { once: true });
-        f.addEventListener('input', function () { box.classList.remove('is-bad'); }, { once: true });
-      });
-      bad[0].focus();
-      return;
-    }
+    if (invalid()) return;
 
     fail.classList.remove('is-on');
+    var base = (window.API_BASE || '').replace(/\/+$/, '');
+
+    // Сервера нет — сразу запасной путь через сообщество
+    if (!base) { VKSend.open(VKSend.buildText(form, 'checkout', cartRows())); return; }
+
     btn.disabled = true;
-    label.textContent = 'Готовим оплату…';
+    btn.style.opacity = '.55';
+    label.textContent = 'Отправляем…';
 
-    var customer = {};
-    new FormData(form).forEach(function (v, k) { customer[k] = v; });
+    var fd = new FormData(form);
+    fd.set('form_type', 'checkout');
+    var more = String(fd.get('more') || '').trim();
+    fd.set('more', more ? more + '\n\n' + cartText() : cartText());
 
-    /* На сервер уходят ТОЛЬКО id и количество.
-       Ни цен, ни итоговой суммы — их сервер считает сам. */
-    var body = {
-      items: Cart.payload(),
-      customer: customer,
-      return_url: window.SITE_BASE + 'success/'
-    };
-
-    if (!window.API_BASE) {
-      // Демо без сервера: показываем платёжный экран локально.
-      var demoOrder = 'DEMO-' + Date.now().toString(36).toUpperCase();
-      var qs = '?order=' + encodeURIComponent(demoOrder) +
-               '&amount=' + encodeURIComponent(Cart.subtotal()) +
-               '&demo=local';
-      location.href = '../demo-checkout/' + qs;
-      return;
-    }
-
-    fetch(window.API_BASE + '/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
-      .then(function (res) {
-        if (!res.ok || !res.d.ok || !res.d.confirmation_url) {
-          throw new Error(res.d && res.d.error ? res.d.error : 'отказ сервера');
-        }
-        // Сервер пересчитал сумму — показываем именно её, затем уходим на оплату
-        $('#total').textContent = Cart.money(res.d.amount);
-        location.href = res.d.confirmation_url;
+    fetch(base + '/submit', { method: 'POST', body: fd })
+      .then(function (r) {
+        return r.json().catch(function () { return { ok: r.ok }; })
+          .then(function (d) {
+            if (!r.ok || d.ok === false) throw new Error(d.error || ('HTTP ' + r.status));
+            return d;
+          });
+      })
+      .then(function () {
+        $('#order').hidden = true;
+        document.getElementById('done').hidden = false;
+        document.getElementById('done').scrollIntoView({ block: 'center' });
+        Cart.clear();   // заказ передан, повторный заход начинается с чистой корзины
       })
       .catch(function () {
-        fail.classList.add('is-on');
-        btn.disabled = false;
-        label.innerHTML = original;
-        fail.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        // Сервер не принял — заявку не теряем, уводим в сообщество
+        restore();
+        VKSend.open(VKSend.buildText(form, 'checkout', cartRows()));
       });
   });
 })();
