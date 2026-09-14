@@ -4,6 +4,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# ключи обработчика заявок на хостинге — только на сервере
+backend/config.php
+tort-config.php
+
 # служебное от wrangler
 api/.wrangler/
 api/wrangler.dev.toml

@@ -25,13 +25,13 @@ const LABELS = {
   date: 'Дата свадьбы', place: 'Место проведения', guests: 'Количество гостей',
   filling: 'Начинка', service: 'Презентация и нарезка', channel: 'Способ связи',
   name: 'Имя', phone: 'Телефон', email: 'Почта', time: 'Удобное время',
-  more: 'Дополнительно', people: 'Количество человек',
+  more: 'Дополнительно', pickup: 'Как получить сет', address: 'Куда привезти',
 };
 
 /* У дегустации поле date значит не дату свадьбы, а желаемый день визита.
    Подписи должны совпадать с теми, что показывает сайт. */
 const LABEL_OVERRIDE = {
-  tasting: { date: 'Желаемая дата' },
+  tasting: { date: 'Когда удобно получить' },
 };
 
 const labelFor = (kind, key) =>
@@ -39,14 +39,14 @@ const labelFor = (kind, key) =>
 
 const ORDER = {
   order:    ['date', 'place', 'guests', 'filling', 'service', 'name', 'phone', 'channel', 'time', 'more'],
-  tasting:  ['date', 'people', 'name', 'phone', 'channel'],
+  tasting:  ['date', 'pickup', 'address', 'name', 'phone', 'channel'],
   checkout: ['name', 'phone', 'email', 'channel', 'date', 'more'],
 };
 
 const TITLES = {
   order:    '🎂 Заявка на торт',
   tasting:  '🍰 Запись на дегустацию',
-  checkout: '🧾 Заказ с оплатой',
+  checkout: '🧾 Заказ из корзины',
   vk:       '💬 Сообщение из ВКонтакте',
 };
 
@@ -129,6 +129,7 @@ async function handleSubmit(request, env, headers) {
   if (kind === 'order' && form.get('decor_later')) {
     rows.push(['Декор', 'референса нет — обсудить индивидуально']);
   }
+  if (form.get('consent')) rows.push(['Согласие на обработку данных', 'дано']);
 
   /* Файл из формы — поток, и отдаётся он ровно один раз. Дальше его
      ждут двое: хранилище и отправка в Telegram, а получателей может

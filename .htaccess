@@ -1,0 +1,21 @@
+# Настройки для хостинга asiyatort.ru (Apache). На GitHub Pages не действуют.
+
+Options -Indexes
+DirectoryIndex index.html
+
+# Тексты в скриптах и стилях — по-русски
+AddDefaultCharset utf-8
+AddCharset utf-8 .js .css .json .xml .txt
+
+# Служебные файлы с точкой в начале имени снаружи не открываются —
+# например, журнал выкладки .ftp-deploy-sync-state.json.
+# Файлы проверки SSL в .well-known так не называются и остаются доступны.
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

@@ -2499,7 +2499,7 @@ function wireForm(formId, kind, sentId, failId){
     if(btnLabel) btnLabel.textContent = 'Отправляем…';
 
     try{
-      const res = await fetch(base + '/submit', {method:'POST', body:new FormData(form)});
+      const res = await fetch(window.apiUrl ? apiUrl('submit') : base + '/submit', {method:'POST', body:new FormData(form)});
       const data = await res.json().catch(()=>({ok:res.ok}));
       if(!res.ok || data.ok === false) throw new Error(data.error || ('HTTP ' + res.status));
 

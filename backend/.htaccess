@@ -1,0 +1,14 @@
+# Список файлов папки не показываем
+Options -Indexes
+
+# Снаружи доступны только submit.php и requests.php.
+# Библиотека, образец настроек и запасной файл с ключами закрыты.
+<FilesMatch "^(lib|config|config\.example)\.php$|^\.user\.ini$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

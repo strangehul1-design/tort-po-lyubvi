@@ -1,0 +1,49 @@
+# Выкладка сайта на хостинг asiyatort.ru после каждого пуша в main.
+#
+# Доступ к хостингу хранится в секретах репозитория — в коде его нет:
+#   Settings → Secrets and variables → Actions → New repository secret
+#     FTP_SERVER    адрес FTP-сервера из панели хостинга
+#     FTP_USERNAME  логин FTP
+#     FTP_PASSWORD  пароль FTP
+#     FTP_DIR       папка сайта на сервере, с косой чертой в конце
+#
+# Пока секреты не добавлены, выкладка выключена. Включается переменной:
+#   Settings → Secrets and variables → Actions → Variables
+#     DEPLOY_ENABLED = true
+
+name: Выкладка на хостинг
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Выкладка по FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIR }}
+          # На хостинг не едут: исходники прежнего сервера на Cloudflare,
+          # служебные скрипты, демо-оплата и страницы её результата,
+          # описания для разработчика.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .github/**
+            api/**
+            tools/**
+            demo-checkout/**
+            success/**
+            fail/**
+            **/README*.md
+            backend/config.example.php

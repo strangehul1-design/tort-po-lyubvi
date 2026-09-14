@@ -242,7 +242,7 @@
     var more = String(fd.get('more') || '').trim();
     fd.set('more', more ? more + '\n\n' + cartText() : cartText());
 
-    fetch(base + '/submit', { method: 'POST', body: fd })
+    fetch(window.apiUrl ? apiUrl('submit') : base + '/submit', { method: 'POST', body: fd })
       .then(function (r) {
         return r.json().catch(function () { return { ok: r.ok }; })
           .then(function (d) {

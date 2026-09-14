@@ -15,7 +15,7 @@
 (function () {
   'use strict';
 
-  var base = (window.API_BASE || '').replace(/\/+$/, '');
+  var base = (window.CMS_BASE || window.API_BASE || '').replace(/\/+$/, '');
   if (!base) return;                       // сервер не подключён — оставляем как есть
 
   /** 12000 → «12 000 ₽» */
