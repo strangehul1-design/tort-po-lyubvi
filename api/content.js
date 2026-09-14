@@ -51,6 +51,7 @@ export const PRODUCTS = [
   ['tasting',         'Дегустационный сет'],
   ['delivery-city',   'Доставка по Самаре'],
   ['delivery-region', 'Доставка по области'],
+  ['cutting',         'Презентация и нарезка торта'],
 ];
 
 for (const [id, title] of PRODUCTS) {

@@ -81,6 +81,8 @@
         { "@type": "Offer", "name": "Доставка по Самаре", "price": "1000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Доставка по области", "price": "2500", "priceCurrency": "RUB",
+           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Презентация и нарезка торта", "price": "3000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" }
       ]
     },
@@ -312,7 +314,7 @@ a{color:inherit}
 /* Свечения за героем больше нет: фон кипенно-белый, без подцветки.
    Глубину даёт сам блок с фотографией, а не пятно на фоне. */
 .hero-in{position:relative;z-index:1}
-.hero-h{margin:24px 0 26px;max-width:14ch}
+.hero-h{margin:24px 0 26px;max-width:18ch}
 .hero-p{color:var(--body);max-width:46ch;margin-bottom:40px;font-size:clamp(16px,1.25vw,18px)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
 .hero-art{position:relative;z-index:1}
@@ -1071,6 +1073,31 @@ select.inp{
    в половину экрана становится нечитаемой, там снова одна. */
 @media(max-width:860px){ .gal{columns:2} }
 @media(max-width:560px){ .gal{columns:1} }
+/* Телефон: первый экран и «Знакомство с кондитером» стоят вплотную.
+   Нижний отступ героя и верхний отступ блока складывались, и между
+   фото торта и портретом получалось ~225px пустоты. Подсказка
+   «Листайте» на телефоне лишняя — фото и так уходит за край экрана.
+   Селекторы по id, чтобы перебить общие правила отступов секций. */
+@media(max-width:860px){
+  #top{padding-bottom:20px}
+  #top .hero-scroll{display:none}
+  #about{padding-top:clamp(36px,10vw,56px)}
+}
+#service-grid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1200px){ #service-grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:640px){ #service-grid{grid-template-columns:1fr} }
+/* Срез начинки над названием — до краёв карточки. */
+.fill-ph{margin:calc(-1 * clamp(22px,2.4vw,32px)) calc(-1 * clamp(22px,2.4vw,32px)) 18px;
+  aspect-ratio:4/3;overflow:hidden;background:var(--surface)}
+.fill-ph img{display:block;width:100%;height:100%;object-fit:cover}
+/* Набор для дегустации над формой записи */
+.tasting-ph{margin-bottom:28px;aspect-ratio:16/10;overflow:hidden;background:var(--surface)}
+.tasting-ph img{display:block;width:100%;height:100%;object-fit:cover}
+/* Упаковка и получение: снимки вместо трёх рамок */
+.deliv-ph.deliv-ph--real{grid-template-columns:1fr 1fr}
+.deliv-ph--real img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+/* У рамок-заглушек первая растягивалась на две колонки; снимки идут поровну. */
+.deliv-ph.deliv-ph--real>*{grid-column:auto;grid-row:auto}
 </style>
 </head>
 <body>
@@ -1121,8 +1148,8 @@ select.inp{
   <div class="hero-in">
     <div class="hero-load">
       <p class="eyebrow">Кондитерская с 2013 года</p>
-      <h1 class="d1 hero-h">Торт, который <em>помнят</em></h1>
-      <p class="hero-p" data-cms="text.hero_lead">Свадебные торты по индивидуальному заказу. Собираем на площадке за час до выноса — чтобы крем был свежим, а цветы живыми именно в ту минуту, когда его увидят гости.</p>
+      <h1 class="d1 hero-h">Торт, который стоит <em>увидеть</em> прежде, чем съесть</h1>
+      <p class="hero-p" data-cms="text.hero_lead">Свадебные торты по индивидуальному заказу.<br>Пишем историю вашей любви на языке вкуса и эстетики.<br>Доставляем на площадку лично и бережно за 30-60 мин. до подачи.</p>
       <div class="hero-btns">
         <button class="btn btn--solid" data-tab="order"><span>Заказать торт
           <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1165,7 +1192,7 @@ select.inp{
       <div class="about-txt rv rv-1">
         <p class="eyebrow">Знакомство с кондитером</p>
         <h2 class="d2">Ваша свадьба<br>в <em>надёжных руках</em></h2>
-        <p>Меня зовут Асия. Я занимаюсь созданием тортов с 2013 года, но свадебные торты&nbsp;— моя острая страсть.</p>
+        <p>Меня зовут Асия. Я занимаюсь созданием тортов с 2013 года, но свадебные торты&nbsp;— моя особая страсть.</p>
         <p>Люблю свадебные проекты за их масштаб, особую эстетику, ответственность и обожаю видеть ваши трепетные эмоции.</p>
         <p class="about-sign">Я беру ответственность за кульминацию вашего праздника, а вам оставляю предвкушение...</p>
       </div>
@@ -1177,9 +1204,9 @@ select.inp{
 <section class="sec sec--surface" id="credo">
   <div class="wrap">
     <div class="credo-in rv">
-      <p class="credo-lead reveal-line">Торт не кормит гостей.<br>Он объединяет их.</p>
-      <p class="credo-body">Он собирает вокруг себя всех: и твою бабушку, и его лучшего друга. Все смотрят на одно&nbsp;— на вас. И на него. Гости запомнят платье, танец и... ваш торт.</p>
-      <p class="credo-mark">Мы берём ответственность за финал вашего торжества&nbsp;— свадебный ТОРТ! Делаем так, чтобы он стал самым вкусным впечатлением вечера.</p>
+      <p class="credo-lead reveal-line">Гости запомнят платье, танец и... ваш торт.</p>
+      <p class="credo-body">Мы берём ответственность за финал вашего торжества&nbsp;— свадебный ТОРТ!</p>
+      <p class="credo-mark">Делаем так, чтобы он стал самым вкусным впечатлением вечера.</p>
       <div class="credo-rule" aria-hidden="true"></div>
     </div>
   </div>
@@ -1193,7 +1220,7 @@ select.inp{
         <p class="eyebrow">Наши работы</p>
         <h2 class="d2">Каждый торт собран<br>для одной пары</h2>
       </div>
-      <p class="sec-head-r note rv rv-1" data-cms="text.works_note">Каждый торт делается под свою пару. Нажмите на снимок, чтобы рассмотреть его крупнее.</p>
+      <p class="sec-head-r note rv rv-1" data-cms="text.works_note">Каждый торт делается индивидуально для каждой пары.</p>
     </div>
 
     <!-- Плитки собираются из assets/gallery.js: сначала торты
@@ -1218,7 +1245,7 @@ select.inp{
         <p class="eyebrow">Как проходит заказ</p>
         <h2 class="d2">Всё начинается<br>с <em>эскиза</em></h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Четыре шага от первого сообщения до торта на площадке. Обычно занимает от двух недель — но мы беремся и за срочные даты.</p>
+      <p class="sec-head-r note rv rv-1">Четыре шага от первого сообщения до торта на площадке. Обычно занимает от двух недель — но мы беремся и за срочные заказы.</p>
     </div>
 
     <div class="proc">
@@ -1293,8 +1320,8 @@ select.inp{
         <li class="step rv" data-step="4">
           <span class="step-n">04</span>
           <div class="step-b">
-            <h3 class="d3">Привозим и собираем</h3>
-            <p>Ярусы едут раздельно в холодильном боксе, сборка и живые цветы — уже на площадке. Согласуем с координатором время выноса и, если нужно, остаёмся на нарезку.</p>
+            <h3 class="d3">Привозим, собираем, нарезаем</h3>
+            <p>Согласуем с координатором время подачи торта<br>Лично привозим торт на площадку в специальном боксе по всем правилам бережной перевозки<br>Если нужно, остаёмся, презентуем и нарезаем ваш торт</p>
             <span class="step-tag">В день свадьбы</span>
           </div>
         </li>
@@ -1359,7 +1386,7 @@ select.inp{
         <p class="eyebrow">Цены</p>
         <h2 class="d2">Что можно<br>заказать <em>сразу</em></h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Цена зависит от веса торта и числа гостей. Сложный декор обсуждаем отдельно: он в эти цены не входит.</p>
+      <p class="sec-head-r note rv rv-1">Цена зависит от веса торта и числа гостей и указана с учётом декора.</p>
     </div>
 
     <!-- Блок Б — текст клиентки, дословно. Стоит до цифр: сначала
@@ -1374,7 +1401,7 @@ select.inp{
       </ul>
     </div>
 
-    <p class="prices-sub rv">Торты по весу — с фотографиями работ</p>
+    <p class="prices-sub rv">Торты по весу — цены с учётом декора</p>
 
     <div class="prices prices--cakes" id="price-grid">
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
@@ -1604,7 +1631,7 @@ select.inp{
       </article>
     </div>
 
-    <p class="prices-sub rv">Дегустация и доставка</p>
+    <p class="prices-sub rv">Дегустация, доставка и нарезка</p>
     <div class="prices" id="service-grid">
       <article class="price rv" itemscope itemtype="https://schema.org/Product">
         <h3 class="price-name" itemprop="name" data-cms="price.tasting.name">Дегустационный сет</h3>
@@ -1650,6 +1677,20 @@ select.inp{
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
         </span></button>
       </article>
+        <article class="price rv" itemscope itemtype="https://schema.org/Product">
+          <h3 class="price-name" itemprop="name" data-cms="price.cutting.name">Презентация и нарезка торта</h3>
+          <p class="price-desc" itemprop="description" data-cms="price.cutting.desc">Если нужно, остаёмся, презентуем и нарезаем ваш торт.</p>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <span class="price-num" data-cms="price.cutting.value">3&nbsp;000&nbsp;₽</span>
+            <span class="price-unit">за торт</span>
+            <meta itemprop="price" content="3000">
+            <meta itemprop="priceCurrency" content="RUB">
+            <link itemprop="availability" href="https://schema.org/InStock">
+          </div>
+          <button class="btn btn--ghost" type="button" data-add="cutting"><span>В корзину
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+          </span></button>
+        </article>
     </div>
 
     <div class="prices-foot rv">
@@ -2640,6 +2681,46 @@ if(worksBox && WORKS.length){
     if(t && t.dataset.i !== undefined) lbOpen(WORKS, Number(t.dataset.i));
   });
 }
+
+/* Срезы начинок: N-е фото — к N-й карточке, порядок как в assets/catalog.js. */
+(window.FILLING_PHOTOS || []).forEach(function(p, i){
+  var card = $$('#fill-grid .fill')[i];
+  if(!card || !p) return;
+  var name = card.querySelector('.fill-n');
+  var box = document.createElement('div');
+  box.className = 'fill-ph';
+  box.innerHTML = '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+    ' sizes="(max-width:560px) 92vw, (max-width:860px) 46vw, 30vw"' +
+    ' width="' + (p.w || 4) + '" height="' + (p.h || 3) + '" loading="lazy" decoding="async"' +
+    ' alt="Срез начинки ' + (name ? '«' + name.textContent.trim() + '»' : '') + '">';
+  card.insertBefore(box, card.firstChild);
+});
+
+/* Набор для дегустации — над формой записи. */
+(function(){
+  var t = (window.TASTING_PHOTOS || [])[0];
+  var card = $('#pane-tasting .card');
+  if(!t || !card) return;
+  var box = document.createElement('div');
+  box.className = 'tasting-ph';
+  box.innerHTML = '<img src="' + t.small + '" srcset="' + t.small + ' 800w, ' + t.big + ' 1600w"' +
+    ' sizes="(max-width:800px) 92vw, 700px" width="' + (t.w || 16) + '" height="' + (t.h || 10) + '"' +
+    ' loading="lazy" decoding="async" alt="Дегустационный набор: начинки в отдельных порциях с подписями">';
+  card.insertBefore(box, card.firstChild);
+})();
+
+/* Упаковка и получение торта — настоящие снимки вместо рамок-заглушек. */
+(function(){
+  var list = window.DELIVERY_PHOTOS || [];
+  var box = $('.deliv-ph');
+  if(!box || !list.length) return;
+  box.classList.add('deliv-ph--real');
+  box.innerHTML = list.map(function(p, i){
+    return '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+      ' sizes="(max-width:1080px) 46vw, 24vw" width="' + (p.w || 3) + '" height="' + (p.h || 4) + '"' +
+      ' loading="lazy" decoding="async" alt="Упаковка и получение свадебного торта, фото ' + (i + 1) + '">';
+  }).join('');
+})();
 
 /* Торты в прайсе — второй набор для того же просмотрщика.
    Список собираем из разметки, а не из каталога: тогда стрелки листают

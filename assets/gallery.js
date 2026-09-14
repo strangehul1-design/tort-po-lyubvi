@@ -37,3 +37,15 @@ window.SECTION_PHOTOS = [
 /* Работы сверх прайса — идут в галерее следом за ним. */
 window.WORK_PHOTOS = [
 ];
+
+/* Срезы начинок: файл N.* — N-я начинка в assets/catalog.js. */
+window.FILLING_PHOTOS = [
+];
+
+/* Дегустационный набор — над формой записи. */
+window.TASTING_PHOTOS = [
+];
+
+/* Упаковка и получение торта — в разделе «Доставка». */
+window.DELIVERY_PHOTOS = [
+];

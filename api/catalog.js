@@ -26,6 +26,7 @@ export const CATALOG = {
   'tasting':         { name: 'Дегустационный сет',  price: 1000 },
   'delivery-city':   { name: 'Доставка по Самаре',  price: 1000 },
   'delivery-region': { name: 'Доставка по области', price: 2500 },
+  'cutting':         { name: 'Презентация и нарезка торта', price: 3000 },
 };
 
 export const MAX_QTY = 99;

@@ -118,6 +118,9 @@ $priceLines = @(Convert-Folder (Join-Path $base 'prices')  'p' 'Торты из 
 $galLines   = @(Convert-Folder (Join-Path $base 'gallery') 'g' 'Кадры со свадеб для галереи:')
 $secLines   = @(Convert-Folder (Join-Path $base 'sections') 's' 'Фото разделов, по алфавиту имён:')
 $wrkLines   = @(Convert-Folder (Join-Path $base 'works') 'w' 'Дополнительные работы:')
+$filLines   = @(Convert-Folder (Join-Path $base 'fillings') 'f' 'Срезы начинок (имя = номер начинки):')
+$tstLines   = @(Convert-Folder (Join-Path $base 'tasting') 't' 'Дегустационный набор:')
+$dlvLines   = @(Convert-Folder (Join-Path $base 'delivery') 'd' 'Упаковка и получение торта:')
 
 $body = @()
 $body += '/* ═══════════════════════════════════════════'
@@ -146,6 +149,21 @@ $body += ''
 $body += '/* Работы сверх прайса — идут в галерее следом за ним. */'
 $body += 'window.WORK_PHOTOS = ['
 $body += $wrkLines
+$body += '];'
+$body += ''
+$body += '/* Срезы начинок: файл N.* — N-я начинка в assets/catalog.js. */'
+$body += 'window.FILLING_PHOTOS = ['
+$body += $filLines
+$body += '];'
+$body += ''
+$body += '/* Дегустационный набор — над формой записи. */'
+$body += 'window.TASTING_PHOTOS = ['
+$body += $tstLines
+$body += '];'
+$body += ''
+$body += '/* Упаковка и получение торта — в разделе «Доставка». */'
+$body += 'window.DELIVERY_PHOTOS = ['
+$body += $dlvLines
 $body += '];'
 
 [System.IO.File]::WriteAllLines($out, $body, (New-Object System.Text.UTF8Encoding $false))
