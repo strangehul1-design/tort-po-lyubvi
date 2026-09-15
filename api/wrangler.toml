@@ -5,7 +5,7 @@ compatibility_date = "2026-08-01"
 [vars]
 # Домены, с которых принимаются заявки. Чужой сайт слать не сможет.
 # Добавьте сюда свой домен, когда он появится, через запятую.
-ALLOWED_ORIGINS = "https://strangehul1-design.github.io"
+ALLOWED_ORIGINS = "https://strangehul1-design.github.io,https://asiyatort.ru,https://www.asiyatort.ru"
 
 # ─────────────────────────────────────────────────────────────
 # Секретов здесь НЕТ и быть не должно — файл лежит в репозитории.

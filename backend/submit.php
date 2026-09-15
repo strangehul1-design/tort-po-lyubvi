@@ -123,4 +123,4 @@ if (function_exists('fastcgi_finish_request')) {
 
 // Если Telegram не ответил и сейчас, досылать старое бессмысленно — попробуем со следующей заявкой
 if ($saved && $result['delivered']) retry_pending($id);
-if (random_int(1, 20) === 1) store_cleanup();
+store_cleanup();   // старше 180 дней — удаляем, как обещано в политике
