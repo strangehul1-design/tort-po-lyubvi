@@ -32,6 +32,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_DIR }}
+          # Пароль идёт по зашифрованному каналу
+          protocol: ftps
           # На хостинг не едут: исходники прежнего сервера на Cloudflare,
           # служебные скрипты, демо-оплата и страницы её результата,
           # описания для разработчика.
