@@ -53,14 +53,24 @@ if (!empty($_POST['consent'])) {
 /* Референсы. Картинку узнаём по содержимому (getimagesize), а не по расширению.
    Снимки HEIC с iPhone PHP прочитать не умеет — их пропускаем по расширению. */
 $uploads = [];
-if (isset($_FILES['refs']) && is_array($_FILES['refs']['name'] ?? null)) {
-    $count = count($_FILES['refs']['name']);
+$tooBig = 0;
+$refs = $_FILES['refs'] ?? null;
+// Файл под именем refs без скобок PHP отдаёт строками, а не списком — приводим к списку
+if (is_array($refs) && !is_array($refs['name'] ?? null)) {
+    $refs = array_map(fn($v) => [$v], $refs);
+}
+if (is_array($refs) && is_array($refs['name'] ?? null)) {
+    $count = count($refs['name']);
     for ($i = 0; $i < $count && count($uploads) < MAX_FILES; $i++) {
-        $err = $_FILES['refs']['error'][$i] ?? UPLOAD_ERR_NO_FILE;
-        $size = (int) ($_FILES['refs']['size'][$i] ?? 0);
-        $tmp = (string) ($_FILES['refs']['tmp_name'][$i] ?? '');
-        if ($err !== UPLOAD_ERR_OK || $size <= 0 || $size > MAX_FILE_BYTES || !is_uploaded_file($tmp)) continue;
-        $name = basename((string) $_FILES['refs']['name'][$i]);
+        $err = $refs['error'][$i] ?? UPLOAD_ERR_NO_FILE;
+        $size = (int) ($refs['size'][$i] ?? 0);
+        $tmp = (string) ($refs['tmp_name'][$i] ?? '');
+        if ($err === UPLOAD_ERR_INI_SIZE || $err === UPLOAD_ERR_FORM_SIZE || $size > MAX_FILE_BYTES) {
+            $tooBig++;
+            continue;
+        }
+        if ($err !== UPLOAD_ERR_OK || $size <= 0 || !is_uploaded_file($tmp)) continue;
+        $name = basename((string) $refs['name'][$i]);
         $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
         $info = @getimagesize($tmp);
         if (!$info && !in_array($ext, ['heic', 'heif', 'avif', 'webp'], true)) continue;
@@ -73,6 +83,7 @@ if (isset($_FILES['refs']) && is_array($_FILES['refs']['name'] ?? null)) {
     }
 }
 if ($uploads) $rows[] = ['Референсы', count($uploads) . ' шт. — ниже'];
+if ($tooBig) $rows[] = ['Не загрузились фото', $tooBig . ' шт. — слишком большие, попросите прислать в переписке'];
 
 $letter = [
     'title' => TITLES[$kind],

@@ -2499,7 +2499,15 @@ function wireForm(formId, kind, sentId, failId){
     if(btnLabel) btnLabel.textContent = 'Отправляем…';
 
     try{
-      const res = await fetch(window.apiUrl ? apiUrl('submit') : base + '/submit', {method:'POST', body:new FormData(form)});
+      const fd = new FormData(form);
+      /* PHP на хостинге принимает несколько файлов только под именем refs[],
+         иначе доходит один последний. Прежний сервер ждёт refs — ему как было. */
+      if(window.API_OWN){
+        const pics = fd.getAll('refs').filter(f => f && f.size);
+        fd.delete('refs');
+        pics.forEach(f => fd.append('refs[]', f, f.name));
+      }
+      const res = await fetch(window.apiUrl ? apiUrl('submit') : base + '/submit', {method:'POST', body:fd});
       const data = await res.json().catch(()=>({ok:res.ok}));
       if(!res.ok || data.ok === false) throw new Error(data.error || ('HTTP ' + res.status));
 
