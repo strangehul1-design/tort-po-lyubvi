@@ -20,11 +20,26 @@
 
 ## Как обновляется сайт
 
-После каждого пуша в `main` GitHub сам выкладывает изменения на хостинг
-по FTP с шифрованием (`.github/workflows/deploy.yml`, «Выкладка на хостинг»).
-Загружаются только изменённые файлы.
+Сейчас — архивом, без GitHub:
 
-Один раз нужно настроить в GitHub → Settings → Secrets and variables → Actions:
+1. Собрать архив из текущего кода (в корне архива — `index.html`, без папки сверху):
+   ```bash
+   git archive --format=zip -o tort-site.zip HEAD -- . ':(exclude)api' ':(exclude)tools' ':(exclude)demo-checkout' ':(exclude)success' ':(exclude)fail' ':(exclude).github' ':(exclude)*.md' ':(exclude).gitignore' ':(exclude).nojekyll' ':(exclude).env.example' ':(exclude)backend/config.example.php'
+   ```
+2. Панель → Менеджер файлов → `www/asiyatort.ru` → «Загрузить» → файл с компьютера.
+3. «…» у архива → «Извлечь» → папка `asiyatort.ru` → «Распаковать».
+4. Удалить архив из папки сайта, иначе его можно скачать по ссылке.
+
+Файлы `www/tort-config.php` и `www/tort-requests/` лежат вне папки сайта,
+архив их не трогает.
+
+### Автоматическая выкладка (выключена)
+
+Можно включить: после каждого пуша в `main` GitHub сам выкладывает изменения
+на хостинг по FTP с шифрованием (`.github/workflows/deploy.yml`,
+«Выкладка на хостинг»). Загружаются только изменённые файлы.
+
+Для этого в GitHub → Settings → Secrets and variables → Actions:
 
 | Секрет | Значение |
 |---|---|
