@@ -1,0 +1,458 @@
+<!doctype html>
+<!--
+  Фотографии. Каждый слот ждёт файл по пути из data-photo — например
+  images/hero.jpg. Положите снимки в images/ и поставьте здесь
+  data-photos="on": слоты подхватят их сами. Пока фото нет, на их месте
+  стоит линейный рисунок, и страница выглядит целой.
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ярус — свадебные торты ручной работы</title>
+<meta name="description" content="Свадебные торты ручной работы: готовые композиции из каталога и торты по вашему эскизу. Дегустация, согласование эскиза, сборка на месте.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+
+<!-- ─── линейная графика: стоит вместо фото, пока его нет ─── -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="cake-2" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M62 120h76v42a6 6 0 0 1-6 6H68a6 6 0 0 1-6-6z"/>
+      <path d="M44 168h112v46a6 6 0 0 1-6 6H50a6 6 0 0 1-6-6z"/>
+      <path d="M62 132h76M44 180h112" opacity=".5"/>
+      <path d="M100 120v-16"/>
+      <circle cx="100" cy="98" r="7"/>
+      <path d="M86 92q-9-8-2-16t16 2M114 92q9-8 2-16t-16 2" opacity=".7"/>
+      <path d="M30 220h140" stroke-width="1.4"/>
+    </g>
+  </symbol>
+  <symbol id="cake-3" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M74 74h52v38H74z"/>
+      <path d="M58 112h84v42H58z"/>
+      <path d="M38 154h124v54a6 6 0 0 1-6 6H44a6 6 0 0 1-6-6z"/>
+      <path d="M74 84h52M58 122h84M38 164h124" opacity=".45"/>
+      <path d="M100 74V56" stroke-linecap="round"/>
+      <circle cx="100" cy="50" r="6"/>
+      <path d="M84 68q-10-6-6-14t14-1" opacity=".7"/>
+      <path d="M116 68q10-6 6-14t-14-1" opacity=".7"/>
+      <path d="M26 214h148" stroke-width="1.4"/>
+    </g>
+  </symbol>
+  <symbol id="cake-4" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M82 44h36v30H82z"/>
+      <path d="M68 74h64v34H68z"/>
+      <path d="M52 108h96v40H52z"/>
+      <path d="M34 148h132v58a6 6 0 0 1-6 6H40a6 6 0 0 1-6-6z"/>
+      <path d="M82 52h36M68 82h64M52 116h96M34 156h132" opacity=".45"/>
+      <circle cx="100" cy="34" r="5"/>
+      <path d="M22 212h156" stroke-width="1.4"/>
+    </g>
+  </symbol>
+  <symbol id="cake-naked" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M64 104h72v58a6 6 0 0 1-6 6H70a6 6 0 0 1-6-6z"/>
+      <path d="M64 122h72M64 140h72" opacity=".45"/>
+      <path d="M48 168h104v42a6 6 0 0 1-6 6H54a6 6 0 0 1-6-6z"/>
+      <path d="M48 186h104" opacity=".45"/>
+      <path d="M78 96q6-14 22-14t22 14" opacity=".7"/>
+      <circle cx="86" cy="92" r="4"/><circle cx="114" cy="92" r="4"/>
+      <path d="M28 216h144" stroke-width="1.4"/>
+    </g>
+  </symbol>
+  <symbol id="cake-flowers" viewBox="0 0 200 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M66 96h68v46H66z"/>
+      <path d="M46 142h108v66a6 6 0 0 1-6 6H52a6 6 0 0 1-6-6z"/>
+      <path d="M66 106h68M46 152h108" opacity=".45"/>
+      <circle cx="72" cy="96" r="6"/><circle cx="86" cy="88" r="5"/><circle cx="100" cy="94" r="4"/>
+      <circle cx="128" cy="142" r="6"/><circle cx="114" cy="150" r="4.5"/>
+      <path d="M60 122q10 8 20 0M120 168q12 8 22 0" opacity=".5"/>
+      <path d="M26 214h148" stroke-width="1.4"/>
+    </g>
+  </symbol>
+
+  <symbol id="i-ref" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <rect x="9" y="12" width="30" height="24" rx="2"/>
+      <path d="M9 30l8-8 6 6 6-7 10 11"/>
+      <circle cx="18" cy="20" r="2.5"/>
+    </g>
+  </symbol>
+  <symbol id="i-talk" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M10 13h20a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H18l-8 6V16a3 3 0 0 1 0-3z"/>
+      <path d="M38 20a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v5l-6-5" opacity=".55"/>
+    </g>
+  </symbol>
+  <symbol id="i-sketch" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M12 38V13a2 2 0 0 1 2-2h14l8 8v19a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2z"/>
+      <path d="M28 11v8h8" opacity=".55"/>
+      <path d="M19 30h10v-6a5 5 0 0 0-10 0z"/>
+    </g>
+  </symbol>
+  <symbol id="i-deliver" viewBox="0 0 48 48">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M6 30V17h20v13M26 21h7l6 6v3"/>
+      <circle cx="15" cy="33" r="3.5"/><circle cx="33" cy="33" r="3.5"/>
+      <path d="M6 30h5M18.5 30h11M36.5 30H42" opacity=".55"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="topbar" id="top">
+  <a class="brand" href="#top">
+    <span class="brand__name">Ярус</span>
+    <span class="brand__kind">свадебные торты</span>
+  </a>
+  <nav class="topbar__nav" aria-label="Разделы">
+    <a href="#catalog">Каталог</a>
+    <a href="#custom">По эскизу</a>
+    <a href="#tasting">Дегустация</a>
+    <a href="#gallery">Свадьбы</a>
+    <a href="#order">Заявка</a>
+  </nav>
+  <a class="btn btn--line topbar__cta" href="#tasting">Дегустация</a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span class="vh">Меню</span>
+  </button>
+</header>
+
+<div class="mnav" id="mnav" hidden>
+  <a href="#catalog">Каталог</a>
+  <a href="#custom">Торт по эскизу</a>
+  <a href="#tasting">Дегустация</a>
+  <a href="#gallery">Свадьбы</a>
+  <a href="#order">Оставить заявку</a>
+</div>
+
+<main>
+
+<!-- ─── 1. Первый экран ─── -->
+<section class="hero">
+  <div class="hero__text">
+    <p class="eyebrow">Свадебные торты ручной работы</p>
+    <h1 class="hero__title">Торт,<br>который<br><em>помнят</em></h1>
+    <p class="hero__lede">От лаконичных белых ярусов до цветочных композиций. Собираем на месте за час до подачи — чтобы к столу он вышел таким же, как на эскизе.</p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn--line" href="#tasting">Записаться на дегустацию</a>
+    </div>
+  </div>
+
+  <figure class="shot shot--hero">
+    <img class="shot__img" data-photo="images/hero.jpg" alt="Свадебный торт">
+    <span class="shot__ph"><svg><use href="#cake-3"/></svg></span>
+  </figure>
+</section>
+
+<div class="strip">
+  <span>Дегустация перед заказом</span>
+  <span>Эскиз до последней детали</span>
+  <span>Сборка на площадке</span>
+  <span>Фиксированная цена</span>
+</div>
+
+<!-- ─── 2. Каталог ─── -->
+<section class="section" id="catalog">
+  <div class="shead">
+    <p class="eyebrow">Каталог</p>
+    <h2 class="shead__title">Готовые композиции</h2>
+    <p class="shead__note">Каждую можно взять как есть или сделать отправной точкой — поменять ярусы, цвет и декор под вашу палитру.</p>
+  </div>
+
+  <div class="tools">
+    <div class="chips" role="group" aria-label="Фильтр по стилю">
+      <button class="chip is-on" type="button" data-style="all">Все</button>
+      <button class="chip" type="button" data-style="minimal">Минимализм</button>
+      <button class="chip" type="button" data-style="flowers">С цветами</button>
+      <button class="chip" type="button" data-style="rustic">Рустик</button>
+      <button class="chip" type="button" data-style="classic">Классика</button>
+    </div>
+    <label class="sorter">
+      <span class="vh">Сортировка</span>
+      <select data-sort>
+        <option value="default">По порядку</option>
+        <option value="price-asc">Сначала дешевле</option>
+        <option value="price-desc">Сначала дороже</option>
+        <option value="weight-asc">Сначала легче</option>
+        <option value="weight-desc">Сначала тяжелее</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="cakes" data-grid>
+
+    <article class="cake" data-style="minimal" data-price="8000" data-weight="3">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-klassika.jpg" alt="Торт «Классика»">
+        <span class="shot__ph"><svg><use href="#cake-2"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Классика</h3>
+        <p class="cake__spec">2 яруса · 3 кг · 20–25 гостей</p>
+        <p class="cake__price">от 8 000 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Классика">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="flowers" data-price="9500" data-weight="3.5">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-yagodny-sad.jpg" alt="Торт «Ягодный сад»">
+        <span class="shot__ph"><svg><use href="#cake-flowers"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Ягодный сад</h3>
+        <p class="cake__spec">2 яруса · 3,5 кг · 25–30 гостей</p>
+        <p class="cake__price">от 9 500 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Ягодный сад">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="minimal" data-price="8900" data-weight="3">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-pudra.jpg" alt="Торт «Пудра»">
+        <span class="shot__ph"><svg><use href="#cake-2"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Пудра</h3>
+        <p class="cake__spec">2 яруса · 3 кг · 20–25 гостей</p>
+        <p class="cake__price">от 8 900 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Пудра">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="rustic" data-price="10500" data-weight="4">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-naked.jpg" alt="Торт «Голый бисквит»">
+        <span class="shot__ph"><svg><use href="#cake-naked"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Голый бисквит</h3>
+        <p class="cake__spec">2 яруса · 4 кг · 28–32 гостя</p>
+        <p class="cake__price">от 10 500 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Голый бисквит">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="minimal" data-price="14000" data-weight="5">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-bely-barhat.jpg" alt="Торт «Белый бархат»">
+        <span class="shot__ph"><svg><use href="#cake-3"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Белый бархат</h3>
+        <p class="cake__spec">3 яруса · 5 кг · 35–40 гостей</p>
+        <p class="cake__price">от 14 000 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Белый бархат">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="classic" data-price="16000" data-weight="5.5">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-shampan.jpg" alt="Торт «Шампань»">
+        <span class="shot__ph"><svg><use href="#cake-3"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Шампань</h3>
+        <p class="cake__spec">3 яруса · 5,5 кг · 38–45 гостей</p>
+        <p class="cake__price">от 16 000 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Шампань">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="flowers" data-price="17500" data-weight="6">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-florentina.jpg" alt="Торт «Флорентина»">
+        <span class="shot__ph"><svg><use href="#cake-flowers"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Флорентина</h3>
+        <p class="cake__spec">3 яруса · 6 кг · 42–50 гостей</p>
+        <p class="cake__price">от 17 500 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Флорентина">Выбрать</button>
+    </article>
+
+    <article class="cake" data-style="flowers" data-price="24000" data-weight="8">
+      <figure class="shot shot--card">
+        <img class="shot__img" data-photo="images/cake-zimny-sad.jpg" alt="Торт «Зимний сад»">
+        <span class="shot__ph"><svg><use href="#cake-4"/></svg></span>
+      </figure>
+      <div class="cake__meta">
+        <h3 class="cake__name">Зимний сад</h3>
+        <p class="cake__spec">4 яруса · 8 кг · 55–65 гостей</p>
+        <p class="cake__price">от 24 000 ₽</p>
+      </div>
+      <button class="cake__pick" type="button" data-pick="Зимний сад">Выбрать</button>
+    </article>
+
+  </div>
+
+  <p class="empty" data-empty hidden>В этом стиле пока ничего нет — посмотрите другие или закажите по эскизу.</p>
+  <p class="fineprint">Цена «от» — за композицию в базовом весе. Точную называем после дегустации, когда известны ярусы, начинки и декор.</p>
+</section>
+
+<!-- ─── 3. По эскизу ─── -->
+<section class="section section--tint" id="custom">
+  <div class="shead">
+    <p class="eyebrow">Индивидуальный заказ</p>
+    <h2 class="shead__title">Торт по вашему эскизу</h2>
+    <p class="shead__note">Если в каталоге нет того самого — принесите картинку. Даже если это фото из Pinterest, скриншот или рисунок на салфетке.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="step__icon"><svg><use href="#i-ref"/></svg></span>
+      <h3 class="step__title">Присылаете референс</h3>
+      <p class="step__text">Фото, эскиз или описание словами. Подскажем, что из этого реально повторить, а что лучше изменить.</p>
+    </li>
+    <li class="step">
+      <span class="step__icon"><svg><use href="#i-talk"/></svg></span>
+      <h3 class="step__title">Обсуждаем детали</h3>
+      <p class="step__text">Ярусы, вес по числу гостей, начинки, цветы, доставка. В конце разговора называем точную цену.</p>
+    </li>
+    <li class="step">
+      <span class="step__icon"><svg><use href="#i-sketch"/></svg></span>
+      <h3 class="step__title">Согласовываем эскиз</h3>
+      <p class="step__text">Рисуем ваш торт и утверждаем до последней детали. После этого дата закрепляется за вами.</p>
+    </li>
+    <li class="step">
+      <span class="step__icon"><svg><use href="#i-deliver"/></svg></span>
+      <h3 class="step__title">Готовим и привозим</h3>
+      <p class="step__text">Печём накануне, собираем ярусы на площадке за час до подачи и ставим на стол сами.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ─── 4. Дегустация ─── -->
+<section class="section" id="tasting">
+  <div class="tasting">
+    <div class="tasting__text">
+      <p class="eyebrow">Дегустация</p>
+      <h2 class="shead__title">Сначала попробовать</h2>
+      <p class="shead__note">Встречаемся в шоуруме, разговариваем про свадьбу и пробуем начинки. Без обязательств — можно уйти и подумать.</p>
+
+      <dl class="facts">
+        <div><dt>Где</dt><dd>Шоурум в центре, тихая комната на четверых</dd></div>
+        <div><dt>Сколько длится</dt><dd>Около часа</dd></div>
+        <div><dt>Что пробуете</dt><dd>Шесть начинок, чай или кофе</dd></div>
+        <div><dt>Что ещё</dt><dd>Смотрим ярусы вживую, обсуждаем эскиз и палитру</dd></div>
+        <div><dt>Стоимость</dt><dd>1 500 ₽, вычитаем из суммы заказа</dd></div>
+      </dl>
+    </div>
+
+    <div class="tasting__form" data-form="tasting"></div>
+  </div>
+</section>
+
+<!-- ─── 5. Заявка ─── -->
+<section class="section section--tint" id="order">
+  <div class="shead shead--center">
+    <p class="eyebrow">Заявка</p>
+    <h2 class="shead__title">Расскажите про свадьбу</h2>
+    <p class="shead__note">Семь вопросов — и мы сможем назвать цену, забронировать дату и начать эскиз.</p>
+  </div>
+
+  <div class="orderwrap" data-form="order"></div>
+</section>
+
+<!-- ─── 6. Свадьбы ─── -->
+<section class="section" id="gallery">
+  <div class="shead">
+    <p class="eyebrow">Прошлые свадьбы</p>
+    <h2 class="shead__title">Как это было</h2>
+    <p class="shead__note">Торты на площадках, за час до подачи и в момент разрезания.</p>
+  </div>
+
+  <div class="gallery">
+    <figure class="shot shot--tall">
+      <img class="shot__img" data-photo="images/wedding-1.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-3"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-2.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-flowers"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-3.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-2"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-4.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-naked"/></svg></span>
+    </figure>
+    <figure class="shot shot--tall">
+      <img class="shot__img" data-photo="images/wedding-5.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-4"/></svg></span>
+    </figure>
+    <figure class="shot">
+      <img class="shot__img" data-photo="images/wedding-6.jpg" alt="Торт на свадьбе">
+      <span class="shot__ph"><svg><use href="#cake-3"/></svg></span>
+    </figure>
+  </div>
+
+  <!-- ДЕМО: отзывы — заглушки. Заменить на реальные перед публикацией. -->
+  <div class="words">
+    <blockquote class="word">
+      <p>Боялись, что торт будет «как у всех». Привезли ровно то, что рисовали на эскизе, и он простоял на жаре до самого разрезания.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="word">
+      <p>Пришли на дегустацию просто посмотреть, а ушли с готовым решением. Ни разу не уговаривали взять дороже.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+    <blockquote class="word">
+      <p>Собрали ярусы прямо на площадке, пока мы фотографировались. Гости потом спрашивали, где заказывали.</p>
+      <footer>Демо-отзыв</footer>
+    </blockquote>
+  </div>
+  <p class="fineprint">Тексты отзывов — заглушки для демонстрации.</p>
+</section>
+
+</main>
+
+<!-- ─── 7. Подвал ─── -->
+<footer class="footer" id="contacts">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <p class="brand__name">Ярус</p>
+      <p class="footer__line">Свадебные торты ручной работы</p>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Связь</p>
+      <a href="tel:+79000000000">+7 900 000-00-00</a>
+      <a href="mailto:hello@yarus.example">hello@yarus.example</a>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Соцсети</p>
+      <a href="#gallery">ВКонтакте</a>
+      <a href="#gallery">Telegram</a>
+      <a href="#gallery">WhatsApp</a>
+    </div>
+
+    <div class="footer__col">
+      <p class="footer__label">Шоурум</p>
+      <p class="footer__line">Пн–сб, 11:00–19:00</p>
+      <p class="footer__line">Дегустация — по записи</p>
+      <a href="#tasting">Записаться</a>
+    </div>
+  </div>
+
+  <p class="footer__note">Демонстрационный сайт. Название, контакты, цены и отзывы — вымышленные.</p>
+</footer>
+
+<script src="forms.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
