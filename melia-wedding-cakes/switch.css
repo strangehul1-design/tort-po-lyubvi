@@ -1,0 +1,394 @@
+/* ============================================================
+   Переключатель: заказать · дегустация · доставка
+   Одна секция, три двери. Плюс мелкая моторика по всему сайту.
+   ============================================================ */
+
+/* ── ссылка «к содержимому» для клавиатуры ─────────────────── */
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--ivory);
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top .25s var(--ease);
+}
+.skip:focus { top: 16px; }
+
+/* ── секция ────────────────────────────────────────────────── */
+
+.switch {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--air) var(--pad);
+}
+
+/* ── три кнопки ────────────────────────────────────────────── */
+
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: clamp(36px, 4vw, 60px);
+}
+
+/* подсветка, которая переезжает под активную кнопку */
+.tabs__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--ink);
+  transform: translateX(var(--glow-x, 0)) ;
+  width: var(--glow-w, 33%);
+  transition: transform .45s var(--ease), width .45s var(--ease);
+  pointer-events: none;
+}
+.tabs.is-ready .tabs__glow { opacity: 1; }
+.tabs__glow { opacity: 0; }
+
+.tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 88px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  transition: border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+}
+.tab:hover { border-color: var(--powder); transform: translateY(-2px); }
+.tab.is-on { border-color: transparent; color: var(--ivory); }
+.tab.is-on:hover { transform: none; }
+
+.tab__ic {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: .55;
+  transition: opacity .3s var(--ease), transform .45s var(--ease);
+}
+.tab__ic svg { width: 24px; height: 24px; }
+.tab:hover .tab__ic { opacity: .85; }
+.tab.is-on .tab__ic { opacity: 1; transform: rotate(-6deg) scale(1.04); }
+
+.tab__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tab__body b {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.tab__body i {
+  font-style: normal;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--ink-60);
+  transition: color .3s var(--ease);
+}
+.tab.is-on .tab__body i { color: color-mix(in srgb, var(--ivory) 66%, transparent); }
+
+/* ── панели ────────────────────────────────────────────────── */
+
+.panels { position: relative; }
+
+.panel { outline: none; }
+.panel[hidden] { display: none; }
+.panel.is-in {
+  animation: panel-in .62s var(--rise) both;
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(28px) scale(.985); }
+}
+
+.panel__head { max-width: min(760px, 100%); margin-bottom: clamp(28px, 3.5vw, 46px); }
+.panel__title { font-size: clamp(26px, 3.4vw, 44px); }
+.panel__note { max-width: 62ch; margin-top: 16px; color: var(--ink-60); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+}
+
+/* факты с иконками */
+.dfacts { margin: 0; border-top: 1px solid var(--line); }
+.dfacts > div { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.dfacts dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.dfacts__ic {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--powder);
+  border-radius: 50%;
+  color: var(--ink);
+}
+.dfacts__ic svg { width: 15px; height: 15px; }
+.dfacts dd { margin: 0; font-size: 16px; }
+
+.delivery__shots { display: grid; gap: clamp(14px, 2vw, 24px); }
+
+/* ── мелкая моторика по сайту ──────────────────────────────── */
+
+/* фото чуть приближается при наведении */
+.work .shot, .gallery .shot { transition: transform .6s var(--ease); }
+.work .shot__ph svg, .gallery .shot__ph svg {
+  transition: transform .7s var(--ease), opacity .4s var(--ease);
+}
+.work:hover .shot__ph svg,
+.gallery .shot:hover .shot__ph svg { transform: scale(1.09) translateY(-4px); opacity: 1; }
+.work .shot__img, .gallery .shot__img { transition: transform .7s var(--ease); }
+.work:hover .shot__img, .gallery .shot:hover .shot__img { transform: scale(1.07); }
+
+.work figcaption b { transition: color .3s var(--ease); }
+.work:hover figcaption b { color: color-mix(in srgb, var(--powder) 70%, var(--ink)); }
+
+/* иконки шагов слегка оживают */
+.step__ic { transition: transform .45s var(--ease), border-color .45s var(--ease); }
+.step:hover .step__ic { transform: translateY(-3px); border-color: var(--ink); }
+
+/* появление первого экрана по загрузке */
+.hero .eyebrow, .hero__title, .hero__lede, .hero__actions {
+  animation: rise .85s var(--rise) both;
+}
+.hero .eyebrow { animation-delay: .05s; }
+.hero__title { animation-delay: .14s; }
+.hero__lede { animation-delay: .26s; }
+.hero__actions { animation-delay: .36s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(38px); }
+}
+
+/* лёгкий параллакс фото на первом экране */
+.shot--hero .shot__ph { will-change: transform; }
+
+/* ── адаптив ───────────────────────────────────────────────── */
+
+@media (max-width: 1080px) {
+  .split { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px) {
+  .tabs { grid-template-columns: 1fr; }
+  .tabs__glow { display: none; }
+  .tab.is-on {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .tab { min-height: 0; }
+}
+
+@media (max-width: 520px) {
+  .tab { padding: 16px 18px; gap: 14px; }
+  .tab__ic { width: 40px; height: 40px; }
+  .tab__ic svg { width: 21px; height: 21px; }
+  .tab__body b { font-size: 20px; }
+}
+
+/* спокойный режим: остаётся проявление, уходит сдвиг */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .panel.is-in { animation: fade-only .35s linear both; }
+  html:not([data-motion="on"]) .hero .eyebrow,
+  html:not([data-motion="on"]) .hero__title,
+  html:not([data-motion="on"]) .hero__lede,
+  html:not([data-motion="on"]) .hero__actions { animation: fade-only .5s linear both; }
+  html:not([data-motion="on"]) .tabs__glow { transition: opacity .3s linear; }
+}
+@keyframes fade-only { from { opacity: 0; } }
+
+/* ============================================================
+   Живое движение: то, что видно без наведения и без прокрутки
+   ============================================================ */
+
+/* ── рисунок торта тихо покачивается ───────────────────────── */
+
+/* качается контейнер, а увеличивается рисунок внутри — иначе
+   покачивание и приближение при наведении дерутся за transform */
+.shot--hero .shot__ph svg { animation: float-slow 5.5s ease-in-out infinite; }
+.work .shot__ph { animation: float-slow 5.5s ease-in-out infinite; }
+.work:nth-child(2n) .shot__ph { animation-delay: -1.4s; }
+.work:nth-child(3n) .shot__ph { animation-delay: -2.8s; }
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* ── подсказка «листайте» под первым экраном ───────────────── */
+
+.hint {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: 6px 10px;
+  color: var(--ink-60);
+  text-decoration: none;
+  animation: rise .85s var(--rise) both .5s;
+}
+.hint__t {
+  font-size: 10.5px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+.hint__a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  animation: bob 1.9s ease-in-out infinite;
+  transition: border-color .3s var(--ease), color .3s var(--ease);
+}
+.hint__a svg { width: 16px; height: 16px; }
+.hint:hover .hint__a { border-color: var(--ink); color: var(--ink); }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* ── кнопка заливается тёмным при наведении ────────────────── */
+
+.tab { overflow: hidden; }
+.tab__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 0;
+  background: var(--ink);
+  transition: width .42s var(--sweep);
+  pointer-events: none;
+}
+.tab:not(.is-on):hover .tab__fill { width: 100%; }
+.tab:not(.is-on):hover { color: var(--ivory); border-color: var(--ink); transform: none; }
+.tab:not(.is-on):hover .tab__body i { color: color-mix(in srgb, var(--ivory) 66%, transparent); }
+.tab:not(.is-on):hover .tab__ic { opacity: 1; }
+
+/* стрелка уезжает вправо */
+.tab__go {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  opacity: .35;
+  transition: transform .35s var(--ease), opacity .3s var(--ease);
+}
+.tab__go svg { width: 18px; height: 18px; }
+.tab:hover .tab__go, .tab.is-on .tab__go { opacity: 1; transform: translateX(7px); }
+
+/* ── ссылки в шапке подчёркиваются растущей линией ─────────── */
+
+.bar__nav a { position: relative; padding-bottom: 3px; }
+.bar__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width .35s var(--sweep);
+}
+.bar__nav a:hover::after { width: 100%; }
+
+/* ── кнопки: заливка изнутри ───────────────────────────────── */
+
+/* заливка идёт фоном, а не псевдоэлементом: так она не спорит
+   со слоями и не требует отдельного контекста наложения */
+.btn--line {
+  background-image: linear-gradient(var(--powder-air), var(--powder-air));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0 100%;
+  transition: background-size .42s var(--sweep), border-color .35s var(--ease), color .35s var(--ease);
+}
+.btn--line:hover { background-size: 100% 100%; }
+
+/* ── карточки работ приподнимаются ─────────────────────────── */
+
+.work { transition: transform .45s var(--ease); }
+.work:hover { transform: translateY(-6px); }
+
+/* ── строки фактов подсвечиваются ──────────────────────────── */
+
+.dfacts > div { transition: padding-left .38s var(--sweep); }
+.dfacts > div:hover { padding-left: 14px; }
+.dfacts__ic { transition: transform .4s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
+.dfacts > div:hover .dfacts__ic {
+  transform: scale(1.08);
+  border-color: var(--ink);
+  background: var(--powder-air);
+}
+
+/* гасим только то, что двигает предметы: покачивание, приближение,
+   подпрыгивание. Заливка, подчёркивание и смена цвета остаются. */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .shot--hero .shot__ph svg,
+  html:not([data-motion="on"]) .work .shot__ph,
+  html:not([data-motion="on"]) .hint__a { animation: none; }
+  html:not([data-motion="on"]) .hint { animation: fade-only .5s linear both .5s; }
+  html:not([data-motion="on"]) .work:hover,
+  html:not([data-motion="on"]) .tab:hover,
+  html:not([data-motion="on"]) .step:hover .step__ic,
+  html:not([data-motion="on"]) .tab.is-on .tab__ic { transform: none; }
+  html:not([data-motion="on"]) .work:hover .shot__img,
+  html:not([data-motion="on"]) .work:hover .shot__ph svg,
+  html:not([data-motion="on"]) .gallery .shot:hover .shot__img,
+  html:not([data-motion="on"]) .gallery .shot:hover .shot__ph svg { transform: none; }
+  html:not([data-motion="on"]) .tab:hover .tab__go,
+  html:not([data-motion="on"]) .tab.is-on .tab__go { transform: none; }
+  html:not([data-motion="on"]) .dfacts > div:hover { padding-left: 0; }
+  html:not([data-motion="on"]) .dfacts > div:hover .dfacts__ic { transform: none; }
+}
+
+/* ── выключатель анимаций для тех, у кого они выключены в системе ── */
+
+.motion {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--powder);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-60);
+  cursor: pointer;
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.motion[hidden] { display: none; }
+.motion:hover { color: var(--ink); border-color: var(--ink); }
