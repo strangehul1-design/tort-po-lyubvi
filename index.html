@@ -395,17 +395,9 @@ a{color:inherit}
 #sketch g .ln:nth-child(7){transition-delay:.74s}
 
 .steps{display:flex;flex-direction:column;list-style:none}
-.step{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,2.6vw,38px);
-  padding-block:clamp(26px,3vw,40px);border-bottom:1px solid var(--line)}
+.step{padding-block:clamp(26px,3vw,40px);border-bottom:1px solid var(--line)}
 .step:first-child{padding-top:0}
 .step:last-child{border-bottom:0}
-.step-n{font-family:var(--ff-d);font-size:16px;font-weight:500;letter-spacing:.06em;
-  color:var(--muted);padding-top:8px;position:relative}
-.step-n::after{content:"";position:absolute;left:50%;top:34px;bottom:-40px;width:1px;
-  background:var(--line);transform:scaleY(0);transform-origin:top;
-  transition:transform .9s var(--ease) .2s}
-.step.is-in .step-n::after{transform:scaleY(1)}
-.step:last-child .step-n::after{display:none}
 .step-b h3{margin-bottom:9px}
 .step-b p{font-size:16px;color:var(--body);line-height:1.7;max-width:44ch}
 .step-tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.14em;
@@ -653,8 +645,6 @@ select.inp{
   .gal{columns:1}
   .switch{border-radius:20px;flex-direction:column;width:100%}
   .tab{justify-content:center;border-radius:14px}
-  .step{grid-template-columns:1fr;gap:12px}
-  .step-n::after{display:none}
   .ftr-top{grid-template-columns:1fr}
   .ftr-top>*:first-child{grid-column:auto}
 }
@@ -1297,7 +1287,6 @@ select.inp{
 
       <ol class="steps" id="steps">
         <li class="step rv" data-step="1">
-          <span class="step-n">01</span>
           <div class="step-b">
             <h3 class="d3">Знакомимся</h3>
             <p>Расскажите дату, площадку, число гостей и настроение свадьбы. Пришлите пару фото декора или платья — этого достаточно, чтобы мы поняли направление.</p>
@@ -1305,7 +1294,6 @@ select.inp{
           </div>
         </li>
         <li class="step rv" data-step="2">
-          <span class="step-n">02</span>
           <div class="step-b">
             <h3 class="d3">Согласуем эскиз</h3>
             <p>Разбираем форму, цвет и декор по вашим фотографиям-референсам и прошлым работам, считаем размер под число гостей. Эскиз входит в стоимость торта — отдельно за него платить не нужно.</p>
@@ -1314,7 +1302,6 @@ select.inp{
           </div>
         </li>
         <li class="step rv" data-step="3">
-          <span class="step-n">03</span>
           <div class="step-b">
             <h3 class="d3">Пробуете начинки</h3>
             <p>Собираем сет из всех семи начинок и отправляем курьером — или забираете сами. Пробуете дома, вдвоём или с родителями, без спешки и чужих глаз.</p>
@@ -1322,7 +1309,6 @@ select.inp{
           </div>
         </li>
         <li class="step rv" data-step="4">
-          <span class="step-n">04</span>
           <div class="step-b">
             <h3 class="d3">Привозим, собираем, нарезаем</h3>
             <p>Согласуем с координатором время подачи торта.<br>Лично привозим торт на площадку в специальном боксе по всем правилам бережной перевозки.<br>Если нужно, остаёмся, презентуем и нарезаем ваш торт.</p>
