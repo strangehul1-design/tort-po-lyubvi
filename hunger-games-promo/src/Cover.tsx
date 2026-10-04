@@ -66,6 +66,23 @@ export const Cover: React.FC = () => {
             {c.subtitle}
           </div>
         ) : null}
+        {c.game ? (
+          <div
+            style={{
+              fontFamily: BODY_FONT,
+              fontWeight: 700,
+              fontSize: 30 * u,
+              letterSpacing: 4 * u,
+              color: navy,
+              background: ice,
+              padding: `${8 * u}px ${20 * u}px`,
+              borderRadius: 10 * u,
+              marginTop: 26 * u,
+            }}
+          >
+            {c.game}
+          </div>
+        ) : null}
         {c.tagline ? (
           <div style={{fontFamily: DISPLAY_FONT, fontSize: 64 * u, color: white, marginTop: 40 * u}}>{c.tagline}</div>
         ) : null}
@@ -75,11 +92,12 @@ export const Cover: React.FC = () => {
               fontFamily: BODY_FONT,
               fontWeight: 700,
               fontSize: 46 * u,
-              color: navy,
-              background: ice,
-              padding: `${10 * u}px ${28 * u}px`,
+              color: white,
+              border: `${3 * u}px solid ${ice}`,
+              padding: `${8 * u}px ${30 * u}px`,
               borderRadius: 12 * u,
               marginTop: 34 * u,
+              letterSpacing: 6 * u,
             }}
           >
             {c.date}

@@ -32,6 +32,8 @@ export type Timeline = {
   hookEndFrame: number;
   pauseStartFrame: number;
   cardStartFrame: number;
+  /** Конец заставки с городом и затемнения: музыка и основной текст. */
+  cardMainFrame: number;
   segments: Segment[];
   /** Кадры всех долей до паузы — для «толчков» камеры. */
   beatFrames: number[];
@@ -266,6 +268,7 @@ export const buildTimeline = (): Timeline => {
     hookEndFrame: toFrame(hookEnd),
     pauseStartFrame: toFrame(pauseStart),
     cardStartFrame: toFrame(cardStart),
+    cardMainFrame: toFrame(cardStart + config.structure.cityIntroSec + config.structure.blackoutSec),
     segments,
     beatFrames,
     flashes: flashes.sort((a, b) => a.frame - b.frame),

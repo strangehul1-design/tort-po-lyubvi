@@ -42,7 +42,7 @@ export const FinalCard: React.FC = () => {
   const qrSize = (vertical ? 300 : 250) * u;
 
   const title = (
-    <div style={{transform: `scale(${titleScale})`, filter: titleBlur > 0.05 ? `blur(${titleBlur}px)` : undefined}}>
+    <div style={{transform: `scale(${titleScale})`, filter: titleBlur > 0.05 ? `blur(${titleBlur}px)` : undefined, textAlign: vertical ? 'center' : 'left'}}>
       <div
         style={{
           fontFamily: DISPLAY_FONT,
@@ -73,6 +73,25 @@ export const FinalCard: React.FC = () => {
           }}
         >
           {c.subtitle}
+        </div>
+      ) : null}
+      {c.game ? (
+        <div
+          style={{
+            fontFamily: BODY_FONT,
+            fontWeight: 700,
+            fontSize: (vertical ? 30 : 28) * u,
+            letterSpacing: 4 * u,
+            marginTop: 20 * u,
+            color: navy,
+            background: ice,
+            display: 'inline-block',
+            padding: `${8 * u}px ${20 * u}px`,
+            borderRadius: 10 * u,
+            ...enter(0.7),
+          }}
+        >
+          {c.game}
         </div>
       ) : null}
     </div>
@@ -146,6 +165,7 @@ export const FinalCard: React.FC = () => {
             fontSize: 30 * u,
             letterSpacing: 6 * u,
             textTransform: 'uppercase',
+            whiteSpace: 'nowrap',
             color: ice,
           }}
         >

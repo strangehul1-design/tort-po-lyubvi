@@ -12,7 +12,8 @@ const sfxSrc = (key: SfxKey) => {
 
 /** Музыка и звуки. Отсутствующие файлы просто пропускаются. */
 export const SoundDesign: React.FC<{tl: Timeline}> = ({tl}) => {
-  const {fps, totalFrames, pauseStartFrame, cardStartFrame} = tl;
+  const {fps, totalFrames, pauseStartFrame, cardStartFrame, cardMainFrame} = tl;
+  const mainFrames = totalFrames - cardMainFrame;
   const music = assetsInfo.music ? staticFile(assetsInfo.music) : null;
   const cardFrames = totalFrames - cardStartFrame;
   const s = config.sfx;
@@ -43,14 +44,15 @@ export const SoundDesign: React.FC<{tl: Timeline}> = ({tl}) => {
               }
             />
           </Sequence>
-          {/* 30–40 с: музыка возвращается на карточке и затихает к концу. */}
-          <Sequence from={cardStartFrame} durationInFrames={cardFrames} name="Музыка: карточка">
+          {/* Карточка: после слова «СНЕЖИНСК» и затемнения музыка возвращается
+              вместе с основным текстом и затихает к концу. */}
+          <Sequence from={cardMainFrame} durationInFrames={mainFrames} name="Музыка: карточка">
             <Audio
               src={music}
               trimBefore={Math.round(cardMusicFrom * fps)}
               volume={(f) =>
                 config.music.volume *
-                interpolate(f, [0, 4, cardFrames - fps * 1.5, cardFrames], [0, 1, 1, 0], {
+                interpolate(f, [0, 2, mainFrames - fps * 1.5, mainFrames], [0, 1, 1, 0], {
                   extrapolateLeft: 'clamp',
                   extrapolateRight: 'clamp',
                 })

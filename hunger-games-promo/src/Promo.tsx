@@ -9,6 +9,7 @@ import {Snow} from './components/Snow';
 import {Frost} from './components/Frost';
 import {Flash} from './components/Flash';
 import {FinalCard} from './components/FinalCard';
+import {CityIntro} from './components/CityIntro';
 import {SoundDesign} from './components/SoundDesign';
 
 /** Сила метели на каждом кадре и «пройденный путь» снега. */
@@ -138,8 +139,16 @@ export const Promo: React.FC = () => {
       <Snow travel={blizzard.travel[f]} intensity={blizzard.intensity[f]} time={frame / fps} />
       <Frost strength={frame >= tl.cardStartFrame ? 0.8 : 1} />
 
-      <Sequence from={tl.cardStartFrame} durationInFrames={cardFrames} name="Финальная карточка">
+      {/* Основной текст выходит из темноты вместе с музыкой. */}
+      <Sequence from={tl.cardMainFrame} durationInFrames={tl.totalFrames - tl.cardMainFrame} name="Финальная карточка">
         <FinalCard />
+      </Sequence>
+      {/* Сначала одно слово — город, затем затемнение. */}
+      <Sequence from={tl.cardStartFrame} durationInFrames={cardFrames} name="Заставка: город">
+        <CityIntro
+          introFrames={tl.cardMainFrame - tl.cardStartFrame - Math.round(config.structure.blackoutSec * fps)}
+          blackoutFrames={Math.round(config.structure.blackoutSec * fps)}
+        />
       </Sequence>
 
       {whiteout > 0 ? (
@@ -149,6 +158,7 @@ export const Promo: React.FC = () => {
         events={[
           ...tl.flashes,
           {frame: tl.cardStartFrame, strength: 1, lengthFrames: Math.round(fps * 0.7)},
+          {frame: tl.cardMainFrame, strength: 0.55, lengthFrames: Math.round(fps * 0.4)},
         ]}
       />
 
