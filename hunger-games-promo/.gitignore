@@ -1,0 +1,15 @@
+node_modules/
+out/
+
+# Исходники — тяжёлые, в репозиторий не кладём (папки остаются)
+footage/*
+audio/*
+sfx/*
+!footage/.gitkeep
+!audio/.gitkeep
+!sfx/.gitkeep
+
+# Генерируется npm run prep
+public/clips/
+public/audio/
+public/sfx/

@@ -1,0 +1,38 @@
+{
+  "name": "hunger-games-promo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Промо-ролик турнира «Голодные игры» (Снежинск) на Remotion",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "prep": "tsx scripts/prep.ts",
+    "bpm": "tsx scripts/bpm.ts",
+    "timeline": "tsx scripts/timeline.ts",
+    "render:all": "tsx scripts/render.ts all",
+    "render:vertical": "tsx scripts/render.ts vertical",
+    "render:horizontal": "tsx scripts/render.ts horizontal",
+    "render:covers": "tsx scripts/render.ts covers",
+    "build": "npm run prep && npm run render:all",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "5.3.0",
+    "@fontsource/russo-one": "5.3.0",
+    "@remotion/cli": "4.0.532",
+    "@remotion/fonts": "4.0.532",
+    "qrcode": "1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.532"
+  },
+  "devDependencies": {
+    "@types/qrcode": "1.5.6",
+    "@types/react": "19.3.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}
