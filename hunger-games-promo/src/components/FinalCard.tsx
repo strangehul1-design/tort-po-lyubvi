@@ -32,8 +32,8 @@ export const FinalCard: React.FC = () => {
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
   });
-  // Медленный блик по льду названия.
-  const shine = interpolate(frame, [fps * 1, fps * 3.5], [-40, 140], {
+  // Медленная вспышка свечения по названию.
+  const glow = interpolate(frame, [fps * 1, fps * 2, fps * 3.5], [1, 1.8, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -42,7 +42,7 @@ export const FinalCard: React.FC = () => {
   const qrSize = (vertical ? 300 : 250) * u;
 
   const title = (
-    <div style={{transform: `scale(${titleScale})`, filter: `blur(${titleBlur}px)`}}>
+    <div style={{transform: `scale(${titleScale})`, filter: titleBlur > 0.05 ? `blur(${titleBlur}px)` : undefined}}>
       <div
         style={{
           fontFamily: DISPLAY_FONT,
@@ -50,11 +50,10 @@ export const FinalCard: React.FC = () => {
           lineHeight: 0.95,
           letterSpacing: 2 * u,
           textAlign: vertical ? 'center' : 'left',
-          background: `linear-gradient(100deg, ${white} 0%, ${ice} ${shine - 20}%, #ffffff ${shine}%, ${ice} ${shine + 20}%, ${iceDeep} 110%)`,
-          WebkitBackgroundClip: 'text',
-          backgroundClip: 'text',
-          color: 'transparent',
-          filter: `drop-shadow(0 0 ${18 * u}px ${ice}88) drop-shadow(0 ${6 * u}px ${2 * u}px ${navy})`,
+          // Сплошной цвет со свечением: градиент через background-clip
+          // в видеорендере Chrome иногда заливает весь блок.
+          color: white,
+          textShadow: `0 0 ${14 * u * glow}px ${ice}, 0 0 ${36 * u * glow}px ${iceDeep}aa, 0 ${6 * u}px ${2 * u}px ${navy}`,
         }}
       >
         {c.title}

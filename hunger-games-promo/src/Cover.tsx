@@ -44,11 +44,8 @@ export const Cover: React.FC = () => {
             fontFamily: DISPLAY_FONT,
             fontSize: fitTitleSize(c.title, vertical ? width - 160 * u : width * 0.55, (vertical ? 168 : 150) * u),
             lineHeight: 0.95,
-            background: `linear-gradient(170deg, ${white} 20%, ${ice} 60%, ${iceDeep} 100%)`,
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            color: 'transparent',
-            filter: `drop-shadow(0 0 ${22 * u}px ${ice}99) drop-shadow(0 ${8 * u}px ${3 * u}px ${navy})`,
+            color: white,
+            textShadow: `0 0 ${16 * u}px ${ice}, 0 0 ${40 * u}px ${iceDeep}aa, 0 ${8 * u}px ${3 * u}px ${navy}`,
             maxWidth: vertical ? '100%' : '60%',
           }}
         >
