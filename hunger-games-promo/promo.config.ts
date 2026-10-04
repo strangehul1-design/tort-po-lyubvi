@@ -52,9 +52,9 @@ const config = {
     fee: '',
     prize: 'Призовой фонд 2 500 руб.',
     /** Куда вести: Telegram или Discord. Из этого же адреса строится QR-код. */
-    link: 'https://t.me/your_channel',
+    link: 'https://t.me/+u3NRm8TEZUcxOWQy',
     /** Как адрес написан под QR-кодом. Пусто — пишется сам адрес без https://. */
-    linkLabel: '',
+    linkLabel: 'в Telegram-канале',
     /** Подпись над адресом. */
     callToAction: 'Дата и регистрация',
     showQr: true,
