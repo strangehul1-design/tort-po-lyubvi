@@ -90,6 +90,7 @@ export const analyzeBpm = async (
   const flux = new Float64Array(frames);
   const lowFlux = new Float64Array(frames);
   let prev = new Float64Array(N / 2);
+  let prevLow = 0;
   const re = new Float64Array(N);
   const im = new Float64Array(N);
   for (let f = 0; f < frames; f++) {
@@ -100,17 +101,18 @@ export const analyzeBpm = async (
     fft(re, im);
     const mag = new Float64Array(N / 2);
     let s = 0;
-    let sl = 0;
+    let lowEnergy = 0;
     for (let k = 1; k < N / 2; k++) {
-      mag[k] = Math.log1p(100 * Math.hypot(re[k], im[k]));
+      const m = Math.hypot(re[k], im[k]);
+      mag[k] = Math.log1p(100 * m);
       const d = mag[k] - prev[k];
-      if (d > 0) {
-        s += d;
-        if (k <= lowBin) sl += d;
-      }
+      if (d > 0) s += d;
+      if (k <= lowBin) lowEnergy += m * m;
     }
     flux[f] = s;
-    lowFlux[f] = sl;
+    // Для сильной доли — линейный прирост энергии баса: громкость бочки важна.
+    lowFlux[f] = Math.max(0, lowEnergy - prevLow);
+    prevLow = lowEnergy;
     prev = mag;
   }
   const env = normalize(flux, fps);

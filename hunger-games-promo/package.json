@@ -14,7 +14,8 @@
     "render:horizontal": "tsx scripts/render.ts horizontal",
     "render:covers": "tsx scripts/render.ts covers",
     "build": "npm run prep && npm run render:all",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "demo-audio": "tsx scripts/demo-audio.ts"
   },
   "dependencies": {
     "@fontsource/montserrat": "5.3.0",
