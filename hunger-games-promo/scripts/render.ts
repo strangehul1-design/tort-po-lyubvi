@@ -3,6 +3,7 @@
  * npm run render:vertical   — 9:16, 1080×1920
  * npm run render:horizontal — 16:9, 1920×1080
  * npm run render:covers     — обложки 1080×1920 и 1280×720
+ * npm run render:avatar     — аватарка для Telegram и TikTok, 1080 и 640 px
  *
  * Ролик рендерит Remotion (H.264), затем ffmpeg переупаковывает файл
  * с +faststart, чтобы видео сразу начинало играть в соцсетях.
@@ -44,6 +45,12 @@ const main = async () => {
   if (what === 'covers' || what === 'all') {
     await renderStill('Cover-Vertical', 'cover-1080x1920');
     await renderStill('Cover-Horizontal', 'cover-1280x720');
+  }
+  if (what === 'avatar' || what === 'all') {
+    console.log('\n▸ Avatar → out/avatar-1080.png, out/avatar-640.png');
+    const big = path.join(outDir, 'avatar-1080.png');
+    await remotion(['still', 'src/index.ts', 'Avatar', big, '--image-format', 'png']);
+    await ffmpeg(['-i', big, '-vf', 'scale=640:640:flags=lanczos', path.join(outDir, 'avatar-640.png')]);
   }
   console.log('\n✓ Готово, файлы в папке out/');
 };

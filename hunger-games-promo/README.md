@@ -12,6 +12,7 @@
 | `promo-16x9-1920x1080.mp4` | 1920×1080, H.264, 30 fps, 40 с | YouTube, VK |
 | `cover-1080x1920.jpg` | обложка 9:16 | превью клипов |
 | `cover-1280x720.jpg` | обложка 16:9 | превью YouTube и VK |
+| `avatar-1080.png`, `avatar-640.png` | аватарка, квадрат под круглую обрезку | Telegram-канал, TikTok |
 
 ## Структура ролика
 
@@ -190,6 +191,7 @@ npm run render:all          # оба ролика и обе обложки
 npm run render:vertical     # только 9:16
 npm run render:horizontal   # только 16:9
 npm run render:covers       # только обложки
+npm run render:avatar       # только аватарка
 npm run build               # prep + render:all одной командой
 ```
 
