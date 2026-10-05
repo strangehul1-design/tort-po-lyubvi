@@ -5,6 +5,8 @@ import montCyr500 from '@fontsource/montserrat/files/montserrat-cyrillic-500-nor
 import montLat500 from '@fontsource/montserrat/files/montserrat-latin-500-normal.woff2';
 import montCyr700 from '@fontsource/montserrat/files/montserrat-cyrillic-700-normal.woff2';
 import montLat700 from '@fontsource/montserrat/files/montserrat-latin-700-normal.woff2';
+import pixelCyr from '@fontsource/press-start-2p/files/press-start-2p-cyrillic-400-normal.woff2';
+import pixelLat from '@fontsource/press-start-2p/files/press-start-2p-latin-400-normal.woff2';
 
 // Шрифты лежат в node_modules, интернет при рендере не нужен.
 const CYR = 'U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116';
@@ -13,6 +15,8 @@ const LAT =
 
 export const DISPLAY_FONT = 'Russo One';
 export const BODY_FONT = 'Montserrat';
+/** Пиксельный шрифт — для аватарки, в духе блочной графики. */
+export const PIXEL_FONT = 'Press Start 2P';
 
 loadFont({family: DISPLAY_FONT, url: russoCyr, weight: '400', unicodeRange: CYR});
 loadFont({family: DISPLAY_FONT, url: russoLat, weight: '400', unicodeRange: LAT});
@@ -20,6 +24,8 @@ loadFont({family: BODY_FONT, url: montCyr500, weight: '500', unicodeRange: CYR})
 loadFont({family: BODY_FONT, url: montLat500, weight: '500', unicodeRange: LAT});
 loadFont({family: BODY_FONT, url: montCyr700, weight: '700', unicodeRange: CYR});
 loadFont({family: BODY_FONT, url: montLat700, weight: '700', unicodeRange: LAT});
+loadFont({family: PIXEL_FONT, url: pixelCyr, weight: '400', unicodeRange: CYR});
+loadFont({family: PIXEL_FONT, url: pixelLat, weight: '400', unicodeRange: LAT});
 
 /**
  * Размер заголовка, чтобы самое длинное слово влезло в ширину.
