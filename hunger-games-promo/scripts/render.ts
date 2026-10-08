@@ -4,6 +4,7 @@
  * npm run render:horizontal — 16:9, 1920×1080
  * npm run render:covers     — обложки 1080×1920 и 1280×720
  * npm run render:avatar     — аватарка для Telegram и TikTok, 1080 и 640 px
+ * npm run render:posts      — картинки к постам (правила, 1080×1350)
  *
  * Ролик рендерит Remotion (H.264), затем ffmpeg переупаковывает файл
  * с +faststart, чтобы видео сразу начинало играть в соцсетях.
@@ -51,6 +52,10 @@ const main = async () => {
     const big = path.join(outDir, 'avatar-1080.png');
     await remotion(['still', 'src/index.ts', 'Avatar', big, '--image-format', 'png']);
     await ffmpeg(['-i', big, '-vf', 'scale=640:640:flags=lanczos', path.join(outDir, 'avatar-640.png')]);
+  }
+  if (what === 'posts' || what === 'all') {
+    console.log('\n▸ RulesPost → out/post-rules-1080x1350.png');
+    await remotion(['still', 'src/index.ts', 'RulesPost', path.join(outDir, 'post-rules-1080x1350.png'), '--image-format', 'png']);
   }
   console.log('\n✓ Готово, файлы в папке out/');
 };

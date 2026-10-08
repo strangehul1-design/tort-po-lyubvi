@@ -4,6 +4,7 @@ import config from '../promo.config';
 import {Promo} from './Promo';
 import {Cover} from './Cover';
 import {Avatar} from './Avatar';
+import {RulesPost} from './RulesPost';
 import './fonts';
 
 const fps = config.video.fps;
@@ -30,5 +31,6 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Cover-Vertical" component={Cover} width={1080} height={1920} />
     <Still id="Cover-Horizontal" component={Cover} width={1280} height={720} />
     <Still id="Avatar" component={Avatar} width={1080} height={1080} />
+    <Still id="RulesPost" component={RulesPost} width={1080} height={1350} />
   </>
 );

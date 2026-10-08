@@ -14,6 +14,7 @@
     "render:horizontal": "tsx scripts/render.ts horizontal",
     "render:covers": "tsx scripts/render.ts covers",
     "render:avatar": "tsx scripts/render.ts avatar",
+    "render:posts": "tsx scripts/render.ts posts",
     "build": "npm run prep && npm run render:all",
     "typecheck": "tsc",
     "demo-audio": "tsx scripts/demo-audio.ts"

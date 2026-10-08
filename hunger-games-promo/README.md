@@ -192,6 +192,7 @@ npm run render:vertical     # только 9:16
 npm run render:horizontal   # только 16:9
 npm run render:covers       # только обложки
 npm run render:avatar       # только аватарка
+npm run render:posts        # картинка к посту с правилами
 npm run build               # prep + render:all одной командой
 ```
 
