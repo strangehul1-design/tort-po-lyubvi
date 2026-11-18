@@ -27,7 +27,7 @@ const KEEP_DAYS = 180;                      // срок хранения — т�
 /* Подписи должны совпадать с тем, что человек видит в форме. */
 const LABELS = [
     'date' => 'Дата свадьбы', 'place' => 'Место проведения', 'guests' => 'Количество гостей',
-    'filling' => 'Начинка', 'service' => 'Презентация и нарезка', 'channel' => 'Способ связи',
+    'filling' => 'Начинка', 'tariff' => 'Тариф', 'service' => 'Презентация и нарезка', 'channel' => 'Способ связи',
     'name' => 'Имя', 'phone' => 'Телефон', 'email' => 'Почта', 'time' => 'Удобное время',
     'more' => 'Дополнительно', 'pickup' => 'Как получить сет', 'address' => 'Куда привезти',
 ];
@@ -35,7 +35,7 @@ const LABEL_OVERRIDE = [
     'tasting' => ['date' => 'Когда удобно получить'],
 ];
 const ORDER = [
-    'order'    => ['date', 'place', 'guests', 'filling', 'service', 'name', 'phone', 'channel', 'time', 'more'],
+    'order'    => ['date', 'place', 'guests', 'tariff', 'filling', 'service', 'name', 'phone', 'channel', 'time', 'more'],
     'tasting'  => ['date', 'pickup', 'address', 'name', 'phone', 'channel'],
     'checkout' => ['name', 'phone', 'email', 'channel', 'date', 'more'],
 ];

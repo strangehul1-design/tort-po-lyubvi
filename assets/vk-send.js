@@ -20,13 +20,13 @@
   /* Подписи полей: как показать человеку то, что он заполнил */
   var LABELS = {
     date: 'Дата свадьбы', place: 'Место проведения', guests: 'Количество гостей',
-    filling: 'Начинка', service: 'Презентация и нарезка', channel: 'Способ связи',
+    filling: 'Начинка', tariff: 'Тариф', service: 'Презентация и нарезка', channel: 'Способ связи',
     name: 'Имя', phone: 'Телефон', email: 'Почта', time: 'Удобное время',
     more: 'Дополнительно', people: 'Количество человек'
   };
 
   var ORDER = {
-    order:    ['date', 'place', 'guests', 'filling', 'service', 'name', 'phone', 'channel', 'time', 'more'],
+    order:    ['date', 'place', 'guests', 'tariff', 'filling', 'service', 'name', 'phone', 'channel', 'time', 'more'],
     tasting:  ['date', 'people', 'name', 'phone', 'channel'],
     checkout: ['name', 'phone', 'email', 'channel', 'date', 'more']
   };

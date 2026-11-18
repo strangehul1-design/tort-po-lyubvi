@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<script>/* Старая копия на GitHub Pages: переводим на основной адрес */if(/\.github\.io$/.test(location.hostname))location.replace('https://asiyatort.ru'+location.pathname.replace(/^\/tort-po-lyubvi(?=\/|$)/,'')+location.search+location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свадебные торты в Самаре «ТОРТ по любви»</title>
 <meta name="description" content="Меняем ваше волнение на сладкое предвкушение! Свадебные торты на заказ в Самаре: дегустация, бережная доставка, презентация, нарезка. Тел. 8 908 367-79-51">
@@ -62,8 +61,12 @@
       "@id": "https://asiyatort.ru/#prices",
       "name": "Цены",
       "itemListElement": [
+        { "@type": "Offer", "name": "Тариф «Классический»", "price": "3200", "priceCurrency": "RUB",
+           "description": "За 1 кг. Дегустация четырёх основных вкусов — 1000 ₽, вычитается при заказе торта от 5 кг", "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Тариф «Роскошный»", "price": "3900", "priceCurrency": "RUB",
+           "description": "За 1 кг. Дегустация при личной встрече включена", "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Дегустационный сет", "price": "1000", "priceCurrency": "RUB",
-           "description": "Семь начинок, курьером или самовывозом", "availability": "https://schema.org/InStock" },
+           "description": "Четыре основных вкуса без выбора, курьером или самовывозом", "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Торт 3 кг — 10–15 гостей", "price": "11500", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Торт 4 кг — 15–20 гостей", "price": "13000", "priceCurrency": "RUB",
@@ -82,10 +85,8 @@
            "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Торт 10 кг — 50–55 гостей", "price": "32500", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Доставка по Самаре", "price": "1000", "priceCurrency": "RUB",
-           "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Доставка по области", "price": "2500", "priceCurrency": "RUB",
-           "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Доставка по Самаре и области", "price": "1000", "priceCurrency": "RUB",
+           "description": "Стоимость от 1000 ₽", "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Презентация и нарезка торта", "price": "3000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" }
       ]
@@ -104,8 +105,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Marck+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tokens.css">
-<link rel="stylesheet" href="assets/vk-send.css">
+<link rel="stylesheet" href="assets/tokens.css?v=20261118">
+<link rel="stylesheet" href="assets/vk-send.css?v=6f17cd95">
 <style>
 /* Сброс. Без него у body остаётся браузерный отступ 8px, а box-sizing
    считается по content-box — тогда width:100% плюс боковые отступы
@@ -932,13 +933,6 @@ select.inp{
 .stub-soon::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--rose-soft);flex-shrink:0}
 
-/* Пометка «скоро» внутри шага: то же, но в строку с переносом —
-   фраза длиннее, чем помещается без него. */
-.step-soon{display:flex;gap:9px;margin-top:12px;max-width:46ch;
-  font-size:12.5px;line-height:1.55;color:var(--muted)}
-.step-soon::before{content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--rose-soft);flex-shrink:0;margin-top:6px}
-
 /* ═════════ ГАЛЕРЕЯ СНИМКОВ СО СВАДЕБ ═════════
    Колоночная кладка: кадры разной высоты укладываются без дыр
    и ничего не обрезается — снимок виден целиком. Ширина и высота
@@ -1077,13 +1071,13 @@ select.inp{
   #top .hero-scroll{display:none}
   #about{padding-top:clamp(36px,10vw,56px)}
 }
-#service-grid{grid-template-columns:repeat(4,1fr)}
+#service-grid{grid-template-columns:repeat(3,1fr)}
 @media(max-width:1200px){ #service-grid{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:640px){ #service-grid{grid-template-columns:1fr} }
-/* Срез начинки над названием — до краёв карточки. */
+/* Срез начинки над названием — вертикальные фото показываем целиком. */
 .fill-ph{margin:calc(-1 * clamp(22px,2.4vw,32px)) calc(-1 * clamp(22px,2.4vw,32px)) 18px;
-  aspect-ratio:4/3;overflow:hidden;background:var(--surface)}
-.fill-ph img{display:block;width:100%;height:100%;object-fit:cover}
+  aspect-ratio:4/3;overflow:hidden;background:#fff}
+.fill-ph img{display:block;width:100%;height:100%;object-fit:contain}
 /* Набор для дегустации над формой записи */
 .tasting-ph{margin-bottom:28px;aspect-ratio:16/10;overflow:hidden;background:var(--surface)}
 .tasting-ph img{display:block;width:100%;height:100%;object-fit:cover}
@@ -1092,6 +1086,38 @@ select.inp{
 .deliv-ph--real img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
 /* У рамок-заглушек первая растягивалась на две колонки; снимки идут поровну. */
 .deliv-ph.deliv-ph--real>*{grid-column:auto;grid-row:auto}
+
+/* Основные действия — фирменный розовый, тёмный текст сохраняет контраст. */
+.btn--solid,.hdr-cta{background:var(--rose-button);color:var(--graphite);border-color:var(--rose-button)}
+.btn--solid::before{background:var(--rose-button-hover)}
+.btn--solid:hover,.hdr-cta:hover{color:var(--graphite);background:var(--rose-button-hover);border-color:var(--rose-button-hover)}
+
+.tariffs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,32px);margin-bottom:clamp(44px,6vw,76px)}
+.tariff{background:var(--porcelain);border:1px solid var(--line);padding:clamp(26px,3.4vw,46px);display:flex;flex-direction:column}
+.tariff-top{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+.tariff-name{font-family:var(--ff-d);font-size:clamp(30px,3vw,42px);font-weight:500;line-height:1.1}
+.tariff-price{font-family:var(--ff-d);font-size:clamp(25px,2.4vw,34px);font-weight:500;white-space:nowrap;color:var(--rose-ink)}
+.tariff-lead{margin-top:16px;color:var(--body);line-height:1.7}
+.tariff-h{margin-top:24px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.tariff-list{list-style:none;margin-top:12px;display:grid;gap:11px}
+.tariff-list li{position:relative;padding-left:22px;color:var(--body);font-size:15px;line-height:1.62}
+.tariff-list li::before{content:"";position:absolute;left:1px;top:.72em;width:8px;height:4px;border-left:1.5px solid var(--rose-ink);border-bottom:1.5px solid var(--rose-ink);transform:rotate(-45deg)}
+.tariff-note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;line-height:1.68;color:var(--body)}
+.tariff-note+.tariff-note{margin-top:12px;padding-top:0;border-top:0}
+.tariff .btn{margin-top:auto;width:100%}
+.tariff-options{margin:18px 0 24px;font-size:13px;line-height:1.65;color:var(--muted)}
+.contract-link{margin-top:14px;align-self:flex-start;font-size:13px;text-decoration:underline;text-underline-offset:4px;color:var(--body)}
+
+.faq-list{max-width:900px;margin:0 auto;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;position:relative;padding:24px 52px 24px 0;font-family:var(--ff-d);font-size:clamp(20px,2.2vw,27px);font-weight:500;line-height:1.3}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";position:absolute;right:8px;top:20px;font-family:var(--ff-b);font-size:25px;font-weight:300;transition:transform .3s var(--ease)}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item summary:focus-visible{outline:2px solid var(--rose-ink);outline-offset:3px}
+.faq-answer{padding:0 52px 26px 0;color:var(--body);font-size:16px;line-height:1.75;max-width:70ch}
+.faq-answer p+p{margin-top:12px}
+@media(max-width:800px){.tariffs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1141,9 +1167,9 @@ select.inp{
 <section class="hero wrap" id="top">
   <div class="hero-in">
     <div class="hero-load">
-      <p class="eyebrow">Кондитерская с 2013 года</p>
+      <p class="eyebrow">Кондитерская · работаем более 9 лет</p>
       <h1 class="d1 hero-h">Торт, который стоит <em>увидеть</em> прежде, чем съесть</h1>
-      <p class="hero-p" data-cms="text.hero_lead">Свадебные торты по индивидуальному заказу.<br>Пишем историю вашей любви на языке вкуса и эстетики.<br>Доставляем на площадку лично и бережно за 30-60 мин. до подачи.</p>
+      <p class="hero-p" data-cms="text.hero_lead">Свадебные торты по индивидуальному заказу.<br>Пишем историю вашей любви на языке вкуса и эстетики.<br>Доставляем на площадку лично и бережно за 30–60 минут до подачи.</p>
       <div class="hero-btns">
         <button class="btn btn--solid" data-tab="order"><span>Заказать торт
           <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1155,8 +1181,8 @@ select.inp{
 
   <div class="hero-art">
     <div class="mask rv">
-      <img class="hero-img" src="assets/photo/web/p04-800.jpg"
-        srcset="assets/photo/web/p04-800.jpg 800w, assets/photo/web/p04-1600.jpg 1600w"
+      <img class="hero-img" src="assets/photo/web/p04-800.jpg?v=04c54d91"
+        srcset="assets/photo/web/p04-800.jpg?v=04c54d91 800w, assets/photo/web/p04-1600.jpg?v=ec992609 1600w"
         sizes="(max-width:1080px) 92vw, 44vw" width="900" height="1600"
         fetchpriority="high" decoding="async"
         alt="Двухъярусный свадебный торт с лепестковой юбкой из крема">
@@ -1169,39 +1195,25 @@ select.inp{
   </div>
 </section>
 
-<!-- ═══════ ЗНАКОМСТВО С КОНДИТЕРОМ ═══════
-     Стоит первым после героя: портрет мастера уже на первом экране,
-     и этот блок объясняет, кто на нём. Своей фотографии у блока нет
-     намеренно — она прямо над ним. -->
+<!-- ═══════ ЗНАКОМСТВО С КОНДИТЕРОМ ═══════ -->
 <section class="sec" id="about">
   <div class="wrap">
     <div class="about-in">
       <div class="mask rv">
-        <img class="about-img" src="assets/photo/web/s02-800.jpg"
-          srcset="assets/photo/web/s02-800.jpg 800w, assets/photo/web/s02-1600.jpg 1600w"
-          sizes="(max-width:1080px) 92vw, 42vw" width="900" height="1600"
+        <img class="about-img" src="assets/photo/web/s02-800.jpg?v=20261118"
+          srcset="assets/photo/web/s02-800.jpg?v=20261118 800w, assets/photo/web/s02-1600.jpg?v=20261118 941w"
+          sizes="(max-width:1080px) 92vw, 42vw" width="941" height="1672"
           loading="lazy" decoding="async"
-          alt="Асия Зубаирова, кондитер «Торт по любви», собирает свадебный торт">
+          alt="Асия Зубаирова, основатель кондитерской студии «Торт по любви»">
       </div>
       <div class="about-txt rv rv-1">
         <p class="eyebrow">Знакомство с кондитером</p>
         <h2 class="d2">Ваша свадьба<br>в <em>надёжных руках</em></h2>
-        <p>Меня зовут Асия. Я занимаюсь созданием тортов с 2013 года, но свадебные торты&nbsp;— моя особая страсть.</p>
-        <p>Люблю свадебные проекты за их масштаб, особую эстетику, ответственность и обожаю видеть ваши трепетные эмоции.</p>
-        <p class="about-sign">Я беру ответственность за кульминацию вашего праздника, а вам оставляю предвкушение...</p>
+        <p>Меня зовут Асия Зубаирова. Я основатель кондитерской студии «ТОРТ по любви».</p>
+        <p>Мы создаём торты более 9 лет, но свадебные торты&nbsp;— наша особая страсть!</p>
+        <p>Любим свадебные проекты за их масштаб, особую эстетику, ответственность и за ваши трепетные эмоции. Они дарят нам вдохновение.</p>
+        <p class="about-sign">Мы берём ответственность за кульминацию вашего торжества, а вам оставляем сладкое предвкушение…</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ ЗАЧЕМ ТОРТ (текст клиентки, дословно) ═══════ -->
-<section class="sec sec--surface" id="credo">
-  <div class="wrap">
-    <div class="credo-in rv">
-      <p class="credo-lead reveal-line">Гости запомнят платье, танец и... ваш торт.</p>
-      <p class="credo-body">Мы берём ответственность за финал вашего торжества&nbsp;— свадебный ТОРТ!</p>
-      <p class="credo-mark">Делаем так, чтобы он стал самым вкусным впечатлением вечера.</p>
-      <div class="credo-rule" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -1296,16 +1308,15 @@ select.inp{
         <li class="step rv" data-step="2">
           <div class="step-b">
             <h3 class="d3">Согласуем эскиз</h3>
-            <p>Разбираем форму, цвет и декор по вашим фотографиям-референсам и прошлым работам, считаем размер под число гостей. Эскиз входит в стоимость торта — отдельно за него платить не нужно.</p>
+            <p>В тарифе «Классический» разрабатываем оформление по вашим фотографиям-референсам. В тарифе «Роскошный» создаём 3D-модель и согласуем эскиз. Рассчитываем вес под число гостей, фиксируем детали в договоре.</p>
             <span class="step-tag">Входит в стоимость заказа</span>
-            <p class="step-soon">Эскиз отдельным документом скоро будет доступен. Также, как и эскиз, скоро будет доступен договор на оказание услуг</p>
           </div>
         </li>
         <li class="step rv" data-step="3">
           <div class="step-b">
             <h3 class="d3">Пробуете начинки</h3>
-            <p>Собираем сет из всех семи начинок и отправляем курьером — или забираете сами. Пробуете дома, вдвоём или с родителями, без спешки и чужих глаз.</p>
-            <span class="step-tag">1 000 ₽ · вычитаем из заказа от 5 кг</span>
+            <p>Для тарифа «Классический» собираем четыре основных вкуса без выбора и отправляем курьером — или вы забираете сами. Для «Роскошного» дегустация при личной встрече включена в стоимость.</p>
+            <span class="step-tag">«Классический»: 1 000 ₽ · вычитаем из заказа от 5 кг</span>
           </div>
         </li>
         <li class="step rv" data-step="4">
@@ -1327,42 +1338,37 @@ select.inp{
     <div class="sec-head">
       <div class="sec-head-l rv">
         <p class="eyebrow">Начинки</p>
-        <h2 class="d2">Семь вкусов,<br>из которых <em>выбирают</em></h2>
+        <h2 class="d2">Шесть вкусов,<br>из которых <em>выбирают</em></h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Все семь входят в дегустационный сет — можно попробовать до того, как решите. Ярусы в одном торте бывают разными.</p>
+      <p class="sec-head-r note rv rv-1">В тарифе «Классический» дегустационный сет состоит из четырёх основных вкусов без выбора. Ярусы в одном торте бывают разными.</p>
     </div>
 
     <div class="fills" id="fill-grid">
       <article class="fill rv">
-        <h3 class="fill-n">Клубничная нежность</h3>
-        <p class="fill-d">Классический воздушный бисквит, молочная пропитка, прослойки из ягод клубники, клубничный нежный крем с маскарпоне</p>
-      </article>
-      <article class="fill rv rv-1">
         <h3 class="fill-n">Молочная девочка</h3>
         <p class="fill-d">Тонкие нежные коржи на сгущённом молоке, нежный сливочный крем с маскарпоне</p>
         <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / лимонная / вишнёвая / чёрносмородиновая</p>
       </article>
-      <article class="fill rv rv-2">
+      <article class="fill rv rv-1">
         <h3 class="fill-n">Красный бархат</h3>
         <p class="fill-d">Красный влажный бисквит с ноткой шоколада, крем-чиз</p>
         <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / вишнёвая</p>
       </article>
-      <article class="fill rv">
-        <h3 class="fill-n">Морковный фреш</h3>
+      <article class="fill rv rv-2">
+        <h3 class="fill-n">Морковный с апельсином</h3>
         <p class="fill-d">Морковный пряный бисквит с грецким орехом, апельсиновая пропитка, апельсиновая прослойка, крем-чиз на сливках</p>
       </article>
-      <article class="fill rv rv-1">
-        <h3 class="fill-n">Медовый</h3>
-        <p class="fill-d">Ароматные тонкие медовые коржи, сливочно-сметанный крем</p>
-        <p class="fill-c">Можно добавить грецкий орех</p>
-      </article>
-      <article class="fill rv rv-2">
-        <h3 class="fill-n">Шпинатный медовик с малиной</h3>
+      <article class="fill rv">
+        <h3 class="fill-n">Шпинатный медовик</h3>
         <p class="fill-d">Шпинатные медовые коржи, сливочный крем-чиз, малиновая прослойка без косточек</p>
       </article>
-      <article class="fill rv">
+      <article class="fill rv rv-1">
         <h3 class="fill-n">Вишня в шоколаде</h3>
         <p class="fill-d">Насыщенный шоколадный бисквит, шоколадная пропитка, ганаш на молочном шоколаде, вишнёвая прослойка</p>
+      </article>
+      <article class="fill rv rv-2">
+        <h3 class="fill-n">Тропический</h3>
+        <p class="fill-d">Кокосовые воздушные бисквитные коржи с кокосовой пропиткой, сливочный крем на основе маскарпоне с кокосом и яркая прослойка из манго и маракуйи</p>
       </article>
     </div>
   </div>
@@ -1374,32 +1380,67 @@ select.inp{
     <div class="sec-head">
       <div class="sec-head-l rv">
         <p class="eyebrow">Цены</p>
-        <h2 class="d2">Что можно<br>заказать <em>сразу</em></h2>
+        <h2 class="d2">Тарифы<br>для <em>молодожёнов</em></h2>
       </div>
-      <p class="sec-head-r note rv rv-1">Цена зависит от веса торта и числа гостей и указана с учётом декора.</p>
+      <p class="sec-head-r note rv rv-1">Стоимость зависит от веса, выбранного тарифа и сложности декора. Доставка оплачивается отдельно.</p>
     </div>
 
-    <!-- Блок Б — текст клиентки, дословно. Стоит до цифр: сначала
-         человек читает, за что платит, и только потом видит суммы. -->
     <div class="value rv">
-      <p class="value-lead">Свадебный торт&nbsp;— это не просто десерт. Это центр вашего стола, символ сладкой совместной жизни и самый красивый акцент торжества.</p>
-      <p class="value-h">Мы создаём торты, которые:</p>
+      <p class="value-lead">Гости запомнят платье, танец… и ваш торт.</p>
+      <p class="credo-mark">Делаем так, чтобы он стал главным впечатлением вечера.</p>
+      <p class="value-h">Наши торты:</p>
       <ul class="value-list">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Безумно вкусные и гости просят добавки.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Безумно вкусные — гости просят добавки.</span></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Эстетичные, элегантные, изысканные, вписывающиеся в общую концепцию праздника.</span></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Доставляем лично и бережно прямо к подаче</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4.5 4.5L19 7"/></svg><span>Доставляем лично и бережно прямо к подаче.</span></li>
       </ul>
     </div>
 
-    <p class="prices-sub rv">Торты по весу — цены с учётом декора</p>
+    <div class="tariffs">
+      <article class="tariff rv">
+        <div class="tariff-top"><h3 class="tariff-name">Классический</h3><p class="tariff-price">3 200 ₽/кг</p></div>
+        <p class="tariff-lead">Ярусные торты с простым декором.</p>
+        <p class="tariff-h">В стоимость входит</p>
+        <ul class="tariff-list">
+          <li>Цилиндрические ярусы в классических или современных пропорциях.</li>
+          <li>Гладкая поверхность или лёгкие кремовые текстуры и мазки.</li>
+          <li>Цветовое решение в концепции торжества или на вкус невесты.</li>
+          <li>Флористика, топперы и ягоды на сумму до 1 000 ₽.</li>
+          <li>Заключение договора.</li>
+        </ul>
+        <p class="tariff-note"><b>Дегустация без личной встречи:</b> 1 000 ₽, четыре основных вкуса без выбора. Стоимость вычитается при заказе торта от 5 кг.</p>
+        <p class="tariff-note">Разработка торта ведётся по вашему референсу или фото-пожеланиям. Именные топперы на заказ, ягоды и флористика свыше 1 000 ₽, а также велюр оплачиваются отдельно.</p>
+        <p class="tariff-note">Торты нестандартных форм и торты с трудоёмким декором рассчитываются индивидуально.</p>
+        <p class="tariff-options">Дополнительно: презентация торта — 3 000 ₽; муляжные торты — стоимость рассчитывается индивидуально.</p>
+        <button class="btn btn--solid" data-tab="order" data-tariff="Классический"><span>Выбрать тариф</span></button>
+      </article>
+
+      <article class="tariff rv rv-1">
+        <div class="tariff-top"><h3 class="tariff-name">Роскошный</h3><p class="tariff-price">3 900 ₽/кг</p></div>
+        <p class="tariff-lead">Торты с максимальным уровнем сервиса и неповторимым дизайном. Торт, который станет главным арт-объектом вашего торжества.</p>
+        <p class="tariff-h">В стоимость входит</p>
+        <ul class="tariff-list">
+          <li>Разработка 3D-модели торта и утверждение эскиза до начала работы.</li>
+          <li>Сложный авторский декор: ручная роспись, работа с шоколадом, стильные фактурные структуры, фигурки из мастики.</li>
+          <li>Смелая геометрия: шестигранники, кубы, сердца и другие необычные формы.</li>
+          <li>Антигравитационные элементы.</li>
+          <li>Дегустация при личной встрече включена.</li>
+          <li>Заключение договора.</li>
+        </ul>
+        <p class="tariff-options">Дополнительно: презентация торта — 3 000 ₽; муляжные торты — стоимость рассчитывается индивидуально.</p>
+        <button class="btn btn--solid" data-tab="order" data-tariff="Роскошный"><span>Выбрать тариф</span></button>
+      </article>
+    </div>
+
+    <p class="prices-sub rv">Примеры тортов по весу — цены с учётом декора</p>
 
     <div class="prices prices--cakes" id="price-grid">
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 3 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p05-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p05-1600.jpg?v=289bd9ff"
                 aria-label="Свадебный торт 3 кг на 10–15 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p05-800.jpg" srcset="assets/photo/web/p05-800.jpg 800w, assets/photo/web/p05-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p05-800.jpg?v=625e5349" srcset="assets/photo/web/p05-800.jpg?v=625e5349 800w, assets/photo/web/p05-1600.jpg?v=289bd9ff 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="1254" height="1254" loading="lazy" decoding="async"
                alt="Свадебный торт 3 кг на 10–15 гостей">
@@ -1423,9 +1464,9 @@ select.inp{
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 4 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p08-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p08-1600.jpg?v=87afb90b"
                 aria-label="Свадебный торт 4 кг на 15–20 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p08-800.jpg" srcset="assets/photo/web/p08-800.jpg 800w, assets/photo/web/p08-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p08-800.jpg?v=3a6609ec" srcset="assets/photo/web/p08-800.jpg?v=3a6609ec 800w, assets/photo/web/p08-1600.jpg?v=87afb90b 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="854" height="1268" loading="lazy" decoding="async"
                alt="Свадебный торт 4 кг на 15–20 гостей">
@@ -1449,9 +1490,9 @@ select.inp{
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 4 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p03-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p03-1600.jpg?v=2c9fba2d"
                 aria-label="Свадебный торт 4 кг на 20 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p03-800.jpg" srcset="assets/photo/web/p03-800.jpg 800w, assets/photo/web/p03-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p03-800.jpg?v=378736d5" srcset="assets/photo/web/p03-800.jpg?v=378736d5 800w, assets/photo/web/p03-1600.jpg?v=2c9fba2d 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="1200" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 4 кг на 20 гостей">
@@ -1475,9 +1516,9 @@ select.inp{
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 5 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p02-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p02-1600.jpg?v=6b89a530"
                 aria-label="Свадебный торт 5 кг на 20–25 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p02-800.jpg" srcset="assets/photo/web/p02-800.jpg 800w, assets/photo/web/p02-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p02-800.jpg?v=0ee091e5" srcset="assets/photo/web/p02-800.jpg?v=0ee091e5 800w, assets/photo/web/p02-1600.jpg?v=6b89a530 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="900" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 5 кг на 20–25 гостей">
@@ -1501,9 +1542,9 @@ select.inp{
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 6 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p07-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p07-1600.jpg?v=829886df"
                 aria-label="Свадебный торт 6 кг на 30–35 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p07-800.jpg" srcset="assets/photo/web/p07-800.jpg 800w, assets/photo/web/p07-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p07-800.jpg?v=34c88e4f" srcset="assets/photo/web/p07-800.jpg?v=34c88e4f 800w, assets/photo/web/p07-1600.jpg?v=829886df 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="531" height="1080" loading="lazy" decoding="async"
                alt="Свадебный торт 6 кг на 30–35 гостей">
@@ -1527,9 +1568,9 @@ select.inp{
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 8 кг (№1)">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p01-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p01-1600.jpg?v=5d5a20d3"
                 aria-label="Свадебный торт 8 кг на 40–45 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p01-800.jpg" srcset="assets/photo/web/p01-800.jpg 800w, assets/photo/web/p01-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p01-800.jpg?v=0f917bbd" srcset="assets/photo/web/p01-800.jpg?v=0f917bbd 800w, assets/photo/web/p01-1600.jpg?v=5d5a20d3 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="901" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 8 кг на 40–45 гостей">
@@ -1553,9 +1594,9 @@ select.inp{
       <article class="price price--cake rv" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 8 кг (№9)">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p09-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p09-1600.jpg?v=1e87c6cc"
                 aria-label="Свадебный торт 8 кг на 40–45 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p09-800.jpg" srcset="assets/photo/web/p09-800.jpg 800w, assets/photo/web/p09-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p09-800.jpg?v=acf298bf" srcset="assets/photo/web/p09-800.jpg?v=acf298bf 800w, assets/photo/web/p09-1600.jpg?v=1e87c6cc 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="900" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 8 кг на 40–45 гостей">
@@ -1579,9 +1620,9 @@ select.inp{
       <article class="price price--cake rv rv-1" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 9 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p04-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p04-1600.jpg?v=ec992609"
                 aria-label="Свадебный торт 9 кг на 45–50 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p04-800.jpg" srcset="assets/photo/web/p04-800.jpg 800w, assets/photo/web/p04-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p04-800.jpg?v=04c54d91" srcset="assets/photo/web/p04-800.jpg?v=04c54d91 800w, assets/photo/web/p04-1600.jpg?v=ec992609 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="900" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 9 кг на 45–50 гостей">
@@ -1605,9 +1646,9 @@ select.inp{
       <article class="price price--cake rv rv-2" itemscope itemtype="https://schema.org/Product">
         <meta itemprop="name" content="Торт 10 кг">
         <span itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="display:none"><meta itemprop="name" content="ТОРТ по любви"></span>
-        <button class="price-ph" type="button" data-big="assets/photo/web/p06-1600.jpg"
+        <button class="price-ph" type="button" data-big="assets/photo/web/p06-1600.jpg?v=13a8422a"
                 aria-label="Свадебный торт 10 кг на 50–55 гостей — посмотреть крупнее">
-          <img itemprop="image" src="assets/photo/web/p06-800.jpg" srcset="assets/photo/web/p06-800.jpg 800w, assets/photo/web/p06-1600.jpg 1600w"
+          <img itemprop="image" src="assets/photo/web/p06-800.jpg?v=76927a8b" srcset="assets/photo/web/p06-800.jpg?v=76927a8b 800w, assets/photo/web/p06-1600.jpg?v=13a8422a 1600w"
                sizes="(max-width:640px) 64px, (max-width:980px) 40vw, 320px"
                width="900" height="1600" loading="lazy" decoding="async"
                alt="Свадебный торт 10 кг на 50–55 гостей">
@@ -1634,8 +1675,8 @@ select.inp{
     <div class="prices" id="service-grid">
       <article class="price rv" itemscope itemtype="https://schema.org/Service">
         <h3 class="price-name" itemprop="name" data-cms="price.tasting.name">Дегустационный сет</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.tasting.desc">Все семь начинок. Привозим курьером или забираете сами.</p>
-        <p class="price-note" data-cms="price.tasting.note">Вычитаем из суммы заказа, если он состоится</p>
+        <p class="price-desc" itemprop="description" data-cms="price.tasting.desc">Для тарифа «Классический»: четыре основных вкуса без выбора. Привозим курьером или забираете сами. В «Роскошном» дегустация включена.</p>
+        <p class="price-note" data-cms="price.tasting.note">Вычитаем из стоимости при заказе торта от 5 кг</p>
         <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <span class="price-num" data-cms="price.tasting.value">1 000 ₽</span>
           <span class="price-unit">за сет</span>
@@ -1648,31 +1689,16 @@ select.inp{
         </span></button>
       </article>
       <article class="price rv rv-1" itemscope itemtype="https://schema.org/Service">
-        <h3 class="price-name" itemprop="name" data-cms="price.delivery-city.name">Доставка по Самаре</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.delivery-city.desc">Везём сами в боксе с хладагентами, собираем на площадке.</p>
+        <h3 class="price-name" itemprop="name" data-cms="price.delivery-city.name">Доставка</h3>
+        <p class="price-desc" itemprop="description" data-cms="price.delivery-city.desc">Самара и область. Везём сами в боксе с хладагентами, собираем на площадке.</p>
         <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <span class="price-num" data-cms="price.delivery-city.value">1 000 ₽</span>
-          <span class="price-unit">по городу</span>
+          <span class="price-unit">от</span>
           <meta itemprop="price" content="1000">
           <meta itemprop="priceCurrency" content="RUB">
           <link itemprop="availability" href="https://schema.org/InStock">
         </div>
         <button class="btn btn--ghost" type="button" data-add="delivery-city"><span>В корзину
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
-        </span></button>
-      </article>
-      <article class="price rv rv-2" itemscope itemtype="https://schema.org/Service">
-        <h3 class="price-name" itemprop="name" data-cms="price.delivery-region.name">Доставка по области</h3>
-        <p class="price-desc" itemprop="description" data-cms="price.delivery-region.desc">Базы отдыха на Волге и площадки за городом.</p>
-        <p class="price-note" data-cms="price.delivery-region.note">Точную сумму считаем по адресу</p>
-        <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <span class="price-num" data-cms="price.delivery-region.value">2 500 ₽</span>
-          <span class="price-unit">от</span>
-          <meta itemprop="price" content="2500">
-          <meta itemprop="priceCurrency" content="RUB">
-          <link itemprop="availability" href="https://schema.org/InStock">
-        </div>
-        <button class="btn btn--ghost" type="button" data-add="delivery-region"><span>В корзину
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
         </span></button>
       </article>
@@ -1717,8 +1743,8 @@ select.inp{
         <p class="stub-soon">Цены готовим</p>
       </div>
       <div class="mask rv rv-1">
-        <img class="sec-img" src="assets/photo/web/s01-800.jpg"
-          srcset="assets/photo/web/s01-800.jpg 800w, assets/photo/web/s01-1600.jpg 1600w"
+        <img class="sec-img" src="assets/photo/web/s01-800.jpg?v=d87d4dcc"
+          srcset="assets/photo/web/s01-800.jpg?v=d87d4dcc 800w, assets/photo/web/s01-1600.jpg?v=58e526ea 1600w"
           sizes="(max-width:1080px) 92vw, 46vw" width="1200" height="1600" loading="lazy" decoding="async"
           alt="Торт на годовщину: лягушки-молодожёны и надпись «Семья Эчмаков»">
       </div>
@@ -1772,17 +1798,25 @@ select.inp{
             <input class="inp" type="number" id="o-guests" name="guests" min="1" max="600" placeholder="Например, 80" required>
           </div>
 
+          <div class="field f-wide">
+            <label for="o-tariff"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Тариф</label>
+            <select class="inp" id="o-tariff" name="tariff">
+              <option value="Нужна консультация">Нужна консультация по выбору</option>
+              <option value="Классический">Классический — 3 200 ₽/кг</option>
+              <option value="Роскошный">Роскошный — 3 900 ₽/кг</option>
+            </select>
+          </div>
+
           <div class="field">
             <label for="o-filling"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-5h6v5"/></svg>Начинка</label>
             <select class="inp" id="o-filling" name="filling" aria-describedby="o-filling-hint">
               <option value="">Выберите из ассортимента</option>
-              <option>Клубничная нежность</option>
               <option>Молочная девочка</option>
               <option>Красный бархат</option>
-              <option>Морковный фреш</option>
-              <option>Медовый</option>
-              <option>Шпинатный медовик с малиной</option>
+              <option>Морковный с апельсином</option>
+              <option>Шпинатный медовик</option>
               <option>Вишня в шоколаде</option>
+              <option>Тропический</option>
               <option data-tasting="1">Хочу заказать дегустацию — выберу после</option>
             </select>
             <span class="note" id="o-filling-hint" hidden>Отлично. После отправки заявки договоримся, когда привезти дегустационный сет.</span>
@@ -1856,7 +1890,10 @@ select.inp{
             </a>
           </div>
           <div class="form-foot">
-            <p class="note" style="max-width:44ch">Текст заявки скопируется, и мы отправим вас в наше сообщество ВКонтакте — останется вставить и отправить. Эскиз и расчёт бесплатны.</p>
+            <div>
+              <p class="note" style="max-width:44ch">Заявка ни к чему не обязывает: сначала согласуем детали и расчёт, затем заключим договор. Задаток 30% закрепляет дату и не возвращается при отмене заказа.</p>
+              <a class="contract-link" href="https://wa.me/79083677951?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%2C%20%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B0%20%D0%BD%D0%B0%20%D1%81%D0%B2%D0%B0%D0%B4%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D1%82%D0%BE%D1%80%D1%82." target="_blank" rel="noopener">Получить пример договора в WhatsApp</a>
+            </div>
             <button class="btn btn--solid" type="submit"><span>Отправить заявку
               <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span></button>
@@ -1881,7 +1918,7 @@ select.inp{
       <div class="card" style="max-width:760px;margin:0 auto">
         <div style="margin-bottom:32px">
           <h3 class="d3" style="margin-bottom:10px">Дегустационный сет</h3>
-          <p class="note" style="max-width:52ch" data-cms="text.tasting_note">Все семь начинок в одном наборе. Привозим курьером, забираете сами на Урицкого, 23 или встречаемся в удобном месте — пробуете дома, без спешки. Стоимость 1 000 ₽ — вычитаем из суммы заказа, если он состоится.</p>
+          <p class="note" style="max-width:52ch" data-cms="text.tasting_note">Для тарифа «Классический» — четыре основных вкуса без выбора за 1 000 ₽. Привозим курьером или можно забрать самостоятельно. Стоимость дегустации вычитается при заказе торта от 5 кг. Для тарифа «Роскошный» дегустация при личной встрече включена.</p>
         </div>
         <form class="form-grid" id="form-tasting" novalidate>
             <input type="hidden" name="form_type" value="tasting">
@@ -1957,20 +1994,12 @@ select.inp{
           <p class="eyebrow" style="margin-bottom:18px">Доставка и сборка</p>
           <h3 class="d2" style="font-size:clamp(28px,3.4vw,46px);margin-bottom:20px">Мы везём торт<br>сами. Всегда.</h3>
           <p>Свадебные торты мы не доверяем курьерам и сторонним лицам. Мы возим их сами лично в специальном боксе с хладагентами и в автомобиле с кондиционером. По всем правилам бережной перевозки.</p>
-          <p>Как правило приезжаем за 30-60 мин. до подачи, проверяем все ли в порядке с тортом и передаём официантам. Либо презентую и нарезаю торт сама лично.</p>
+          <p>Как правило, приезжаем за 30–60 минут до подачи, проверяем, всё ли в порядке с тортом, и передаём его официантам. Если заказана презентация, остаёмся и нарезаем торт.</p>
 
           <ul class="deliv-list">
             <li>
               <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-              <span>Самара, в пределах города</span><b>1 000 ₽</b>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 0 0 18a14 14 0 0 0 0-18"/><path d="M3 12h18"/></svg>
-              <span>Область, базы отдыха на Волге</span><b>от 2 500 ₽</b>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><path d="M2 7h11v10H2z"/><path d="M13 10h4l4 3.5V17h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg>
-              <span>Тольятти, Сызрань, Новокуйбышевск</span><b>по расчёту</b>
+              <span>Самара и область</span><b>от 1 000 ₽</b>
             </li>
             <li>
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
@@ -1978,7 +2007,7 @@ select.inp{
             </li>
           </ul>
 
-          <p class="note" style="margin-bottom:26px" data-cms="text.delivery_note">Точная стоимость зависит от расстояния до площадки, времени подачи и того, остаёмся ли мы на нарезку. Назовите место — посчитаем в тот же день, до оформления заказа.</p>
+          <p class="note" style="margin-bottom:26px" data-cms="text.delivery_note">Стоимость доставки — от 1 000 ₽, зависит от адреса площадки. Назовите место — рассчитаем точную сумму до оформления заказа. Презентация и нарезка оплачиваются отдельно.</p>
 
           <button class="btn btn--ghost" data-tab="order"><span>Рассчитать для моей площадки
             <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2054,7 +2083,7 @@ select.inp{
 
       <blockquote class="quote rv rv-1">
         <p class="quote-m" data-cms="review.8.text">«Асия вы как всегда, просто умничка! Торт был супер! Гости в восторге, спасибо Вам!»</p>
-        <p class="quote-a" data-cms="review.8.author">Отзыв в сообществе · сентябрь 2017</p>
+        <p class="quote-a" data-cms="review.8.author">Отзыв в сообществе</p>
       </blockquote>
 
       <!-- Снимки со свадеб скрипт перемешивает с цитатами: отзыв,
@@ -2067,6 +2096,34 @@ select.inp{
       <div class="shot shot--empty" style="aspect-ratio:3/4"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:1/1"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
       <div class="shot shot--empty" style="aspect-ratio:4/5"><svg class="ph-glyph" aria-hidden="true"><use href="#g-cake"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ЧАСТЫЕ ВОПРОСЫ ═══════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l rv">
+        <p class="eyebrow">Частые вопросы</p>
+        <h2 class="d2">Всё, что важно<br><em>до заказа</em></h2>
+      </div>
+      <p class="sec-head-r note rv rv-1">Собрали ответы о весе, стоимости, оформлении и доставке. Если вашего вопроса нет в списке — напишите нам.</p>
+    </div>
+    <div class="faq-list rv">
+      <details class="faq-item"><summary>За сколько времени нужно заказывать торт?</summary><div class="faq-answer"><p>Обычно заказы принимаются от двух недель до двух месяцев до торжества — срок зависит от сложности работы. Дату можно забронировать раньше. Если свадьба скоро, напишите нам: срочный заказ возможен при свободных местах в графике.</p></div></details>
+      <details class="faq-item"><summary>Как рассчитать вес торта?</summary><div class="faq-answer"><p>Ориентируйтесь на 150–200 г на человека. Например, на 50 гостей понадобится торт весом 7,5–10 кг. Точный вес подберём с учётом программы банкета и других десертов.</p></div></details>
+      <details class="faq-item"><summary>Сколько будет стоить наш торт?</summary><div class="faq-answer"><p>«Классический» стоит 3 200 ₽/кг, «Роскошный» — 3 900 ₽/кг. Например, торт на 50 гостей в тарифе «Роскошный» будет стоить примерно 29 250–39 000 ₽. Доставка, презентация и дополнительный декор рассчитываются отдельно.</p></div></details>
+      <details class="faq-item"><summary>Какой вкус понравится всем?</summary><div class="faq-answer"><p>Самый универсальный вариант — «Молочная девочка» с клубничной прослойкой: нежный и не слишком приторный. Но окончательный выбор лучше сделать после дегустации.</p></div></details>
+      <details class="faq-item"><summary>Можно повторить торт из Pinterest?</summary><div class="faq-answer"><p>Да, возьмём изображение за основу и адаптируем оформление под вашу свадьбу. Точную копию не обещаем: каждый торт создаётся вручную, а живые цветы и оттенки могут отличаться.</p></div></details>
+      <details class="faq-item"><summary>Какое покрытие лучше выбрать?</summary><div class="faq-answer"><p>Покрытие подберёт кондитер с учётом выбранного дизайна, погоды, времени подачи и условий на площадке. Так торт сохранит и внешний вид, и вкус.</p></div></details>
+      <details class="faq-item"><summary>Можно воплотить собственную задумку и историю пары?</summary><div class="faq-answer"><p>Да, для этого подходит тариф «Роскошный». Мы разработаем неповторимый дизайн, создадим 3D-модель и согласуем эскиз до начала работы.</p></div></details>
+      <details class="faq-item"><summary>Хотим большой торт, но гостей мало. Что делать?</summary><div class="faq-answer"><p>Можно добавить муляжные ярусы: визуально торт будет масштабным, а настоящего десерта хватит всем гостям без излишков. Стоимость муляжных тортов рассчитывается индивидуально.</p></div></details>
+      <details class="faq-item"><summary>Что делать, если у гостей есть аллергия?</summary><div class="faq-answer"><p>Обязательно укажите в заявке продукты, которых нужно избежать. Мы предложим подходящие варианты или честно скажем, если не сможем гарантировать безопасность: производство не является безаллергенным.</p></div></details>
+      <details class="faq-item"><summary>Как быть уверенными в результате?</summary><div class="faq-answer"><p>До начала работы согласуем вкус, вес, форму, декор, стоимость и время доставки, а основные детали закрепим в договоре. По всем вопросам вы будете общаться непосредственно с кондитером.</p></div></details>
+      <details class="faq-item"><summary>Что будет, если свадьбу отменят?</summary><div class="faq-answer"><p>Задаток составляет 30% стоимости заказа, закрепляет дату и при отмене заказа не возвращается. Остальные условия изменения и отмены указаны в договоре и публичной оферте.</p></div></details>
+      <details class="faq-item"><summary>На площадке нет места в холодильнике. Это проблема?</summary><div class="faq-answer"><p>Нет, доставим торт за 1–1,5 часа до подачи в охлаждённом автомобиле и специальном боксе с хладагентами. Заранее согласуйте с нами точное время.</p></div></details>
+      <details class="faq-item"><summary>Что будет, если при доставке что-то пойдёт не так?</summary><div class="faq-answer"><p>Мы бережно перевозим и собираем торт сами, а на случай мелких повреждений берём с собой тревожный чемоданчик с инструментами и материалами для восстановления декора.</p></div></details>
     </div>
   </div>
 </section>
@@ -2100,14 +2157,16 @@ select.inp{
     <div class="ftr-top">
       <div class="rv">
         <p class="ftr-mark">Расскажите<br>про <em>ваш день</em></p>
-        <p class="ftr-desc">Кондитерская «Торт <em class="script">по любви</em>». Свадебные торты по индивидуальному заказу с 2013 года. Берём не больше трёх свадеб в неделю — чтобы каждый торт собирался руками, а не потоком.</p>
+        <p class="ftr-desc">Кондитерская «Торт <em class="script">по любви</em>». Создаём свадебные торты по индивидуальному заказу, работаем более 9 лет. Берём не больше трёх свадеб в неделю — чтобы каждый торт собирался руками, а не потоком.</p>
       </div>
 
       <div class="rv rv-1">
         <p class="ftr-h">Связаться</p>
         <ul class="ftr-list">
           <li><a href="tel:+79083677951" data-cms-href="contact.phone"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z"/></svg><span data-cms="contact.phone">+7 908 367-79-51</span></a></li>
-          <li><a href="https://vk.me/asiyatort" data-cms-href="contact.vk_dm"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>Написать в сообщество</a></li>
+          <li><a href="https://vk.me/asiyatort" data-cms-href="contact.vk_dm"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>Написать ВКонтакте</a></li>
+          <li><a href="https://wa.me/79083677951" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>WhatsApp: +7 908 367-79-51</a></li>
+          <li><a href="https://web.max.ru/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4z"/></svg>MAX: +7 908 367-79-51</a></li>
           <li><a href="https://vk.ru/asiyatort" data-cms-href="contact.vk_group"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 9.5c.6 3.4 2.6 5.5 5.2 5.5V9.5m0 5.5c1.6 0 3.2-2.1 4.3-5.5"/></svg>Сообщество ВКонтакте</a></li>
           <li><a href="mailto:rushanovna@mail.ru" data-cms-href="contact.email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-cms="contact.email">rushanovna@mail.ru</span></a></li>
         </ul>
@@ -2150,12 +2209,12 @@ select.inp{
   </figure>
 </div>
 
-<script src="assets/catalog.js"></script>
-<script src="assets/gallery.js"></script>
-<script src="assets/cart.js"></script>
-<script src="assets/api.js"></script>
-<script src="assets/vk-send.js"></script>
-<script src="assets/cms.js" defer></script>
+<script src="assets/catalog.js?v=20261118"></script>
+<script src="assets/gallery.js?v=20261118"></script>
+<script src="assets/cart.js?v=b3cf1d72"></script>
+<script src="assets/api.js?v=b877f1cf"></script>
+<script src="assets/vk-send.js?v=20261118"></script>
+<script src="assets/cms.js?v=21b0f8d4" defer></script>
 <script>
 (function(){
 'use strict';
@@ -2289,7 +2348,7 @@ const hdr = $('#hdr');
 const SECTIONS = [
   ['top','Начало'], ['about','Кондитер'], ['works','Работы'], ['process','Процесс'],
   ['fillings','Начинки'], ['prices','Цены'], ['anniversary','Годовщина'],
-  ['request','Заказ'], ['gallery','Отзывы'], ['contacts','Контакты']
+  ['request','Заказ'], ['gallery','Отзывы'], ['faq','Вопросы'], ['contacts','Контакты']
 ];
 const dotsWrap = $('#dots');
 SECTIONS.forEach(([id,label])=>{
@@ -2384,6 +2443,7 @@ $$('[data-tab]').forEach(b=>{
   b.addEventListener('click', e=>{
     e.preventDefault();
     closeNav();
+    if(b.dataset.tariff) $('#o-tariff').value = b.dataset.tariff;
     showPane(b.dataset.tab);
     jumpTo('request');
   });
@@ -2608,7 +2668,7 @@ if(!RM && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
 
 /* ─────────────────────────────────────────
    8.5 ГАЛЕРЕЯ СНИМКОВ СО СВАДЕБ
-   Плитки строятся из assets/gallery.js — там имена файлов и их
+   Плитки строятся из assets/gallery.js?v=9b9ecd1c — там имена файлов и их
    настоящие размеры. Размеры уходят в width/height картинки, поэтому
    браузер резервирует место заранее и кладка не пересобирается,
    пока снимки грузятся. Если списка нет, в разметке остаются
@@ -2631,7 +2691,7 @@ if(galBox && SHOTS.length){
     el.dataset.i = i;
     el.setAttribute('aria-label', 'Открыть фото ' + n + ' из ' + SHOTS.length + ' во весь экран');
     el.innerHTML =
-      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' ' + (p.w || 1600) + 'w"' +
       ' sizes="(max-width:860px) 46vw, 30vw"' +
       ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async"' +
       ' alt="Со свадьбы: торт кондитерской «Торт по любви», фото ' + n + '">' +
@@ -2675,7 +2735,7 @@ if(worksBox && WORKS.length){
     const n = i + 1;
     return '<button class="shot" type="button" data-i="' + i + '"' +
       ' aria-label="Открыть работу ' + n + ' из ' + WORKS.length + ' во весь экран">' +
-      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+      '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' ' + (p.w || 1600) + 'w"' +
       ' sizes="(max-width:860px) 46vw, 30vw"' +
       ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async"' +
       ' alt="Свадебный торт кондитерской «Торт по любви», работа ' + n + '">' +
@@ -2696,7 +2756,7 @@ if(worksBox && WORKS.length){
   var name = card.querySelector('.fill-n');
   var box = document.createElement('div');
   box.className = 'fill-ph';
-  box.innerHTML = '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+  box.innerHTML = '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' ' + (p.w || 1600) + 'w"' +
     ' sizes="(max-width:560px) 92vw, (max-width:860px) 46vw, 30vw"' +
     ' width="' + (p.w || 4) + '" height="' + (p.h || 3) + '" loading="lazy" decoding="async"' +
     ' alt="Срез начинки ' + (name ? '«' + name.textContent.trim() + '»' : '') + '">';
@@ -2723,7 +2783,7 @@ if(worksBox && WORKS.length){
   if(!box || !list.length) return;
   box.classList.add('deliv-ph--real');
   box.innerHTML = list.map(function(p, i){
-    return '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' 1600w"' +
+    return '<img src="' + p.small + '" srcset="' + p.small + ' 800w, ' + p.big + ' ' + (p.w || 1600) + 'w"' +
       ' sizes="(max-width:1080px) 46vw, 24vw" width="' + (p.w || 3) + '" height="' + (p.h || 4) + '"' +
       ' loading="lazy" decoding="async" alt="Упаковка и получение свадебного торта, фото ' + (i + 1) + '">';
   }).join('');
@@ -2814,7 +2874,7 @@ const money = Cart.money;
 
 /* 9.1 Карточки цен лежат в HTML — их видит поисковый робот без JS.
    Скрипт только оживляет кнопки. Меняете цену — правьте карточку в разметке,
-   assets/catalog.js И api/catalog.js (последний главный при расчёте суммы). */
+   assets/catalog.js?v=aa5ecc53 И api/catalog.js (последний главный при расчёте суммы). */
 $$('[data-add]').forEach(btn=>{
   const label = $('span', btn);
   btn.addEventListener('click', ()=>{

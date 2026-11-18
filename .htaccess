@@ -7,6 +7,17 @@ DirectoryIndex index.html
 AddDefaultCharset utf-8
 AddCharset utf-8 .js .css .json .xml .txt
 
+# Страницы, карта сайта и robots.txt: браузер каждый раз спрашивает
+# сервер, не изменился ли файл. Не изменился — сервер отвечает коротким
+# «без изменений» (304), и страница берётся из памяти браузера.
+# Стили, скрипты и фото отдаёт nginx, эти строки на них не действуют —
+# для них отпечатки ?v= в ссылках, см. tools/cache-bust.sh.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
 # Служебные файлы с точкой в начале имени снаружи не открываются —
 # например, журнал выкладки .ftp-deploy-sync-state.json.
 # Файлы проверки SSL в .well-known так не называются и остаются доступны.

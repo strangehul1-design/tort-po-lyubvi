@@ -71,8 +71,8 @@ a{color:inherit}
 .btn:hover svg{transform:translateX(5px)}
 .btn[disabled]{opacity:.5;pointer-events:none}
 
-.btn--solid{background:var(--graphite);color:var(--white)}
-.btn--solid::before{background:var(--rose-ink)}
+.btn--solid{background:var(--rose-button);color:var(--graphite)}
+.btn--solid::before{background:var(--rose-button-hover)}
 .btn--solid:hover{box-shadow:0 12px 30px -12px rgba(163,67,104,.32)}
 .btn--ghost{border:1px solid var(--graphite);color:var(--graphite)}
 .btn--ghost::before{background:var(--graphite)}
