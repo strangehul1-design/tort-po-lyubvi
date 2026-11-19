@@ -40,12 +40,12 @@ window.WORK_PHOTOS = [
 
 /* Срезы начинок в том же порядке, что и в assets/catalog.js. */
 window.FILLING_PHOTOS = [
-  { small: 'assets/photo/web/f01-800.jpg?v=20261118', big: 'assets/photo/web/f01-1600.jpg?v=20261118', w: 900, h: 1600 },
-  { small: 'assets/photo/web/f02-800.jpg?v=20261118', big: 'assets/photo/web/f02-1600.jpg?v=20261118', w: 1080, h: 1080 },
-  { small: 'assets/photo/web/f03-800.jpg?v=20261118', big: 'assets/photo/web/f03-1600.jpg?v=20261118', w: 941, h: 1672 },
-  { small: 'assets/photo/web/f04-800.jpg?v=20261118', big: 'assets/photo/web/f04-1600.jpg?v=20261118', w: 941, h: 1672 },
-  { small: 'assets/photo/web/f05-800.jpg?v=20261118', big: 'assets/photo/web/f05-1600.jpg?v=20261118', w: 941, h: 1672 },
-  { small: 'assets/photo/web/f06-800.jpg?v=20261118', big: 'assets/photo/web/f06-1600.jpg?v=20261118', w: 941, h: 1672 },
+  { small: 'assets/photo/web/f01.png?v=20261119', big: 'assets/photo/web/f01.png?v=20261119', w: 800, h: 800 },
+  { small: 'assets/photo/web/f02.png?v=20261119', big: 'assets/photo/web/f02.png?v=20261119', w: 800, h: 800 },
+  { small: 'assets/photo/web/f03.png?v=20261119', big: 'assets/photo/web/f03.png?v=20261119', w: 800, h: 800 },
+  { small: 'assets/photo/web/f04.png?v=20261119', big: 'assets/photo/web/f04.png?v=20261119', w: 800, h: 800 },
+  { small: 'assets/photo/web/f05.png?v=20261119', big: 'assets/photo/web/f05.png?v=20261119', w: 800, h: 800 },
+  { small: 'assets/photo/web/f06.png?v=20261119', big: 'assets/photo/web/f06.png?v=20261119', w: 800, h: 800 },
 ];
 
 /* Дегустационный набор — над формой записи. */
