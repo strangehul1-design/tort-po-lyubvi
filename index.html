@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свадебные торты в Самаре «ТОРТ по любви»</title>
-<meta name="description" content="Меняем ваше волнение на сладкое предвкушение! Свадебные торты на заказ в Самаре: дегустация, бережная доставка, презентация, нарезка. Тел. 8 908 367-79-51">
+<meta name="description" content="Меняем ваше волнение на сладкое предвкушение! Свадебные торты на заказ в Самаре: дегустация, бережная доставка и презентация торта. Тел. 8 908 367-79-51">
 <link rel="canonical" href="https://asiyatort.ru/">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-120.png" sizes="120x120" type="image/png">
@@ -87,7 +87,7 @@
            "availability": "https://schema.org/InStock" },
         { "@type": "Offer", "name": "Доставка по Самаре и области", "price": "1000", "priceCurrency": "RUB",
            "description": "Стоимость от 1000 ₽", "availability": "https://schema.org/InStock" },
-        { "@type": "Offer", "name": "Презентация и нарезка торта", "price": "3000", "priceCurrency": "RUB",
+        { "@type": "Offer", "name": "Презентация торта", "price": "3000", "priceCurrency": "RUB",
            "availability": "https://schema.org/InStock" }
       ]
     },
@@ -246,7 +246,7 @@ a{color:inherit}
 .hdr-link.is-here{color:var(--graphite)}
 .hdr-link.is-here::after{transform:scaleX(1);transform-origin:left}
 
-/* Единственное место розового в шапке — главное действие сайта. */
+/* На десктопе розовый акцент в шапке — главное действие сайта. */
 .hdr-cta{
   font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--white);
   padding:12px 24px;border:1px solid var(--rose-ink);border-radius:100px;
@@ -423,7 +423,7 @@ a{color:inherit}
   stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease)}
 .tab:hover{color:var(--graphite)}
 .tab:hover svg{transform:translateY(-2px)}
-.tab.is-on{background:var(--graphite);color:var(--white)}
+.tab.is-on{background:var(--rose-button);color:var(--graphite)}
 
 .pane{display:none}
 .pane.is-on{display:block;animation:lift .7s var(--ease) both}
@@ -546,29 +546,29 @@ select.inp{
 /* ═══════════════════════════════════════════
    ПОДВАЛ
    ═══════════════════════════════════════════ */
-.ftr{background:var(--graphite);color:#F2F2F4;padding-block:clamp(60px,7vw,100px) 34px}
+.ftr{background:var(--rose-button);color:var(--graphite);padding-block:clamp(60px,7vw,100px) 34px}
 .ftr-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(30px,4vw,64px);
   padding-bottom:clamp(40px,5vw,70px)}
 .ftr-mark{font-family:var(--ff-d);font-size:clamp(30px,3.6vw,50px);font-weight:300;
-  line-height:1.1;margin-bottom:16px;color:#F7F7F9}
-.ftr-mark em{font-style:italic;color:#C7C7CE}
-.ftr-desc{color:#C7C7CE;font-size:15px;max-width:34ch;line-height:1.7}
-.ftr-h{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#A3A3AB;margin-bottom:20px}
+  line-height:1.1;margin-bottom:16px;color:var(--graphite)}
+.ftr-mark em{font-style:italic;color:var(--body)}
+.ftr-desc{color:var(--body);font-size:15px;max-width:34ch;line-height:1.7}
+.ftr-h{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--body);margin-bottom:20px}
 .ftr-list{list-style:none;display:flex;flex-direction:column;gap:13px}
 .ftr-list a,.ftr-list span{display:inline-flex;align-items:center;gap:11px;text-decoration:none;
-  font-size:15px;color:#F2F2F4;transition:color .3s var(--ease)}
-.ftr-list a:hover{color:#FFFFFF}
+  font-size:15px;color:var(--graphite);transition:color .3s var(--ease)}
+.ftr-list a:hover{color:#000000}
 .ftr-list svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.4;
   stroke-linecap:round;stroke-linejoin:round;opacity:.7;flex-shrink:0}
-.ftr-bot{border-top:1px solid rgba(242,242,244,.16);padding-top:26px;
+.ftr-bot{border-top:1px solid rgba(22,22,26,.18);padding-top:26px;
   display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
-  font-size:12.5px;color:#9A9AA2;letter-spacing:.05em}
+  font-size:12.5px;color:var(--body);letter-spacing:.05em}
 /* Ссылки на политику и оферту: по закону они должны быть доступны,
    но это не то, ради чего пришли, — поэтому в подвале и без нажима. */
 .ftr-docs{display:flex;gap:20px;flex-wrap:wrap}
-.ftr-docs a{color:#9A9AA2;text-decoration:underline;text-underline-offset:3px;
+.ftr-docs a{color:var(--body);text-decoration:underline;text-underline-offset:3px;
   transition:color .3s var(--ease)}
-.ftr-docs a:hover{color:#F2F2F4}
+.ftr-docs a:hover{color:#000000}
 
 /* Незаполненная галочка согласия: сам вход скрыт, поэтому
    краснеет рамка рядом с текстом. */
@@ -1008,6 +1008,8 @@ select.inp{
    на средних экранах, поэтому меню уходит под бургер раньше —
    на 1180px, а не на 860px, как было при пяти вкладках. */
 @media(max-width:1180px){
+  .hdr{background:var(--rose-button);border-bottom-color:rgba(22,22,26,.12)}
+  .hdr.is-stuck{background:rgba(216,151,149,.95);border-bottom-color:rgba(22,22,26,.12)}
   .hdr-nav{
     position:fixed;inset:0 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
     background:var(--white);padding:96px var(--gut) 34px;border-bottom:1px solid var(--line);
@@ -1330,8 +1332,8 @@ select.inp{
         </li>
         <li class="step rv" data-step="5">
           <div class="step-b">
-            <h3 class="d3">Привозим, собираем, нарезаем</h3>
-            <p>Согласуем с координатором время подачи торта.<br>Лично привозим торт на площадку в специальном боксе по всем правилам бережной перевозки.<br>Если нужно, остаёмся, презентуем и нарезаем ваш торт.</p>
+            <h3 class="d3">Привозим, собираем, презентуем</h3>
+            <p>Согласуем с координатором время подачи торта.<br>Лично привозим торт на площадку в специальном боксе по всем правилам бережной перевозки.<br>Если нужно, остаёмся и презентуем ваш торт.</p>
             <span class="step-tag">В день свадьбы</span>
           </div>
         </li>
@@ -1361,7 +1363,7 @@ select.inp{
       <article class="fill rv rv-1">
         <h3 class="fill-n">Красный бархат</h3>
         <p class="fill-d">Красный влажный бисквит с ноткой шоколада, крем-чиз</p>
-        <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / вишнёвая</p>
+        <p class="fill-c"><b>Прослойка на выбор:</b> клубничная / вишнёвая / малиновая</p>
       </article>
       <article class="fill rv rv-2">
         <h3 class="fill-n">Морковный с апельсином</h3>
@@ -1682,7 +1684,7 @@ select.inp{
       </article>
     </div>
 
-    <p class="prices-sub rv">Дегустация, доставка и нарезка</p>
+    <p class="prices-sub rv">Дегустация, доставка и презентация</p>
     <div class="prices" id="service-grid">
       <article class="price rv" itemscope itemtype="https://schema.org/Service">
         <h3 class="price-name" itemprop="name" data-cms="price.tasting.name">Дегустационный сет</h3>
@@ -1714,8 +1716,8 @@ select.inp{
         </span></button>
       </article>
         <article class="price rv" itemscope itemtype="https://schema.org/Service">
-          <h3 class="price-name" itemprop="name" data-cms="price.cutting.name">Презентация и нарезка торта</h3>
-          <p class="price-desc" itemprop="description" data-cms="price.cutting.desc">Если нужно, остаёмся, презентуем и нарезаем ваш торт.</p>
+          <h3 class="price-name" itemprop="name" data-cms="price.cutting.name">Презентация торта</h3>
+          <p class="price-desc" itemprop="description" data-cms="price.cutting.desc">Нарезки нет. Только презентация торта.</p>
           <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
             <span class="price-num" data-cms="price.cutting.value">3&nbsp;000&nbsp;₽</span>
             <span class="price-unit">за услугу</span>
@@ -1851,8 +1853,8 @@ select.inp{
           <div class="field">
             <span class="legend"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11z"/><path d="M4 14h16"/><path d="M12 4v16"/></svg>Презентация торта</span>
             <div class="pills">
-              <label class="pill"><input type="radio" name="service" value="Нужны" checked><span>Нужны</span></label>
-              <label class="pill"><input type="radio" name="service" value="Не нужны"><span>Не нужны</span></label>
+              <label class="pill"><input type="radio" name="service" value="Нужна" checked><span>Нужна</span></label>
+              <label class="pill"><input type="radio" name="service" value="Не нужна"><span>Не нужна</span></label>
               <label class="pill"><input type="radio" name="service" value="Пока не решили"><span>Пока не решили</span></label>
             </div>
           </div>
@@ -2003,7 +2005,7 @@ select.inp{
           <p class="eyebrow" style="margin-bottom:18px">Доставка и сборка</p>
           <h3 class="d2" style="font-size:clamp(28px,3.4vw,46px);margin-bottom:20px">Мы везём торт<br>сами. Всегда.</h3>
           <p>Свадебные торты мы не доверяем курьерам и сторонним лицам. Мы возим их сами лично в специальном боксе с хладагентами и в автомобиле с кондиционером. По всем правилам бережной перевозки.</p>
-          <p>Как правило, приезжаем за 30–60 минут до подачи, проверяем, всё ли в порядке с тортом, и передаём его официантам. Если заказана презентация, остаёмся и нарезаем торт.</p>
+          <p>Как правило, приезжаем за 30–60 минут до подачи, проверяем, всё ли в порядке с тортом, и передаём его официантам. Если заказана презентация, остаёмся и презентуем торт.</p>
 
           <ul class="deliv-list">
             <li>
@@ -2016,7 +2018,7 @@ select.inp{
             </li>
           </ul>
 
-          <p class="note" style="margin-bottom:26px" data-cms="text.delivery_note">Стоимость доставки — от 1 000 ₽, зависит от адреса площадки. Назовите место — рассчитаем точную сумму до оформления заказа. Презентация и нарезка оплачиваются отдельно.</p>
+          <p class="note" style="margin-bottom:26px" data-cms="text.delivery_note">Стоимость доставки — от 1 000 ₽, зависит от адреса площадки. Назовите место — рассчитаем точную сумму до оформления заказа. Презентация торта оплачивается отдельно.</p>
 
           <button class="btn btn--ghost" data-tab="order"><span>Рассчитать для моей площадки
             <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2218,11 +2220,11 @@ select.inp{
   </figure>
 </div>
 
-<script src="assets/catalog.js?v=20261118"></script>
+<script src="assets/catalog.js?v=20261119"></script>
 <script src="assets/gallery.js?v=20261119"></script>
 <script src="assets/cart.js?v=b3cf1d72"></script>
 <script src="assets/api.js?v=b877f1cf"></script>
-<script src="assets/vk-send.js?v=20261118"></script>
+<script src="assets/vk-send.js?v=20261119"></script>
 <script src="assets/cms.js?v=21b0f8d4" defer></script>
 <script>
 (function(){

@@ -23,7 +23,7 @@ const MAX_FILE_BYTES = 9 * 1024 * 1024;   // Telegram sendPhoto не берёт 
 
 const LABELS = {
   date: 'Дата свадьбы', place: 'Место проведения', guests: 'Количество гостей',
-  filling: 'Начинка', service: 'Презентация и нарезка', channel: 'Способ связи',
+  filling: 'Начинка', service: 'Презентация торта', channel: 'Способ связи',
   name: 'Имя', phone: 'Телефон', email: 'Почта', time: 'Удобное время',
   more: 'Дополнительно', pickup: 'Как получить сет', address: 'Куда привезти',
 };
